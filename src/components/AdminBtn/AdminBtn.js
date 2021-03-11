@@ -1,6 +1,8 @@
+import s from './AdminBtn.module.css';
+
 function Btn({ title }) {
   return (
-    <button className="i-bot" type="button">
+    <button className={s.button} type="button">
       {title}
     </button>
   );

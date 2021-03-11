@@ -10,7 +10,7 @@ function Stats({
 }) {
   return (
     <section className={s.stats}>
-      <h2 className="title">Statistics</h2>
+      <h2 className={s.title}>Statistics</h2>
       <div className={s.row}>
         <p className={s.name}>UAXTotal</p>
         <span>{UAXTotal}</span>

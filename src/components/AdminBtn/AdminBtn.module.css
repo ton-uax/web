@@ -1,0 +1,12 @@
+.button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.4em;
+}
+
+.button:hover {
+  color: #2c22e0;
+}

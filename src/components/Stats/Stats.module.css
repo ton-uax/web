@@ -2,18 +2,19 @@ p {
   margin: 0;
 }
 
-.stats {
-  letter-spacing: -0.5px;
-  font-size: 12px;
-  line-height: 1.4em;
-  margin-right: 0;
+.title {
+  font-size: 1.3em;
+  font-weight: 600;
+  margin-bottom: 11px;
 }
 
 .row {
   display: flex;
   flex-direction: row;
   width: 100%;
-  /* position: relative; */
+  letter-spacing: -0.5px;
+  font-size: 12px;
+  line-height: 1.4em;
 }
 
 .name {
@@ -36,23 +37,3 @@ span {
   margin-left: 6px;
   font-weight: normal;
 }
-
-/* *:before {
-    position: relative;
-    top: 1px;
-    margin-right: 3px;
-  }
-
-  a:active {
-    color: $sky;
-  } */
-
-/* .pack {
-  text-align: left;
-  position: relative;
-
-  .button {
-    display: inline-block;
-    margin-bottom: 0.5em;
-  }
-} */
