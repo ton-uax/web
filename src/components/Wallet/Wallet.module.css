@@ -1,0 +1,57 @@
+.wallet {
+  margin-bottom: 1.7em;
+}
+
+.title {
+  font-size: 1.3em;
+  font-weight: 600;
+  margin-bottom: 11px;
+}
+
+.ballance {
+  display: flex;
+  flex-direction: column;
+  background-color: #2c22e0;
+  /* background-image: url('.../img/wallet-b.png'); */
+  background-size: cover;
+  color: white;
+  padding: 7px 10px;
+  border-radius: 8px;
+}
+
+.info {
+  font-size: 9px;
+  opacity: 0.5;
+  margin-bottom: 3em;
+  margin-left: 5px;
+  margin-top: 2px;
+  letter-spacing: 1px;
+}
+
+.value {
+  letter-spacing: -0.02em;
+  font-size: 23px;
+  line-height: 1.6em;
+}
+
+.value:not(:last-child) {
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.5);
+}
+
+.yadd {
+  margin-top: 0.5em;
+  font-weight: bold;
+  font-size: 0.7em;
+  color: #2c22e0;
+  padding: 3px 7px 5px;
+  border-radius: 8px;
+  transition: 0.1s ease-in-out;
+}
+
+.yadd:hover {
+  background-color: #f3f6fe;
+}
+
+.yadd:active {
+  color: red;
+}

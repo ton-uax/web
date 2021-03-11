@@ -31,7 +31,7 @@ function App() {
           </aside>
           <div className={s.page}>
             <div className={s.wallet}>
-              <Wallet />
+              <Wallet uax="23" gas="37" />
               <Card title="Transfer" label="Value (uax)" buttonText="Send" />
             </div>
             <div className={s.wallet}>
