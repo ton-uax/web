@@ -1,0 +1,50 @@
+h1 {
+  margin: 0;
+}
+
+.main {
+  background-color: #0d0d3f;
+  color: white;
+  display: flex;
+  padding: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoImage {
+  margin-right: 6px;
+}
+
+.title {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.menu {
+  margin-left: auto;
+  text-align: center;
+  font-size: 0.8em;
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  padding-bottom: 3px;
+  margin: 0 8px;
+  color: #ffffff;
+}
+
+.link:hover {
+  color: #2e71f0;
+  transition: 0.2s ease-in-out;
+}
+
+/* .act { */
+/* border-bottom: 2px solid #2e71f0; */
+/* } */

@@ -1,0 +1,58 @@
+p {
+  margin: 0;
+}
+
+.stats {
+  letter-spacing: -0.5px;
+  font-size: 12px;
+  line-height: 1.4em;
+  margin-right: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* position: relative; */
+}
+
+.name {
+  display: flex;
+  font-weight: bold;
+  flex: 1;
+}
+
+.name:after {
+  content: '';
+  position: relative;
+  width: inherit;
+  width: 100%;
+  border-bottom: 1.7px dotted rgba(0, 0, 0, 0.212);
+  top: -3px;
+  left: 3px;
+}
+
+span {
+  margin-left: 6px;
+  font-weight: normal;
+}
+
+/* *:before {
+    position: relative;
+    top: 1px;
+    margin-right: 3px;
+  }
+
+  a:active {
+    color: $sky;
+  } */
+
+/* .pack {
+  text-align: left;
+  position: relative;
+
+  .button {
+    display: inline-block;
+    margin-bottom: 0.5em;
+  }
+} */
