@@ -7,6 +7,8 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.1",
+    "@tonclient/core": "^1.10.2",
+    "@tonclient/lib-web": "^1.10.2",
     "gh-pages": "^3.1.0",
     "modern-normalize": "^1.0.0",
     "react": "^17.0.1",
@@ -18,7 +20,7 @@
     "start": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "react-scripts build",
+    "build": "cp ./node_modules/@tonclient/lib-web/tonclient.wasm public && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

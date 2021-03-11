@@ -7,7 +7,7 @@ import Wallet from './components/Wallet';
 import Card from './components/Card/Card';
 import Mint from './components/Mint';
 
-function App() {
+function App({ client }) {
   return (
     <main className={s.main}>
       <div className={s.desk}>
@@ -23,7 +23,7 @@ function App() {
               Transactions="4,221"
             />
             <AdminWallet>
-              <Btn title="Create 5 wallets" />
+              <Btn title="Create wallet" client={client} />
               <Btn title="Speed up" />
               <Btn title="Speed down" />
               <Btn title="Clear desk" />
