@@ -38,6 +38,7 @@
 
 .button {
   padding: 8px 19px;
+  width: 100%;
   text-align: center;
   color: white;
   background-color: #2c22e0;

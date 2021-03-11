@@ -1,4 +1,5 @@
 import s from './Header.module.css';
+import logo from '../../img/logo.svg';
 
 function Header({ title }) {
   return (
@@ -9,7 +10,7 @@ function Header({ title }) {
             {' '}
             <img
               className={s.logoImage}
-              src="../img/logo.svg"
+              src={logo}
               width="20px"
               height="20px"
               alt="logo"
