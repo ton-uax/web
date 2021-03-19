@@ -1,6 +1,20 @@
 import s from './Card.module.css';
+import uax from '../../uax/demo'
 
-function Card({ title, label, buttonText, children }) {
+function Card({ title, label, buttonText, client, from, to, value, setBalance, children }) {
+
+  async function demoTransfer(event) {
+    event.preventDefault();
+
+    const wallet = uax.makeWalletWrapper(client, from);
+    let res = await wallet.run("transferTokens", { to: to, val: value });
+    console.log(res);
+    let balanceFrom = await uax.getBalance(client, from)
+    let balanceTo = await uax.getBalance(client, to);
+    await setBalance(from, balanceFrom);
+    await setBalance(to, balanceTo);
+  }
+
   return (
     <section className={s.card}>
       <h2 className={s.title}>{title}</h2>
@@ -9,13 +23,13 @@ function Card({ title, label, buttonText, children }) {
         <input
           className={s.input}
           type="text"
-          placeholder="0:911d8d474b584cb4a3eb21a02c70cd2172054e2455d2472a7151b7986ffbe0d6"
-        // onClick="this.select();"
+          placeholder="Enter recipient address"
+          defaultValue={to}
         />
         <label className={s.label}>{label}</label>
         <input className={s.input} type="text" placeholder="1,000" />
         {children}
-        <button className={s.button} type="submit">
+        <button className={s.button} type="submit" onClick={demoTransfer}>
           {buttonText}
         </button>
       </form>
