@@ -8,7 +8,7 @@ import { libWeb, libWebSetup } from "@tonclient/lib-web";
 
 
 libWebSetup({
-  binaryURL: "/web/static/wasm/tonclient.wasm",
+  binaryURL: "web/wasm/tonclient.wasm",
 })
 ton.useBinaryLibrary(libWeb);
 
