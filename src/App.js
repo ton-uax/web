@@ -6,8 +6,11 @@ import Btn from './components/AdminBtn';
 import Wallet from './components/Wallet';
 import Card from './components/Card/Card';
 import Mint from './components/Mint';
+import React, { useState } from 'react';
 
 function App({ client }) {
+  const [balance, setBalance] = useState({ uax: "-", gas: "-" });
+
   return (
     <main className={s.main}>
       <div className={s.desk}>
@@ -23,15 +26,15 @@ function App({ client }) {
               Transactions="4,221"
             />
             <AdminWallet>
-              <Btn title="Create wallet" client={client} />
-              <Btn title="Speed up" />
+              <Btn title="Update wallet" client={client} setBalance={setBalance} />
+              {/* <Btn title="Speed up" />
               <Btn title="Speed down" />
-              <Btn title="Clear desk" />
+              <Btn title="Clear desk" /> */}
             </AdminWallet>
           </aside>
           <div className={s.page}>
             <div className={s.wallet}>
-              <Wallet uax="23" gas="37" />
+              <Wallet uax={balance.uax} gas={balance.gas} address="0:911d8d4...b7986ffbe0d6" />
               <Card title="Transfer" label="Value (uax)" buttonText="Send" />
             </div>
             <div className={s.wallet}>

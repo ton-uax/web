@@ -1,0 +1,161 @@
+{
+	"ABI version": 2,
+	"header": ["time"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"id","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setupTokenWallet",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"tex","type":"address"},
+				{"name":"eventLog","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "credit",
+			"inputs": [
+				{"name":"tid","type":"uint64"},
+				{"name":"n","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "debit",
+			"inputs": [
+				{"name":"tid","type":"uint64"},
+				{"name":"n","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "confirm",
+			"inputs": [
+				{"name":"tid","type":"uint64"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deny",
+			"inputs": [
+				{"name":"tid","type":"uint64"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "buyTokens",
+			"inputs": [
+				{"name":"amount","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "transferTokensDirectly",
+			"inputs": [
+				{"name":"to","type":"address"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "transferTokens",
+			"inputs": [
+				{"name":"to","type":"address"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "transferTokensToFriend",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "initMember",
+			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"tex","type":"address"},
+				{"name":"dashboard","type":"address"},
+				{"name":"idx","type":"uint8"},
+				{"name":"id","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "meet",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"a","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateClients",
+			"inputs": [
+				{"name":"a","type":"address"},
+				{"name":"id","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getEnv",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"tex","type":"address"},
+				{"name":"dashboard","type":"address"}
+			]
+		},
+		{
+			"name": "getEnv2",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"tex","type":"address"},
+				{"name":"dashboard","type":"address"}
+			]
+		},
+		{
+			"name": "_balance",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"_balance","type":"uint32"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	]
+}

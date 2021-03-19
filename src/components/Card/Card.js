@@ -9,8 +9,8 @@ function Card({ title, label, buttonText, children }) {
         <input
           className={s.input}
           type="text"
-          placeholder="0:67f4bf95722e1bd6df845fca7991e5e7128ce4a6d25f6d4ef027d139a11a7964"
-          // onClick="this.select();"
+          placeholder="0:911d8d474b584cb4a3eb21a02c70cd2172054e2455d2472a7151b7986ffbe0d6"
+        // onClick="this.select();"
         />
         <label className={s.label}>{label}</label>
         <input className={s.input} type="text" placeholder="1,000" />
