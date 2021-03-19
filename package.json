@@ -2,6 +2,7 @@
   "name": "project_v2",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ton-uax.github.io/web",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
@@ -18,8 +19,8 @@
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "build": "cp ./node_modules/@tonclient/lib-web/tonclient.wasm public && react-scripts build",
+    "deploy": "gh-pages -d build -o mvp",
+    "build": "mkdir -p public/wasm && cp ./node_modules/@tonclient/lib-web/tonclient.wasm public/wasm && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
