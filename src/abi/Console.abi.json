@@ -1,0 +1,168 @@
+{
+	"ABI version": 2,
+	"header": ["time"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "initConsole",
+			"inputs": [
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"tex","type":"address"},
+				{"name":"dashboard","type":"address"},
+				{"name":"c","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "scenario0",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "scenario1",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deploySystemWallets",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deployTokenWallets",
+			"inputs": [
+				{"name":"n","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deployTokenWalletsWithKeys",
+			"inputs": [
+				{"name":"keys","type":"uint256[]"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deployTokenWalletWithTokens",
+			"inputs": [
+				{"name":"key","type":"uint256"},
+				{"name":"tokens","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "mintTo",
+			"inputs": [
+				{"name":"addr","type":"address"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "burnFrom",
+			"inputs": [
+				{"name":"addr","type":"address"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateCI",
+			"inputs": [
+				{"name":"i","type":"uint8"},
+				{"name":"c","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "initMember",
+			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"tex","type":"address"},
+				{"name":"dashboard","type":"address"},
+				{"name":"idx","type":"uint8"},
+				{"name":"id","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "meet",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"a","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateClients",
+			"inputs": [
+				{"name":"a","type":"address"},
+				{"name":"id","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getEnv",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"tex","type":"address"},
+				{"name":"dashboard","type":"address"}
+			]
+		},
+		{
+			"name": "getEnv2",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"tex","type":"address"},
+				{"name":"dashboard","type":"address"}
+			]
+		},
+		{
+			"name": "doTransfer",
+			"inputs": [
+				{"name":"from","type":"address"},
+				{"name":"to","type":"address"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	]
+}

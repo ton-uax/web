@@ -1,10 +1,10 @@
-import s from './AdminWallet.module.css';
+import ColTitle from "../ColTitle";
 
 function AdminWallet({ children }) {
   return (
     <section>
       <div>
-        <h2 className={s.title}>Admin</h2>
+        <ColTitle title="Admin"></ColTitle>
         {children}
       </div>
     </section>

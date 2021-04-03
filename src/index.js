@@ -1,6 +1,7 @@
 import 'modern-normalize/modern-normalize.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import App from './App';
 
 import { TonClient as ton } from "@tonclient/core";
@@ -20,7 +21,9 @@ const client = new ton({
 
 ReactDOM.render(
   <React.StrictMode>
-    <App client={client} />
+    <Router>
+      <App client={client} />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root'),
 );

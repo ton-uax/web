@@ -2,12 +2,6 @@ p {
   margin: 0;
 }
 
-.title {
-  font-size: 1.3em;
-  font-weight: 600;
-  margin-bottom: 11px;
-}
-
 .row {
   display: flex;
   flex-direction: row;

@@ -1,3 +1,4 @@
+import ColTitle from '../ColTitle';
 import s from './Stats.module.css';
 
 function Stats({
@@ -10,7 +11,7 @@ function Stats({
 }) {
   return (
     <section className={s.stats}>
-      <h2 className={s.title}>Statistics</h2>
+      <ColTitle title="Stats"></ColTitle>
       <div className={s.row}>
         <p className={s.name}>UAXTotal</p>
         <span>{UAXTotal}</span>

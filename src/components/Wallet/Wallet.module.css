@@ -1,11 +1,6 @@
 .wallet {
   margin-bottom: 1.7em;
-}
-
-.title {
-  font-size: 1.3em;
-  font-weight: 600;
-  margin-bottom: 11px;
+  width: 200px;
 }
 
 .ballance {
