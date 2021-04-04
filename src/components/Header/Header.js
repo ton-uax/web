@@ -15,16 +15,15 @@ function Header({ title }) {
             <img
               className={s.logoImage}
               src={logo}
-              width="20px"
-              height="20px"
               alt="logo"
+              width="20px"
             />
             {title}
           </Link>
         </h1>
       </div>
       <div className={s.menu}>
-        <Link to="/" className={(s.act, s.link)} href="uax">
+        <Link to="/" className={(s.act, s.link)}>
           Home
         </Link>
         <Link to="/demo1" className={s.link}>

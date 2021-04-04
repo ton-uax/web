@@ -45,6 +45,6 @@ h1 {
   transition: 0.2s ease-in-out;
 }
 
-/* .act { */
-/* border-bottom: 2px solid #2e71f0; */
-/* } */
+.act {
+  border-bottom: 2px solid #2e71f0;
+}

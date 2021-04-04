@@ -1,6 +1,5 @@
 .col {
   display: flex;
   flex-direction: column;
-  margin-bottom: 48px;
   margin-right: 48px;
 }

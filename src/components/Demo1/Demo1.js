@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Col from '../Col';
 import Wallet from '../Wallet';
 import uax from '../../uax/demo';
 
@@ -68,12 +67,8 @@ function Demo1({ client }) {
 
   return (
     <>
-      <Col>
-        <Wallet client={client} address={addr1} balance={balances[addr1]} />
-      </Col>
-      <Col>
-        <Wallet client={client} address={addr2} balance={balances[addr2]} />
-      </Col>
+        <Wallet client={client} address={addr1} balance={balances[addr1]} defaultTo={addr2} />
+        <Wallet client={client} address={addr2} balance={balances[addr2]} defaultTo={addr1} />
     </>
   )
 };
