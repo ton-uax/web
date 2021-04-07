@@ -39,14 +39,14 @@ function App() {
 
                 </Route>
                 <Route path="/demo2">
-                  {/* <div className="col">
+                  <div className="col">
                     <h1 className="i-wallet">Wallet</h1>
                     <Wallet
 
                       address={"0:db750d25142152b6e8d740a63b9a1e4503072ab7a5c51c7ab014c7a366e1a148"}
                       balance={{ ton: "2.34", uax: "123" }}
                     />
-                  </div> */}
+                  </div>
 
                   <div className="col">
                     <h1 className="i-martix">Desk</h1>
@@ -56,12 +56,12 @@ function App() {
                       <SmallWallet />
                     </div>
                   </div>
-                  {/* <div className="col">
+                  <div className="col">
                     <h1 className="i-alert">Log</h1>
                     <p>1</p>
                     <p>2</p>
                     <p>3</p>
-                  </div> */}
+                  </div>
 
                 </Route>
 
