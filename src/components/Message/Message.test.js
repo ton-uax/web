@@ -1,15 +1,15 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-import Col from './Col';
+import Message from './Message';
 
-describe('Col', () => {
+describe('Message', () => {
     const defaultProps = {};
 
     it('should render', () => {
         const props = {...defaultProps};
-        const { asFragment, queryByText } = render(<Col {...props} />);
+        const { asFragment, queryByText } = render(<Message {...props} />);
 
         expect(asFragment()).toMatchSnapshot();
-        expect(queryByText('Col')).toBeTruthy();
+        expect(queryByText('Message')).toBeTruthy();
     });
 });

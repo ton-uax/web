@@ -1,86 +1,76 @@
+import './components/flex.css';
+import './icons.css';
 import s from './App.module.css';
 import { Switch, Route } from 'react-router-dom';
-import Col from './components/Col';
 import Header from './components/Header';
-import Stats from './components/Stats';
-import AdminWallet from './components/AdminWallet';
 import Wallet from './components/Wallet';
-import ColTitle from './components/ColTitle';
-import Matrix from './components/Matrix';
+import Demo1 from './components/Demo1';
+import Aside from './components/Aside';
+import Message from './components/Message';
 import SmallWallet from './components/SmallWallet';
-import Demo1 from './components/Demo1/Demo1';
+import React, { useState } from 'react';
 
 
-function App({ client }) {
+function App() {
+  const [showMessage, setShowMessage] = useState(false);
   return (
     <main className={s.main}>
+
       <div className={s.desk}>
+
         <Header title="UAX" />
+        <section className="row">
+          <Aside></Aside>
 
-        <div className={s.flex}>
-          <aside className={s.aside}>
-            <Stats
-              UAXTotal="8,000,000"
-              UserTotal="537"
-              BaseFee="12"
-              FeeTotal="23,889"
-              GiverTotal="2,000,000"
-              Transactions="4,221"
-            />
+          <div>
+            <Message show={showMessage}></Message>
+            <div className={s.page}>
+              <Switch>
 
-            <AdminWallet>
-              {/* <Btn title="Update wallet 1" client={client} address={addr1} setBalance={setBalance} />
-              <Btn title="Update wallet 2" client={client} address={addr2} setBalance={setBalance} /> */}
-              {/* <Btn title="Speed up" />
-              <Btn title="Speed down" />
-              <Btn title="Clear desk" /> */}
-            </AdminWallet>
-          </aside>
+                <Route exact path="/">
+                  <div className="row">
 
-          <div className={s.page}>
+                    <h1 className="i-alert">Hello</h1>
+                    <h2>Hello</h2>
+                  </div>
+                </Route>
+                <Route path="/demo1">
+                  {/* <Demo1 /> */}
 
-            <Switch>
-              <Route exact path="/">
+                </Route>
+                <Route path="/demo2">
+                  {/* <div className="col">
+                    <h1 className="i-wallet">Wallet</h1>
+                    <Wallet
 
-              </Route>
-              <Route path="/demo1">
-                <Demo1 client={client} />
-              </Route>
-              <Route path="/demo2">
-                <Col>
-                  <ColTitle title="Wallet"></ColTitle>
-                  <Wallet client={client} address={"0:db750d25142152b6e8d740a63b9a1e4503072ab7a5c51c7ab014c7a366e1a148"} balance={{ ton: "2.34", uax: "123" }} />
-                </Col>
-                <Col>
-                  <ColTitle title="Desk"></ColTitle>
-                  <Matrix>
+                      address={"0:db750d25142152b6e8d740a63b9a1e4503072ab7a5c51c7ab014c7a366e1a148"}
+                      balance={{ ton: "2.34", uax: "123" }}
+                    />
+                  </div> */}
 
-                    <SmallWallet address={"address"} uax={123} ton={456}>
+                  <div className="col">
+                    <h1 className="i-martix">Desk</h1>
+                    <div className={s.matrix}>
+                      <SmallWallet active={false} address="0:123..456" />
+                      <SmallWallet active={true} address="0:123..456" />
+                      <SmallWallet />
+                    </div>
+                  </div>
+                  {/* <div className="col">
+                    <h1 className="i-alert">Log</h1>
+                    <p>1</p>
+                    <p>2</p>
+                    <p>3</p>
+                  </div> */}
 
-                    </SmallWallet >
-                    <SmallWallet address={"address"} uax={123} ton={456}>
+                </Route>
 
-                    </SmallWallet>
-                    <SmallWallet address={"address"} uax={123} ton={456}>
-
-                    </SmallWallet>
-                    <SmallWallet address={"address"} uax={123} ton={456}>
-
-                    </SmallWallet>
-                    <SmallWallet address={"address"} uax={123} ton={456}>
-
-                    </SmallWallet>
-                  </Matrix>
-                </Col>
-                <Col>
-                  <ColTitle title="Log"></ColTitle>
-                </Col>
-              </Route>
-            </Switch>
+              </Switch>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
-    </main>
+    </main >
   );
 }
 

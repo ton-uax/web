@@ -16,7 +16,7 @@ function Header({ title }) {
               className={s.logoImage}
               src={logo}
               alt="logo"
-              width="20px"
+              width="30px"
             />
             {title}
           </Link>
@@ -26,10 +26,10 @@ function Header({ title }) {
         <Link to="/" className={(s.act, s.link)}>
           Home
         </Link>
-        <Link to="/demo1" className={s.link}>
+        <Link to="demo1" className={s.link}>
           Demo 1
         </Link>
-        <Link to="/demo2" className={s.link}>
+        <Link to="demo2" className={s.link}>
           Demo 2
         </Link>
       </div>

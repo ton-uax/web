@@ -1,0 +1,43 @@
+.message {
+  background-color: #5dff5d;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.7em;
+  padding: 5px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.message *:before {
+  position: relative;
+  font-size: 0.9em;
+  top: 1px;
+  left: -2px;
+}
+.message span {
+  padding: 0 7px;
+  letter-spacing: -0.02em;
+}
+.message .button {
+  display: inline-block;
+  margin-left: 2em;
+  background-color: transparent;
+  border-radius: 3.5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.7em;
+  font-weight: bold;
+  letter-spacing: -0.03em;
+  padding: 1px 3.5px 1px 4px;
+  position: relative;
+  top: -1px;
+}
+.message .button:hover {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  color: rgba(0, 0, 0, 0.8);
+}
+.message .button:active {
+  border: 1px solid #000;
+  background-color: #000;
+  color: white;
+}

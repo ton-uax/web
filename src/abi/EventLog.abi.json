@@ -1,0 +1,184 @@
+{
+	"ABI version": 2,
+	"header": ["time"],
+	"functions": [
+		{
+			"name": "logError",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"code","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "logTransfer",
+			"inputs": [
+				{"name":"tid","type":"uint64"},
+				{"name":"from","type":"uint16"},
+				{"name":"to","type":"uint16"},
+				{"name":"val","type":"uint32"},
+				{"name":"s","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "logRecord",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"f","type":"uint8"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "logEvent",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"eType","type":"uint8"},
+				{"name":"s","type":"uint8"},
+				{"name":"eventID","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getAll",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"x","type":"uint32"},{"name":"code","type":"uint16"}],"name":"errors","type":"tuple[]"},
+				{"components":[{"name":"x","type":"uint32"},{"name":"from","type":"uint16"},{"name":"to","type":"uint16"},{"name":"val","type":"uint32"},{"name":"id","type":"uint64"},{"name":"s","type":"uint8"}],"name":"transfers","type":"tuple[]"},
+				{"components":[{"name":"x","type":"uint32"},{"name":"flow","type":"uint8"},{"name":"val","type":"uint32"}],"name":"records","type":"tuple[]"},
+				{"components":[{"name":"x","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"events","type":"tuple[]"}
+			]
+		},
+		{
+			"name": "getErrorsExt",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"x","type":"uint32"},{"name":"code","type":"uint16"}],"name":"errors","type":"tuple[]"},
+				{"components":[{"name":"id","type":"uint32"},{"name":"subject","type":"uint16"},{"name":"sentBy","type":"uint16"},{"name":"ts","type":"uint32"}],"name":"details","type":"tuple[]"}
+			]
+		},
+		{
+			"name": "purgeAll",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "initMember",
+			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"},
+				{"name":"id","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "meet",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"a","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateMode",
+			"inputs": [
+				{"name":"logLevel","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getMode",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"logLevel","type":"uint16"}
+			]
+		},
+		{
+			"name": "getEnv",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"}
+			]
+		},
+		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "_clients",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"_clients","type":"map(address,uint16)"}
+			]
+		},
+		{
+			"name": "_errors",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"x","type":"uint32"},{"name":"code","type":"uint16"}],"name":"_errors","type":"tuple[]"}
+			]
+		},
+		{
+			"name": "_transfers",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"x","type":"uint32"},{"name":"from","type":"uint16"},{"name":"to","type":"uint16"},{"name":"val","type":"uint32"},{"name":"id","type":"uint64"},{"name":"s","type":"uint8"}],"name":"_transfers","type":"tuple[]"}
+			]
+		},
+		{
+			"name": "_records",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"x","type":"uint32"},{"name":"flow","type":"uint8"},{"name":"val","type":"uint32"}],"name":"_records","type":"tuple[]"}
+			]
+		},
+		{
+			"name": "_events",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"x","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"_events","type":"tuple[]"}
+			]
+		},
+		{
+			"name": "_log",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"id","type":"uint32"},{"name":"subject","type":"uint16"},{"name":"sentBy","type":"uint16"},{"name":"ts","type":"uint32"}],"name":"_log","type":"tuple[]"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	]
+}

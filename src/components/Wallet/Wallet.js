@@ -1,13 +1,13 @@
-import WalletForm from '../WalletForm';
-import Col from '../Col';
 import s from './Wallet.module.css';
+import WalletForm from '../WalletForm';
 
-function Wallet({ client, address, balance, defaultTo }) {
+
+function Wallet({ client, address, balance, defaultTo, className = "" }) {
   const addressShort = address.slice(0, 7) + "..." + address.slice(-4, 0)
 
   return (
-    <Col>
-    <div className={s.wallet}>
+
+    <div className={className}>
       <div className={s.balance}>
         <div className={s.info}>BALANCE</div>
         <p className={s.value}>{balance ? balance.uax : "-"}</p>
@@ -20,7 +20,6 @@ function Wallet({ client, address, balance, defaultTo }) {
         client={client} from={address} to={defaultTo}>
       </WalletForm>
     </div>
-    </Col>
   );
 
 
