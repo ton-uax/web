@@ -35,7 +35,7 @@ function App() {
                   </div>
                 </Route>
                 <Route path="/demo1">
-                  {/* <Demo1 /> */}
+                  <Demo1 />
 
                 </Route>
                 <Route path="/demo2">

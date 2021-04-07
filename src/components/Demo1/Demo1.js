@@ -10,11 +10,7 @@ function Demo1() {
 
   // const [init, setInit] = useState(false);
   const [balances, setBalances] = useState({});
-  const client = new ton({
-    network: {
-      server_address: 'net.ton.dev'
-    }
-  });
+  const client = useTON()
   // useEffect(() => {
   //   console.log('hook balances',)
   //   async function initBalances() {

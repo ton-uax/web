@@ -3,11 +3,13 @@ import { getUAXWallets, makeConsoleWrapper, makeWalletWrapper } from './demo';
 import { TonClient as ton } from '@tonclient/core'
 
 export function useTON() {
-    console.log('hook use TON')
+
     const [tonclient, setClient] = useState(null)
 
     useEffect(() => {
+        console.log('hook use TON')
         if (!tonclient) {
+            console.log('creating TON')
             const client = new ton({
                 network: {
                     server_address: 'net.ton.dev'
@@ -15,7 +17,19 @@ export function useTON() {
             });
             setClient(client)
         }
-    }, [tonclient, setClient])
+        else
+            console.log('TON exists')
+        return () => {
+            if (!tonclient)
+                console.log('unmount. there is no ton')
+
+
+            else {
+                console.log('unmount. close ton')
+                tonclient.close()
+            }
+        }
+    }, [])
 
     return tonclient
 }
