@@ -2,15 +2,20 @@ import '../flex.css';
 import React, { useEffect, useState } from 'react';
 import Wallet from '../Wallet';
 import uax, { get2Addresses } from '../../uax/demo';
-import { useConsole, useUAXAddresses, useWallet, useTON } from "../../uax/hooks";
-import { TonClient as ton } from '@tonclient/core'
+import {
+  useConsole,
+  useUAXAddresses,
+  useWallet,
+  useTON,
+} from '../../uax/hooks';
+import { TonClient as ton } from '@tonclient/core';
 
 function Demo1() {
-  const [addr1, addr2] = get2Addresses()
+  const [addr1, addr2] = get2Addresses();
 
   // const [init, setInit] = useState(false);
   const [balances, setBalances] = useState({});
-  const client = useTON()
+  const client = useTON();
   // useEffect(() => {
   //   console.log('hook balances',)
   //   async function initBalances() {
@@ -73,16 +78,29 @@ function Demo1() {
   // const wallet2 = useWallet(client, addr2)
   // console.log(wallet1)
 
-  return <div className="col">
-    <div className="row">
-      <Wallet client={client} address={addr1} balance={balances[addr1]} defaultTo={addr2} />
-      <Wallet client={client} address={addr2} balance={balances[addr2]} defaultTo={addr1} />
+  return (
+    <div className="flex">
+      {/* <div className="row"> */}
+      <Wallet
+        client={client}
+        address={addr1}
+        balance={balances[addr1]}
+        defaultTo={addr2}
+      />
+      <Wallet
+        client={client}
+        address={addr2}
+        balance={balances[addr2]}
+        defaultTo={addr1}
+      />
       {/* <Wallet client={client} address={addr2} balance={balances[addr2]} defaultTo={addr1} /> */}
     </div>
+  );
 
-    {/* {addrs.map(a => <div key={a}>{a}</div>)} */}
-  </div>
-
-};
+  {
+    /* {addrs.map(a => <div key={a}>{a}</div>)} */
+  }
+  // </div>
+}
 
 export default Demo1;

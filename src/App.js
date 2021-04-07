@@ -10,67 +10,68 @@ import Message from './components/Message';
 import SmallWallet from './components/SmallWallet';
 import React, { useState } from 'react';
 
-
 function App() {
   const [showMessage, setShowMessage] = useState(false);
   return (
     <main className={s.main}>
-
       <div className={s.desk}>
-
         <Header title="UAX" />
-        <section className="row">
+        <div className="row">
           <Aside></Aside>
 
-          <div>
-            <Message show={showMessage}></Message>
-            <div className={s.page}>
-              <Switch>
+          {/* <div> */}
+          <Message show={showMessage}></Message>
+          <div className={s.page}>
+            <Switch>
+              <Route exact path="/">
+                <div className="roow">
+                  <h2 className="i-alert">Hello</h2>
+                  <h2>Hello</h2>
+                </div>
+              </Route>
+              <Route path="/demo1">
+                <Demo1 />
+              </Route>
+              <Route path="/demo2">
+                <section className="container">
+                  <h2 className="i-wallet">Wallet</h2>
+                  <Wallet
+                    address={
+                      '0:db750d25142152b6e8d740a63b9a1e4503072ab7a5c51c7ab014c7a366e1a148'
+                    }
+                    balance={{ ton: '2.34', uax: '123' }}
+                  />
+                </section>
 
-                <Route exact path="/">
-                  <div className="row">
-
-                    <h1 className="i-alert">Hello</h1>
-                    <h2>Hello</h2>
+                <section className="container">
+                  <h2 className="i-martix">Desk</h2>
+                  <div className={s.matrix}>
+                    <SmallWallet active={false} address="0:123..456" />
+                    <SmallWallet active={false} address="0:123..456" />
+                    <SmallWallet active={false} address="0:123..456" />
+                    <SmallWallet active={false} address="0:123..456" />
+                    <SmallWallet active={false} address="0:123..456" />
+                    <SmallWallet active={false} address="0:123..456" />{' '}
+                    <SmallWallet active={false} address="0:123..456" />
+                    <SmallWallet active={false} address="0:123..456" />
+                    <SmallWallet active={false} address="0:123..456" />
+                    <SmallWallet active={true} address="0:123..456" />
+                    <SmallWallet />
                   </div>
-                </Route>
-                <Route path="/demo1">
-                  <Demo1 />
-
-                </Route>
-                <Route path="/demo2">
-                  <div className="col">
-                    <h1 className="i-wallet">Wallet</h1>
-                    <Wallet
-
-                      address={"0:db750d25142152b6e8d740a63b9a1e4503072ab7a5c51c7ab014c7a366e1a148"}
-                      balance={{ ton: "2.34", uax: "123" }}
-                    />
-                  </div>
-
-                  <div className="col">
-                    <h1 className="i-martix">Desk</h1>
-                    <div className={s.matrix}>
-                      <SmallWallet active={false} address="0:123..456" />
-                      <SmallWallet active={true} address="0:123..456" />
-                      <SmallWallet />
-                    </div>
-                  </div>
-                  <div className="col">
-                    <h1 className="i-alert">Log</h1>
-                    <p>1</p>
-                    <p>2</p>
-                    <p>3</p>
-                  </div>
-
-                </Route>
-
-              </Switch>
-            </div>
+                </section>
+                <section className="container">
+                  <h2 className="i-alert">Log</h2>
+                  <p>1</p>
+                  <p>2</p>
+                  <p>3</p>
+                </section>
+              </Route>
+            </Switch>
           </div>
-        </section>
+          {/* </div> */}
+        </div>
       </div>
-    </main >
+    </main>
   );
 }
 
