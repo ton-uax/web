@@ -67,13 +67,13 @@ function Demo1() {
   //     return subscribe();
   //   }
   // });
-  // const addrs = useUAXAddresses(client)
+  const addrs = useUAXAddresses(client)
   // const consoleWrapper = useConsole(client)
   // const wallet1 = useWallet(client, addr1)
   // const wallet2 = useWallet(client, addr2)
   // console.log(wallet1)
-
-  return <div className="col">
+  console.log(addrs);
+  return <>
     <div className="row">
       <Wallet client={client} address={addr1} balance={balances[addr1]} defaultTo={addr2} />
       <Wallet client={client} address={addr2} balance={balances[addr2]} defaultTo={addr1} />
@@ -81,7 +81,7 @@ function Demo1() {
     </div>
 
     {/* {addrs.map(a => <div key={a}>{a}</div>)} */}
-  </div>
+  </>
 
 };
 
