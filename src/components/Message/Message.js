@@ -1,4 +1,4 @@
-import s from './Message.css';
+import s from './Message.module.css';
 
 function Message({ show }) {
 

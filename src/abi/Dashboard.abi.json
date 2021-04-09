@@ -3,91 +3,44 @@
 	"header": ["time"],
 	"functions": [
 		{
-			"name": "constructor",
+			"name": "updateMediumState",
 			"inputs": [
-				{"name":"id","type":"uint16"}
+				{"name":"state","type":"uint8"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "adopt",
+			"name": "updateCryptoStats",
 			"inputs": [
-				{"name":"id","type":"uint16"}
+				{"name":"transfers","type":"uint64"},
+				{"name":"supply","type":"uint32"},
+				{"name":"wallets","type":"uint32"},
+				{"name":"commission","type":"uint64"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "setupTokenWallet",
+			"name": "updateCrystalStats",
 			"inputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"console","type":"address"},
-				{"name":"eventLog","type":"address"},
-				{"name":"medium","type":"address"},
-				{"name":"warnBalance","type":"uint32"}
+				{"name":"crystalCommission","type":"uint128"},
+				{"name":"totalBalance","type":"uint128"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "credit",
-			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "debit",
-			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "buyTokens",
-			"inputs": [
-				{"name":"amount","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "transferTokens",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "transferTokensExt",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "lightTransferTokens",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "doppel",
+			"name": "getOwnerStats",
 			"inputs": [
 			],
 			"outputs": [
+				{"name":"transfers","type":"uint64"},
+				{"name":"supply","type":"uint32"},
+				{"name":"wallets","type":"uint32"},
+				{"name":"commission","type":"uint64"},
+				{"name":"crystalCommission","type":"uint128"},
+				{"name":"totalBalance","type":"uint128"}
 			]
 		},
 		{
@@ -141,6 +94,13 @@
 			]
 		},
 		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "_clients",
 			"inputs": [
 			],
@@ -149,11 +109,11 @@
 			]
 		},
 		{
-			"name": "_balance",
+			"name": "_mediumState",
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"_balance","type":"uint32"}
+				{"name":"_mediumState","type":"uint8"}
 			]
 		}
 	],

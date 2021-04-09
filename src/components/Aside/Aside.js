@@ -1,34 +1,25 @@
 import s from './Aside.module.css';
 
-
 function StatsRow({ name, value }) {
   return (
-    <div className={s.row}>
-      <p className={s.name}>{name}</p>
+    <div className={s.statrow}>
+      <p className={s.statname}>{name}</p>
       <span>{value}</span>
     </div>
   )
 }
 
-function Aside({ client }) {
+function Aside() {
   return (
     <aside className={(s.aside)}>
-      {/* UAXTotal={123456}
-        UserTotal={537}
-        BaseFee={100}
-        FeeTotal={2567}
-        GiverTotal={2000000}
-        Transactions={4221} */}
-      <div className={s.stats}>
-        <StatsRow name="UAXTotal" value={123456} />
-        <StatsRow name="FeeTotal" value={2567} />
-        <StatsRow name="UAXTotal" value={123456} />
-        <StatsRow name="FeeTotal" value={2567} />
-        <StatsRow name="UAXTotal" value={123456} />
-        <StatsRow name="FeeTotal" value={2567} />
+      <div>
+        <StatsRow name="Supply" value={123456} />
+        <StatsRow name="Users" value={2567} />
+        <StatsRow name="Transactions" value={2567} />
+        <StatsRow name="Fee" value={123456} />
+        <StatsRow name="CollectedFees" value={2567} />
+        <StatsRow name="GasLeft" value={123456} />
       </div>
-
-
     </aside>
   );
 }

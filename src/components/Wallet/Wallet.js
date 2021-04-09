@@ -1,23 +1,82 @@
 import s from './Wallet.module.css';
-import WalletForm from '../WalletForm';
+import React, { useRef, useState } from 'react';
+import { useAsync, useAsyncFn, useAsyncRetry, useCopyToClipboard, useUpdate } from 'react-use';
+import { useTONAccount } from '../../uax/hooks';
 
-function Wallet({ client, address, balance, defaultTo, className = '' }) {
-  const addressShort = address.slice(0, 7) + '...' + address.slice(-4, 0);
+
+function Wallet({ address }) {
+  const addressShort = !address ? "0:" : address.slice(0, 7) + '...' + address.slice(-4);
+  const [, copyToClipboard] = useCopyToClipboard();
+  const [w] = useTONAccount(address)
+  const updateBalance = useUpdate()
+  const balanceState = useAsync(async () => {
+    const uax = (await w.runLocal("_balance")).decoded.output._balance
+    const ton = (Number(await w.getBalance()) / 10 ** 9).toString().slice(0, 4)
+    console.log('updated', address, { uax, ton })
+    return { uax, ton }
+  }, [])
+  const balance = balanceState.value || { uax: "0", ton: "0" }
+
+  function onMessage(msg) {
+    console.log('onMessage', msg)
+    updateBalance()
+  }
+  w.subscribeMessages("id,boc,code,data,created_at_string,msg_type,msg_type_name,status,status_name", onMessage)
+
+  const toInput = useRef()
+  const valueInput = useRef()
+
+  async function send1(event) {
+    console.log('1')
+    console.log(await w.run("transferTokensExt", {
+      to: toInput.current.value,
+      val: Number(valueInput.current.value)
+    }))
+    console.log('2')
+  }
+
+  async function send2(event) {
+    console.log('11')
+    console.log(await w.run("transferTokensDirectly", {
+      to: toInput.current.value,
+      val: Number(valueInput.current.value)
+    }))
+    console.log('22')
+  }
 
   return (
     <div className={s.wallet}>
       <div className={s.balanceContainer}>
         <div className={s.balance}>
           <div className={s.info}>BALANCE</div>
-          <p className={s.value}>{balance ? balance.uax : '-'}</p>
-          <p className={s.value}>{balance ? balance.ton : '-'}</p>
+          <p className={s.value}>{balance.uax}</p>
+          <p className={s.value}>{balance.ton}</p>
         </div>
-        <a href="copy">
-          <div className={s.yadd}>Copy your address: {addressShort}</div>
-        </a>
+        <div className={`${s.yadd} i-copy`} onClick={() => copyToClipboard(address)}>
+          {addressShort}
+        </div>
       </div>
-      <WalletForm client={client} from={address} to={defaultTo}></WalletForm>
-    </div>
+      <form className={s.block}>
+        <label className={s.label}>To</label>
+        <input
+          className={s.input}
+          type="text"
+          placeholder="0:..."
+          ref={toInput}
+        />
+        <label className={s.label}>Value</label>
+        <input
+          className={s.input}
+          type="text"
+          placeholder="123.45"
+          ref={valueInput}
+        />
+        <button className={s.button} onClick={send1}>
+          transferTokensExt
+      </button>
+
+      </form>
+    </div >
   );
 }
 

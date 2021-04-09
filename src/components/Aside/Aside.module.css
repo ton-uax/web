@@ -1,7 +1,11 @@
-p {
-  margin: 0;
+.aside {
+  display: inline-block;
+  background-color: #f3f6fe;
+  padding: 32px 24px;
+  width: 200px;
 }
-.row {
+
+.statrow {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -10,13 +14,14 @@ p {
   line-height: 1.4em;
 }
 
-.name {
+.statname {
+  margin: 0;
   display: flex;
   font-weight: bold;
   flex: 1;
 }
 
-.name:after {
+.statname:after {
   content: '';
   position: relative;
   width: inherit;
@@ -24,28 +29,4 @@ p {
   border-bottom: 1.7px dotted rgba(0, 0, 0, 0.212);
   top: -3px;
   left: 3px;
-}
-
-span {
-  margin-left: 6px;
-  font-weight: normal;
-}
-
-.aside {
-  display: inline-block;
-  background-color: #f3f6fe;
-  padding: 32px 24px;
-  width: 200px;
-}
-
-.page {
-  position: relative;
-  display: flex;
-  padding: 32px 48px;
-  background-image: url('../../img/circle.png');
-  background-size: 70%;
-  background-repeat: no-repeat;
-  background-position: 100% 100%;
-  width: 100%;
-  height: 100%;
 }

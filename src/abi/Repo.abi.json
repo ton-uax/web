@@ -3,7 +3,14 @@
 	"header": ["time"],
 	"functions": [
 		{
-			"name": "constructor",
+			"name": "deploy",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onDeploy",
 			"inputs": [
 				{"name":"id","type":"uint16"}
 			],
@@ -11,81 +18,49 @@
 			]
 		},
 		{
-			"name": "adopt",
+			"name": "updateImages",
 			"inputs": [
-				{"name":"id","type":"uint16"}
+				{"components":[{"name":"index","type":"uint8"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"images","type":"tuple[]"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "setupTokenWallet",
+			"name": "updateImage",
 			"inputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"console","type":"address"},
-				{"name":"eventLog","type":"address"},
-				{"name":"medium","type":"address"},
-				{"name":"warnBalance","type":"uint32"}
+				{"components":[{"name":"index","type":"uint8"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"image","type":"tuple"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "credit",
+			"name": "grant",
 			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
+				{"name":"addr","type":"address"},
+				{"name":"value","type":"uint128"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "debit",
+			"name": "purgeRepo",
 			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "buyTokens",
+			"name": "getSis",
 			"inputs": [
-				{"name":"amount","type":"uint32"}
 			],
 			"outputs": [
+				{"name":"sis","type":"map(uint8,cell)"}
 			]
 		},
 		{
-			"name": "transferTokens",
+			"name": "upgrade",
 			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "transferTokensExt",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "lightTransferTokens",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "doppel",
-			"inputs": [
+				{"name":"c","type":"cell"}
 			],
 			"outputs": [
 			]
@@ -141,6 +116,13 @@
 			]
 		},
 		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "_clients",
 			"inputs": [
 			],
@@ -149,11 +131,19 @@
 			]
 		},
 		{
-			"name": "_balance",
+			"name": "_images",
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"_balance","type":"uint32"}
+				{"components":[{"name":"index","type":"uint8"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"_images","type":"map(uint8,tuple)"}
+			]
+		},
+		{
+			"name": "_deployed",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"index","type":"uint8"},{"name":"addr","type":"address"},{"name":"ts","type":"uint32"}],"name":"_deployed","type":"map(uint8,tuple)"}
 			]
 		}
 	],

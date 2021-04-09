@@ -3,89 +3,89 @@
 	"header": ["time"],
 	"functions": [
 		{
-			"name": "constructor",
+			"name": "initRoot",
 			"inputs": [
-				{"name":"id","type":"uint16"}
+				{"name":"initBalance","type":"uint32"},
+				{"name":"warnBalance","type":"uint32"},
+				{"name":"welcomeBonus","type":"uint32"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "adopt",
+			"name": "deploySystemWallets",
 			"inputs": [
-				{"name":"id","type":"uint16"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "setupTokenWallet",
+			"name": "deployTokenWallets",
+			"inputs": [
+				{"name":"n","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deployTokenWalletsWithKeys",
+			"inputs": [
+				{"name":"keys","type":"uint256[]"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deployTokenWalletWithTokens",
+			"inputs": [
+				{"name":"key","type":"uint256"},
+				{"name":"tokens","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onTokenWalletDeploy",
 			"inputs": [
 				{"name":"id","type":"uint16"},
-				{"name":"console","type":"address"},
-				{"name":"eventLog","type":"address"},
-				{"name":"medium","type":"address"},
+				{"name":"k","type":"uint256"},
+				{"name":"val","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onTokenWalletSetup",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"tonBalance","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateTonBalance",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"tonBalance","type":"uint128"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updatesi",
+			"inputs": [
+				{"name":"c","type":"cell"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateConfig",
+			"inputs": [
+				{"name":"welcomeBonus","type":"uint32"},
+				{"name":"initialBalance","type":"uint32"},
 				{"name":"warnBalance","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "credit",
-			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "debit",
-			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "buyTokens",
-			"inputs": [
-				{"name":"amount","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "transferTokens",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "transferTokensExt",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "lightTransferTokens",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "doppel",
-			"inputs": [
 			],
 			"outputs": [
 			]
@@ -141,6 +141,13 @@
 			]
 		},
 		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "_clients",
 			"inputs": [
 			],
@@ -149,11 +156,19 @@
 			]
 		},
 		{
-			"name": "_balance",
+			"name": "_walletsInfo",
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"_balance","type":"uint32"}
+				{"components":[{"name":"id","type":"uint16"},{"name":"key","type":"uint256"},{"name":"addr","type":"address"},{"name":"startingTokens","type":"uint32"},{"name":"createdAt","type":"uint32"}],"name":"_walletsInfo","type":"map(address,tuple)"}
+			]
+		},
+		{
+			"name": "_roster",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"id","type":"uint16"},{"name":"tonBalance","type":"uint32"},{"name":"addr","type":"address"},{"name":"accessedAt","type":"uint32"}],"name":"_roster","type":"map(uint16,tuple)"}
 			]
 		}
 	],

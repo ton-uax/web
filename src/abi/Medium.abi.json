@@ -3,66 +3,63 @@
 	"header": ["time"],
 	"functions": [
 		{
-			"name": "constructor",
+			"name": "addTokenWallet",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"a","type":"address"},
+				{"name":"balance","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "grantTokens",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"addr","type":"address"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "registerTokenWallet",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"balance","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "initMedium",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"initialEmission","type":"uint32"},
+				{"name":"transferFee","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setupTeam",
 			"inputs": [
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "initConsole",
+			"name": "onFeeWalletReady",
 			"inputs": [
-				{"name":"eventLog","type":"address"},
-				{"name":"root","type":"address"},
-				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"},
-				{"name":"c","type":"cell"}
+				{"name":"addr","type":"address"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "scenario0",
+			"name": "buyTokens",
 			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "scenario1",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "deploySystemWallets",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "deployTokenWallets",
-			"inputs": [
-				{"name":"n","type":"uint16"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "deployTokenWalletsWithKeys",
-			"inputs": [
-				{"name":"keys","type":"uint256[]"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "deployTokenWalletWithTokens",
-			"inputs": [
-				{"name":"key","type":"uint256"},
-				{"name":"tokens","type":"uint32"}
+				{"name":"n","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -77,16 +74,7 @@
 			]
 		},
 		{
-			"name": "airdrop",
-			"inputs": [
-				{"name":"addrs","type":"address[]"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "mintTo",
+			"name": "deductFrom",
 			"inputs": [
 				{"name":"addr","type":"address"},
 				{"name":"val","type":"uint32"}
@@ -95,18 +83,26 @@
 			]
 		},
 		{
-			"name": "burnFrom",
+			"name": "credit",
 			"inputs": [
-				{"name":"addr","type":"address"},
-				{"name":"val","type":"uint32"}
+				{"name":"tid","type":"uint64"},
+				{"name":"n","type":"uint32"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "doTransfer",
+			"name": "debit",
 			"inputs": [
-				{"name":"from","type":"address"},
+				{"name":"tid","type":"uint64"},
+				{"name":"n","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "transferTokens",
+			"inputs": [
 				{"name":"to","type":"address"},
 				{"name":"val","type":"uint32"}
 			],
@@ -114,9 +110,8 @@
 			]
 		},
 		{
-			"name": "doLightTransfer",
+			"name": "lightTransferTokens",
 			"inputs": [
-				{"name":"from","type":"address"},
 				{"name":"to","type":"address"},
 				{"name":"val","type":"uint32"}
 			],
@@ -124,94 +119,78 @@
 			]
 		},
 		{
-			"name": "doTwoTransfers",
+			"name": "claimTransferFee",
 			"inputs": [
-				{"name":"from","type":"address"},
-				{"name":"to","type":"address"},
+				{"name":"to","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "issue",
+			"inputs": [
 				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "roundTransfer",
+			"name": "raze",
 			"inputs": [
-				{"name":"addrs","type":"address[]"},
 				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "doDoppel",
+			"name": "getStatsSelf",
 			"inputs": [
-				{"name":"addrs","type":"address[]"}
+			],
+			"outputs": [
+				{"name":"state","type":"uint8"},
+				{"name":"total","type":"uint32"},
+				{"name":"distributed","type":"uint32"},
+				{"name":"available","type":"uint32"},
+				{"name":"balance","type":"uint32"}
+			]
+		},
+		{
+			"name": "updateStats",
+			"inputs": [
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "updateImage",
+			"name": "updateTransferFee",
 			"inputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"image","type":"tuple"}
+				{"name":"transferFee","type":"uint32"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "getSis",
+			"name": "getStats",
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"sis","type":"map(uint8,cell)"}
+				{"name":"transfers","type":"uint64"},
+				{"name":"supply","type":"uint32"},
+				{"name":"wallets","type":"uint32"},
+				{"name":"commission","type":"uint64"},
+				{"name":"transferFee","type":"uint32"}
 			]
 		},
 		{
-			"name": "updateCI",
+			"name": "getTransferStats",
 			"inputs": [
-				{"name":"c","type":"cell"}
 			],
 			"outputs": [
-			]
-		},
-		{
-			"name": "setConfig",
-			"inputs": [
-				{"name":"initialEmission","type":"uint32"},
-				{"name":"welcomeBonus","type":"uint32"},
+				{"name":"totalTransfers","type":"uint64"},
+				{"name":"transfers","type":"uint64"},
 				{"name":"transferFee","type":"uint32"},
-				{"name":"initialBalance","type":"uint32"},
-				{"name":"warnBalance","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "getConfig",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"initialEmission","type":"uint32"},
-				{"name":"welcomeBonus","type":"uint32"},
-				{"name":"transferFee","type":"uint32"},
-				{"name":"initialBalance","type":"uint32"},
-				{"name":"warnBalance","type":"uint32"}
-			]
-		},
-		{
-			"name": "setMode",
-			"inputs": [
-				{"name":"logLevel","type":"uint16"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "upgrade",
-			"inputs": [
-				{"name":"c","type":"cell"}
-			],
-			"outputs": [
+				{"name":"accruedFee","type":"uint32"},
+				{"name":"totalFeeClaimed","type":"uint32"}
 			]
 		},
 		{
@@ -265,6 +244,13 @@
 			]
 		},
 		{
+			"name": "constructor",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "_clients",
 			"inputs": [
 			],
@@ -273,19 +259,19 @@
 			]
 		},
 		{
-			"name": "_images",
+			"name": "_mediumState",
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"_images","type":"map(uint8,tuple)"}
+				{"name":"_mediumState","type":"uint8"}
 			]
 		},
 		{
-			"name": "_deployed",
+			"name": "_ledger",
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"addr","type":"address"},{"name":"ts","type":"uint32"}],"name":"_deployed","type":"map(uint8,tuple)"}
+				{"components":[{"name":"balance","type":"uint32"},{"name":"addr","type":"address"},{"name":"lastAccessed","type":"uint32"}],"name":"_ledger","type":"map(uint16,tuple)"}
 			]
 		}
 	],

@@ -1,21 +1,17 @@
 import 'modern-normalize/modern-normalize.css';
+import './components/common.css';
+import './icons.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';
 import App from './App';
-import { TonClient as ton } from "@tonclient/core";
-import { libWeb, libWebSetup } from "@tonclient/lib-web";
+import { TONContextProvider } from './uax/context';
 
-
-libWebSetup({
-  binaryURL: process.env.PUBLIC_URL + "/tonclient.wasm",
-})
-ton.useBinaryLibrary(libWeb);
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <TONContextProvider><App /></TONContextProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root'),
