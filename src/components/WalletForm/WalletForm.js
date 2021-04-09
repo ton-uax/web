@@ -35,9 +35,9 @@ function WalletForm({ client, from, to, children }) {
         ref={valueInput}
       />
       {children}
-      <button className={s.button} type="submit">
-        Send
-        {/* <Loader /> */}
+      <button className={s.buttonLoading} type="submit">
+        {/* Send */}
+        <Loader />
       </button>
     </form>
   );
