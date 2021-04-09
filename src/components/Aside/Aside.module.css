@@ -1,3 +1,7 @@
+.stats {
+  margin-bottom: 48px;
+}
+
 p {
   margin: 0;
 }
@@ -26,7 +30,7 @@ p {
   left: 3px;
 }
 
-span {
+.row span {
   margin-left: 6px;
   font-weight: normal;
 }

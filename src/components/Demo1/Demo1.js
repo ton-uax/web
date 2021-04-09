@@ -81,6 +81,7 @@ function Demo1() {
   return (
     <div className="flex">
       {/* <div className="row"> */}
+
       <Wallet
         client={client}
         address={addr1}

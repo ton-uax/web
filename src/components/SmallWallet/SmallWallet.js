@@ -1,14 +1,15 @@
 import s from './SmallWallet.module.css';
-import loader from '../../img/cycle.png';
+import Loader from '../Loader';
+
 function SmallWallet({ address, uax, ton, active }) {
   console.log(Object.keys(s));
   const empty = !address;
-  const walletLoading = <img className={s.loader} src={loader} width="20px" />;
+  const walletLoading = <Loader />;
   const walletInfo = (
     <div>
-      <p>0:123...456</p>
-      <p>$ 45</p>
-      <p>1.234</p>
+      <p className="i-link">123...456</p>
+      <p className="i-uax">45</p>
+      <p className="i-gas">1.234</p>
     </div>
   );
 
@@ -22,6 +23,7 @@ function SmallWallet({ address, uax, ton, active }) {
           : s.smallwallet
       }
     >
+      <span className={s.status}></span>
       {empty ? walletLoading : walletInfo}
     </div>
   );

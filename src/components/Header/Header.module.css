@@ -41,6 +41,11 @@ h1 {
   color: #ffffff;
 }
 
+.active {
+  composes: link;
+  border-bottom: 2px solid #2e71f0;
+}
+
 .link:hover {
   color: #2e71f0;
   transition: 0.2s ease-in-out;

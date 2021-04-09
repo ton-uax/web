@@ -6,14 +6,15 @@ function Wallet({ client, address, balance, defaultTo, className = '' }) {
 
   return (
     <div className={s.wallet}>
+      <h2 className="i-card"> Wallet</h2>
       <div className={s.balanceContainer}>
         <div className={s.balance}>
           <div className={s.info}>BALANCE</div>
-          <p className={s.value}>{balance ? balance.uax : '-'}</p>
-          <p className={s.value}>{balance ? balance.ton : '-'}</p>
+          <p className={`${s.value} i-uax`}>{balance ? balance.uax : '-'}</p>
+          <p className={`${s.value} i-gas`}>{balance ? balance.ton : '-'}</p>
         </div>
-        <a href="copy">
-          <div className={s.yadd}>Copy your address: {addressShort}</div>
+        <a className={`${s.yadd} i-copy`} href="copy">
+          Copy your address: <span>{addressShort}</span>
         </a>
       </div>
       <WalletForm client={client} from={address} to={defaultTo}></WalletForm>

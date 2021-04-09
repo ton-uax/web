@@ -1,4 +1,5 @@
 .message {
+  position: absolute;
   background-color: #5dff5d;
   top: 0;
   left: 0;
@@ -18,7 +19,7 @@
   padding: 0 7px;
   letter-spacing: -0.02em;
 }
-.message .button {
+.button {
   display: inline-block;
   margin-left: 2em;
   background-color: transparent;

@@ -1,6 +1,8 @@
 .smallwallet {
   position: relative;
   width: calc((100% - 30px) / 4);
+  display: flex;
+  align-items: center;
   height: 58px;
   padding: 5px;
   margin-bottom: 10px;
@@ -13,12 +15,6 @@
   font-size: 0.75em;
 }
 
-.smallwallet div {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-}
-
 .smallwallet:hover {
   box-shadow: 4px 4px 8px 0px rgba(3, 1, 21, 0.63);
 }
@@ -27,8 +23,7 @@
   margin-right: 10px;
 }
 
-.smallwallet .smallwallet::after {
-  content: '';
+.status {
   position: absolute;
   top: 3px;
   right: 3px;
@@ -36,6 +31,16 @@
   background-color: white;
   width: 6px;
   height: 6px;
+}
+
+.active {
+  composes: status;
+  background-color: #327432;
+}
+
+.notActive {
+  composes: status;
+  background-color: tomato;
 }
 
 .smallwallet-get::after {
@@ -56,6 +61,7 @@
 
 .smallwallet-empty {
   composes: smallwallet;
+  pointer-events: none;
   cursor: default;
   display: flex;
   justify-content: center;
@@ -64,17 +70,4 @@
   opacity: 1;
   box-shadow: inset 0 0 0 2px #2e71f0;
   background: transparent;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.loader {
-  animation: rotate 2s linear infinite;
 }

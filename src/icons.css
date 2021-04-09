@@ -192,6 +192,7 @@
 }
 
 [class*='i-']::before {
+  margin-right: 3px;
   display: inline-block;
   font-family: 'uax';
   font-style: normal;
