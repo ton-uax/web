@@ -30,10 +30,10 @@ function Aside({ client }) {
         <StatsRow name="FeeTotal" value={2567} />
       </div>
       <AdminWallet>
-        <Btn title="Create 5 wallets" />
-        <Btn title="Speed up" />
-        <Btn title="Speed down" />
-        <Btn title="Clear desk" />
+        <Btn title="Create 5 wallets" icon="i-bot" />
+        <Btn title="Speed up" icon="i-bot-rotate" />
+        <Btn title="Speed down" icon="i-bot" />
+        <Btn title="Clear desk" icon="i-bot" />
       </AdminWallet>
     </aside>
   );

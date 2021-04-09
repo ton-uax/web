@@ -34,6 +34,21 @@
 .i-bot::before {
   content: '\0048';
 }
+
+.i-bot-rotate::before {
+  content: '\0048';
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .i-calc::before {
   content: '\0049';
 }

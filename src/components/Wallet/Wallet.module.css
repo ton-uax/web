@@ -2,9 +2,9 @@
   margin-right: 40px;
 }
 
-/* .balanceContainer {
+.balanceContainer {
   margin-bottom: 27px;
-} */
+}
 
 .balance {
   margin-bottom: 8px;
@@ -54,9 +54,4 @@
 
 .yadd:active {
   color: red;
-}
-
-.yadd span {
-  display: block;
-  padding: 3px 7px 5px;
 }

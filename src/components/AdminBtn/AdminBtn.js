@@ -1,8 +1,8 @@
 import s from './AdminBtn.module.css';
 
-function Btn({ title }) {
+function Btn({ title, icon }) {
   return (
-    <button className={`${s.button} i-bot`} type="button">
+    <button className={`${s.button} ${icon}`} type="button">
       {title}
     </button>
   );

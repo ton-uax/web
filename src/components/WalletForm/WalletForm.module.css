@@ -32,7 +32,7 @@
 }
 
 .button {
-  padding: 8px 19px;
+  min-height: 36px;
   width: 100%;
   text-align: center;
   color: white;

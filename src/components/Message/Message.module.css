@@ -32,6 +32,7 @@
   padding: 1px 3.5px 1px 4px;
   position: relative;
   top: -1px;
+  cursor: pointer;
 }
 .message .button:hover {
   border: 1px solid rgba(0, 0, 0, 0.8);
