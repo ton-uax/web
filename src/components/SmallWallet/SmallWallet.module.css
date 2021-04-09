@@ -1,19 +1,33 @@
 .smallwallet {
-  font-size: 0.75em;
-  width: 84px;
-  margin: 5px;
+  position: relative;
+  width: calc((100% - 30px) / 4);
+  height: 58px;
+  padding: 5px;
+  margin-bottom: 10px;
   opacity: 0.7;
-  position: relative;
   border-radius: 6px;
-  position: relative;
   cursor: pointer;
   background-image: url('../../img/wallet-b2.png');
   background-size: cover;
   color: white;
-  padding: 0.4em;
+  font-size: 0.75em;
 }
 
-.smallwallet::after {
+.smallwallet div {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.smallwallet:hover {
+  box-shadow: 4px 4px 8px 0px rgba(3, 1, 21, 0.63);
+}
+
+.smallwallet:not(:nth-child(4n)) {
+  margin-right: 10px;
+}
+
+.smallwallet .smallwallet::after {
   content: '';
   position: absolute;
   top: 3px;
@@ -38,7 +52,6 @@
 .smallwallet-active {
   composes: smallwallet;
   opacity: 1;
-  box-shadow: 0 0 0 2px #0d0d3f;
 }
 
 .smallwallet-empty {
@@ -51,6 +64,15 @@
   opacity: 1;
   box-shadow: inset 0 0 0 2px #2e71f0;
   background: transparent;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .loader {

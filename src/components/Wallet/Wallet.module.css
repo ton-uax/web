@@ -1,10 +1,12 @@
-.wallet {
-  width: 200px;
+.wallet:not(:last-child) {
+  margin-right: 40px;
+}
+
+.balanceContainer {
+  margin-bottom: 27px;
 }
 
 .balance {
-  display: flex;
-  flex-direction: column;
   background-color: #2c22e0;
   background-image: url('../../img/wallet-b.png');
   background-size: cover;
