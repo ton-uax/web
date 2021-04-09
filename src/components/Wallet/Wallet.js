@@ -13,9 +13,7 @@ function Wallet({ client, address, balance, defaultTo, className = '' }) {
           <p className={`${s.value} i-uax`}>{balance ? balance.uax : '-'}</p>
           <p className={`${s.value} i-gas`}>{balance ? balance.ton : '-'}</p>
         </div>
-        <a className={`${s.yadd} i-copy`} href="copy">
-          Copy your address: <span>{addressShort}</span>
-        </a>
+        <a className={`${s.yadd} i-copy`} href="copy"><span>{addressShort}</span></a>
       </div>
       <WalletForm client={client} from={address} to={defaultTo}></WalletForm>
     </div>
