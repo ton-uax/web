@@ -48,7 +48,7 @@ function App() {
                 <section className="container">
                   <h2 className="i-matrix"> Desk</h2>
                   <div className={s.matrix}>
-                    {/* <SmallWallet active={false} address="123..456" />
+                    <SmallWallet active={false} address="123..456" />
                     <SmallWallet active={false} address="123..456" />
                     <SmallWallet active={false} address="123..456" />
                     <SmallWallet active={false} address="123..456" />
@@ -57,8 +57,9 @@ function App() {
                     <SmallWallet active={false} address="123..456" />
                     <SmallWallet active={false} address="123..456" />
                     <SmallWallet active={true} address="123..456" />
-                    <SmallWallet /> */}
-                    <UltraSmallWallet
+                    <SmallWallet />
+
+                    {/* <UltraSmallWallet
                       address="235...763"
                       ton="357"
                       uax="25"
@@ -82,7 +83,6 @@ function App() {
                       address="235...763"
                       ton="357"
                       uax="34"
-                      active={true}
                     ></UltraSmallWallet>
                     <UltraSmallWallet uax="137"></UltraSmallWallet>
                     <UltraSmallWallet uax="25"></UltraSmallWallet>
@@ -106,7 +106,7 @@ function App() {
                       address="235...763"
                       ton="357"
                       uax="137"
-                    ></UltraSmallWallet>
+                    ></UltraSmallWallet> */}
                   </div>
                 </section>
                 <section className="container">

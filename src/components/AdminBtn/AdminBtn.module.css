@@ -9,5 +9,5 @@
 }
 
 .button:hover {
-  color: #2c22e0;
+  color: var(--btn-bg-color);
 }

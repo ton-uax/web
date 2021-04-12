@@ -1,13 +1,13 @@
 .message {
   position: absolute;
-  background-color: #5dff5d;
+  background-color: var(--message-bg-color);
   top: 0;
   left: 0;
   width: 100%;
   text-align: center;
   font-size: 0.7em;
   padding: 5px;
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--message-text-color);
 }
 .message *:before {
   position: relative;
@@ -24,8 +24,8 @@
   margin-left: 2em;
   background-color: transparent;
   border-radius: 3.5px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  color: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--message-text-color);
+  color: var(--message-text-color);
   font-size: 0.7em;
   font-weight: bold;
   letter-spacing: -0.03em;
@@ -34,11 +34,11 @@
   cursor: pointer;
 }
 .message .button:hover {
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  color: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--message-text-color-hover);
+  color: var(--message-text-color-hover);
 }
 .message .button:active {
   border: 1px solid #000;
   background-color: #000;
-  color: white;
+  color: var(--text-main-color-light);
 }

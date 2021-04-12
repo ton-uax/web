@@ -3,8 +3,8 @@ h1 {
 }
 
 .main {
-  background-color: #0d0d3f;
-  color: white;
+  background-color: var(--header-bg-color);
+  color: var(--text-main-color-light);
   display: flex;
   padding: 20px;
 }
@@ -21,7 +21,7 @@ h1 {
 
 .title {
   text-decoration: none;
-  color: #ffffff;
+  color: var(--text-main-color-light);
   font-weight: 700;
   font-size: 25px;
 }
@@ -38,19 +38,19 @@ h1 {
   text-decoration: none;
   padding-bottom: 3px;
   margin: 0 8px;
-  color: #ffffff;
+  color: var(--text-main-color-light);
 }
 
 .active {
   composes: link;
-  border-bottom: 2px solid #2e71f0;
+  border-bottom: 2px solid var(--accent-color);
 }
 
 .link:hover {
-  color: #2e71f0;
+  color: var(--accent-color);
   transition: 0.2s ease-in-out;
 }
 
 .act {
-  border-bottom: 2px solid #2e71f0;
+  border-bottom: 2px solid var(--accent-color);
 }
