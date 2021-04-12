@@ -63,6 +63,27 @@ function App() {
                       ton="357"
                       uax="25"
                     ></UltraSmallWallet>
+                    <UltraSmallWallet uax="34"></UltraSmallWallet>
+                    <UltraSmallWallet uax="345"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet uax="65"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet uax="25"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet uax="25"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet uax="25"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet uax="25"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet uax="25"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet
+                      address="235...763"
+                      ton="357"
+                      uax="34"
+                      active={true}
+                    ></UltraSmallWallet>
                     <UltraSmallWallet uax="137"></UltraSmallWallet>
                     <UltraSmallWallet uax="25"></UltraSmallWallet>
                     <UltraSmallWallet uax="137"></UltraSmallWallet>
@@ -81,23 +102,11 @@ function App() {
                     <UltraSmallWallet uax="25"></UltraSmallWallet>
                     <UltraSmallWallet uax="137"></UltraSmallWallet>
                     <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet
+                      address="235...763"
+                      ton="357"
+                      uax="137"
+                    ></UltraSmallWallet>
                   </div>
                 </section>
                 <section className="container">

@@ -1,5 +1,6 @@
 .smallwallet {
   position: relative;
+  display: inline-block;
   width: calc((100% - 50px) / 7);
   height: 25px;
   padding: 5px;
@@ -11,6 +12,7 @@
   background-size: cover;
   color: white;
   font-size: 0.75em;
+  z-index: 1;
 }
 
 .smallwallet:hover {
@@ -41,22 +43,17 @@
   background-color: #f63a42;
 }
 
-.tooltip {
+.tooltipcontent {
+  visibility: hidden;
   position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 58px;
+  z-index: 20;
+  width: 75px;
   padding: 5px;
-  opacity: 0;
+  background-color: rgb(63, 61, 124);
+  color: #fff;
   border-radius: 6px;
-  background-color: rgb(110, 41, 223);
-  color: white;
-  pointer-events: none;
 }
 
-.tooltipActive {
-  composes: tooltip;
-  opacity: 1;
+.smallwallet:hover .tooltipcontent {
+  visibility: visible;
 }
