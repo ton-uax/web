@@ -58,7 +58,11 @@ function App() {
                     <SmallWallet active={false} address="123..456" />
                     <SmallWallet active={true} address="123..456" />
                     <SmallWallet /> */}
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
+                    <UltraSmallWallet
+                      address="235...763"
+                      ton="357"
+                      uax="25"
+                    ></UltraSmallWallet>
                     <UltraSmallWallet uax="137"></UltraSmallWallet>
                     <UltraSmallWallet uax="25"></UltraSmallWallet>
                     <UltraSmallWallet uax="137"></UltraSmallWallet>
