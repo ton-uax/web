@@ -11,6 +11,7 @@ import Message from './components/Message';
 import SmallWallet from './components/SmallWallet';
 import Log from './components/Log';
 import UltraSmallWallet from './components/UltraSmallWallet/UltraSmallWallet';
+import Home from './components/Home';
 
 function App() {
   const [showMessage, setShowMessage] = useState(true);
@@ -27,10 +28,11 @@ function App() {
             <Message show={showMessage}></Message>
             <Switch>
               <Route exact path="/">
-                <div className="roow">
+                {/* <div className="roow">
                   <h2 className="i-alert">Hello</h2>
                   <h2>Hello</h2>
-                </div>
+                </div> */}
+                <Home></Home>
               </Route>
               <Route path="/demo1">
                 <Demo1 />
