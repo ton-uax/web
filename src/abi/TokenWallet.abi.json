@@ -33,8 +33,7 @@
 		{
 			"name": "credit",
 			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
+				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -42,8 +41,7 @@
 		{
 			"name": "debit",
 			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
+				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
 			]

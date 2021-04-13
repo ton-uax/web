@@ -34,24 +34,7 @@
 		{
 			"name": "initMedium",
 			"inputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"initialEmission","type":"uint32"},
-				{"name":"transferFee","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "setupTeam",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "onFeeWalletReady",
-			"inputs": [
-				{"name":"addr","type":"address"}
+				{"name":"initialEmission","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -59,7 +42,7 @@
 		{
 			"name": "buyTokens",
 			"inputs": [
-				{"name":"n","type":"uint32"}
+				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -83,24 +66,6 @@
 			]
 		},
 		{
-			"name": "credit",
-			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "debit",
-			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "transferTokens",
 			"inputs": [
 				{"name":"to","type":"address"},
@@ -119,9 +84,18 @@
 			]
 		},
 		{
+			"name": "updateTransferFee",
+			"inputs": [
+				{"name":"val","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "claimTransferFee",
 			"inputs": [
-				{"name":"to","type":"address"}
+				{"name":"id","type":"uint16"},
+				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -162,7 +136,6 @@
 			"name": "propose",
 			"inputs": [
 				{"name":"eType","type":"uint8"},
-				{"name":"desc","type":"bytes"},
 				{"name":"value","type":"uint32"}
 			],
 			"outputs": [
@@ -194,51 +167,14 @@
 			]
 		},
 		{
-			"name": "getStatsSelf",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"total","type":"uint32"},
-				{"name":"distributed","type":"uint32"},
-				{"name":"available","type":"uint32"},
-				{"name":"balance","type":"uint32"}
-			]
-		},
-		{
-			"name": "updateStats",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "updateTransferFee",
-			"inputs": [
-				{"name":"transferFee","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "getStats",
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"transfers","type":"uint64"},
+				{"name":"transfers","type":"uint32"},
 				{"name":"supply","type":"uint32"},
 				{"name":"wallets","type":"uint32"},
-				{"name":"commission","type":"uint64"},
-				{"name":"transferFee","type":"uint32"}
-			]
-		},
-		{
-			"name": "getTransferStats",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"totalTransfers","type":"uint64"},
-				{"name":"transfers","type":"uint64"},
-				{"name":"transferFee","type":"uint32"},
+				{"name":"transferFee","type":"uint8"},
 				{"name":"accruedFee","type":"uint32"},
 				{"name":"totalFeeClaimed","type":"uint32"}
 			]
@@ -337,7 +273,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"createdAt","type":"uint32"},{"name":"validUntil","type":"uint32"},{"name":"confirmedAt","type":"uint32"},{"name":"state","type":"uint8"},{"name":"signsAt","type":"uint8"},{"name":"signs","type":"uint16[]"},{"name":"signsReq","type":"uint8"},{"name":"desc","type":"bytes"},{"name":"value","type":"uint32"},{"name":"actor","type":"uint16"}],"name":"_proposals","type":"map(uint32,tuple)"}
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"createdAt","type":"uint32"},{"name":"validUntil","type":"uint32"},{"name":"confirmedAt","type":"uint32"},{"name":"state","type":"uint8"},{"name":"signsAt","type":"uint8"},{"name":"signs","type":"uint16[]"},{"name":"signsReq","type":"uint8"},{"name":"value","type":"uint32"},{"name":"actor","type":"uint16"}],"name":"_proposals","type":"map(uint32,tuple)"}
 			]
 		},
 		{

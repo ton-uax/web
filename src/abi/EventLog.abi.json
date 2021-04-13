@@ -14,11 +14,10 @@
 		{
 			"name": "logTransfer",
 			"inputs": [
-				{"name":"tid","type":"uint64"},
+				{"name":"tid","type":"uint32"},
 				{"name":"from","type":"uint16"},
 				{"name":"to","type":"uint16"},
-				{"name":"val","type":"uint32"},
-				{"name":"s","type":"uint8"}
+				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -27,8 +26,7 @@
 			"name": "logRecord",
 			"inputs": [
 				{"name":"id","type":"uint16"},
-				{"name":"f","type":"uint8"},
-				{"name":"val","type":"uint32"}
+				{"name":"val","type":"int32"}
 			],
 			"outputs": [
 			]
@@ -45,14 +43,26 @@
 			]
 		},
 		{
+			"name": "logDeploy",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"eType","type":"uint8"},
+				{"name":"s","type":"uint8"},
+				{"name":"eventID","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "getAll",
 			"inputs": [
 			],
 			"outputs": [
 				{"components":[{"name":"x","type":"uint32"},{"name":"code","type":"uint16"}],"name":"errors","type":"tuple[]"},
-				{"components":[{"name":"x","type":"uint32"},{"name":"from","type":"uint16"},{"name":"to","type":"uint16"},{"name":"val","type":"uint32"},{"name":"id","type":"uint64"},{"name":"s","type":"uint8"}],"name":"transfers","type":"tuple[]"},
-				{"components":[{"name":"x","type":"uint32"},{"name":"flow","type":"uint8"},{"name":"val","type":"uint32"}],"name":"records","type":"tuple[]"},
-				{"components":[{"name":"x","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"events","type":"tuple[]"}
+				{"components":[{"name":"x","type":"uint32"},{"name":"from","type":"uint16"},{"name":"to","type":"uint16"},{"name":"val","type":"uint32"},{"name":"id","type":"uint32"}],"name":"transfers","type":"tuple[]"},
+				{"components":[{"name":"x","type":"uint32"},{"name":"val","type":"int32"}],"name":"records","type":"tuple[]"},
+				{"components":[{"name":"x","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"events","type":"tuple[]"},
+				{"components":[{"name":"x","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"deploys","type":"tuple[]"}
 			]
 		},
 		{
@@ -149,7 +159,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"x","type":"uint32"},{"name":"from","type":"uint16"},{"name":"to","type":"uint16"},{"name":"val","type":"uint32"},{"name":"id","type":"uint64"},{"name":"s","type":"uint8"}],"name":"_transfers","type":"tuple[]"}
+				{"components":[{"name":"x","type":"uint32"},{"name":"from","type":"uint16"},{"name":"to","type":"uint16"},{"name":"val","type":"uint32"},{"name":"id","type":"uint32"}],"name":"_transfers","type":"tuple[]"}
 			]
 		},
 		{
@@ -157,7 +167,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"x","type":"uint32"},{"name":"flow","type":"uint8"},{"name":"val","type":"uint32"}],"name":"_records","type":"tuple[]"}
+				{"components":[{"name":"x","type":"uint32"},{"name":"val","type":"int32"}],"name":"_records","type":"tuple[]"}
 			]
 		},
 		{
@@ -166,6 +176,14 @@
 			],
 			"outputs": [
 				{"components":[{"name":"x","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"_events","type":"tuple[]"}
+			]
+		},
+		{
+			"name": "_deploys",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"x","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"_deploys","type":"tuple[]"}
 			]
 		},
 		{

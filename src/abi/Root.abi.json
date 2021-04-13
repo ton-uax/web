@@ -5,10 +5,9 @@
 		{
 			"name": "initRoot",
 			"inputs": [
-				{"name":"initBalance","type":"uint32"},
-				{"name":"warnBalance","type":"uint32"},
 				{"name":"welcomeBonus","type":"uint32"},
 				{"name":"ownerStartBalance","type":"uint32"},
+				{"name":"initialBalance","type":"uint64"},
 				{"name":"ownerKeys","type":"uint256[]"}
 			],
 			"outputs": [
@@ -66,7 +65,7 @@
 			"inputs": [
 				{"name":"id","type":"uint16"},
 				{"name":"k","type":"uint256"},
-				{"name":"val","type":"uint128"}
+				{"name":"balance","type":"uint64"}
 			],
 			"outputs": [
 			]
@@ -84,7 +83,7 @@
 			"name": "updateTonBalance",
 			"inputs": [
 				{"name":"id","type":"uint16"},
-				{"name":"tonBalance","type":"uint128"}
+				{"name":"tonBalance","type":"uint64"}
 			],
 			"outputs": [
 			]
@@ -102,8 +101,8 @@
 			"name": "updateConfig",
 			"inputs": [
 				{"name":"welcomeBonus","type":"uint32"},
-				{"name":"initialBalance","type":"uint32"},
-				{"name":"warnBalance","type":"uint32"}
+				{"name":"initialBalance","type":"uint64"},
+				{"name":"warnBalance","type":"uint64"}
 			],
 			"outputs": [
 			]
@@ -186,7 +185,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"id","type":"uint16"},{"name":"tonBalance","type":"uint32"},{"name":"addr","type":"address"},{"name":"accessedAt","type":"uint32"}],"name":"_roster","type":"map(uint16,tuple)"}
+				{"components":[{"name":"id","type":"uint16"},{"name":"tonBalance","type":"uint64"},{"name":"addr","type":"address"},{"name":"updatedAt","type":"uint32"}],"name":"_roster","type":"map(uint16,tuple)"}
 			]
 		}
 	],

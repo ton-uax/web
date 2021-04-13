@@ -193,11 +193,9 @@
 		{
 			"name": "setConfig",
 			"inputs": [
-				{"name":"initialEmission","type":"uint32"},
 				{"name":"welcomeBonus","type":"uint32"},
-				{"name":"transferFee","type":"uint32"},
-				{"name":"initialBalance","type":"uint32"},
-				{"name":"warnBalance","type":"uint32"}
+				{"name":"initialBalance","type":"uint64"},
+				{"name":"warnBalance","type":"uint64"}
 			],
 			"outputs": [
 			]
@@ -207,11 +205,10 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"initialEmission","type":"uint32"},
 				{"name":"welcomeBonus","type":"uint32"},
-				{"name":"transferFee","type":"uint32"},
-				{"name":"initialBalance","type":"uint32"},
-				{"name":"warnBalance","type":"uint32"}
+				{"name":"initialBalance","type":"uint64"},
+				{"name":"warnBalance","type":"uint64"},
+				{"name":"transferFee","type":"uint8"}
 			]
 		},
 		{
@@ -252,17 +249,7 @@
 			"inputs": [
 				{"name":"addr","type":"address"},
 				{"name":"eType","type":"uint8"},
-				{"name":"desc","type":"bytes"},
 				{"name":"value","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "proposeEvent",
-			"inputs": [
-				{"name":"addr","type":"address"},
-				{"name":"eventID","type":"uint32"}
 			],
 			"outputs": [
 			]

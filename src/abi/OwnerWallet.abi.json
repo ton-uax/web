@@ -31,16 +31,7 @@
 			"name": "propose",
 			"inputs": [
 				{"name":"eType","type":"uint8"},
-				{"name":"desc","type":"bytes"},
 				{"name":"value","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "proposeEvent",
-			"inputs": [
-				{"name":"eventID","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -137,8 +128,7 @@
 		{
 			"name": "credit",
 			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
+				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -146,8 +136,7 @@
 		{
 			"name": "debit",
 			"inputs": [
-				{"name":"tid","type":"uint64"},
-				{"name":"n","type":"uint32"}
+				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
 			]
