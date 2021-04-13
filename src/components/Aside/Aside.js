@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { useAsync } from 'react-use';
+import { useInterval } from 'react-use';
 import uax from '../../uax/demo';
-import { useTON } from '../../uax/hooks';
+import { useConsole, useMedium, useRoot } from '../../uax/hooks';
 import Btn from '../AdminBtn';
 import s from './Aside.module.css';
 
@@ -15,17 +15,29 @@ function StatsRow({ name, value }) {
 }
 
 function Aside() {
-  const ton = useTON()
+  const medium = useMedium()
+  const root = useRoot()
+  const console = useConsole()
   const [stats, setStats] = useState({
     supply: "",
     wallets: "",
     transfers: "",
-    transferFee: "",
     accruedFee: "",
     claimedFee: "",
     tons: ""
   })
-  const c = useAsync(() => uax.updateStatsForever(ton, setStats))
+  const [config, setConfig] = useState({
+    initTON: "",
+    initUAX: "",
+    warnTON: "",
+    transferFee: "",
+  })
+  useInterval(() => {
+    medium.refresh()
+    console.refresh()
+    uax.getStats(root, medium).then(setStats)
+    uax.getConfig(console).then(setConfig)
+  }, 1000)
   return (
     <aside className={s.aside}>
       <div className={s.stats}>
@@ -33,20 +45,22 @@ function Aside() {
         <StatsRow name="Supply" value={stats.supply} />
         <StatsRow name="Wallets" value={stats.wallets} />
         <StatsRow name="Transfers" value={stats.transfers} />
-        <StatsRow name="CurrentFee" value={stats.transferFee} />
         <StatsRow name="AccruedFee" value={stats.accruedFee} />
         <StatsRow name="ClaimedFee" value={stats.claimedFee} />
         <StatsRow name="RemainingTONs" value={stats.tons} />
       </div>
-      <section>
-        <div>
-          <h2>Admin</h2>
-          <Btn title="Create 5 wallets" icon="i-bot" />
-          <Btn title="Speed up" icon="i-bot-rotate" />
-          <Btn title="Speed down" icon="i-bot" />
-          <Btn title="Clear desk" icon="i-bot" />
-        </div>
-      </section>
+      <div className={s.stats}>
+        <h2>Config</h2>
+        <StatsRow name="InitialUAX" value={config.initUAX} />
+        <StatsRow name="InitialTON" value={config.initTON} />
+        <StatsRow name="WarnTON" value={config.warnTON} />
+        <StatsRow name="TransferFee" value={config.transferFee} />
+      </div>
+      {/* <div>
+        <h2>Dev</h2>
+        <Btn title="Create wallet" icon="i-bot" onClick={deployWallet} />
+        <Btn title="Clear desk" icon="i-bot" onClick={clearDesk} />
+      </div> */}
 
     </aside>
   );

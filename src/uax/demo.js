@@ -54,6 +54,15 @@ const doTransfer = async (client, from, to, value) => {
   })
 }
 
+export async function getConfig(console) {
+  const consoleResponse = (await console.runLocal('getConfig')).decoded.output
+  return {
+    initTON: consoleResponse.initialBalance / 10 ** 9,
+    initUAX: consoleResponse.welcomeBonus,
+    warnTON: +(consoleResponse.warnBalance / 10 ** 9).toFixed(2),
+    transferFee: consoleResponse.transferFee,
+  }
+}
 export async function getStats(root, medium) {
   const statsResponse = (await medium.runLocal('getStats')).decoded.output
   const rootBalance = Math.round(parseInt(await root.getBalance(), 16) / 10 ** 9)
@@ -102,6 +111,6 @@ const getBalance = async (client, address) => {
   }
 }
 
-const uax = { getBalance, getTONBalance, getUAXBalance, makeWalletWrapper, updateStatsForever, getStats, doTransfer };
+const uax = { getBalance, getTONBalance, getUAXBalance, makeWalletWrapper, updateStatsForever, getStats, getConfig, doTransfer };
 
 export default uax;

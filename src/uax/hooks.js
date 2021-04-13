@@ -1,11 +1,10 @@
 import { useState, useContext } from 'react';
 import { useAsync } from 'react-use';
-import { getUAXWallets, makeConsoleWrapper, makeWalletWrapper } from './demo';
+import { getUAXWallets, makeConsoleWrapper, makeMediumWrapper, makeRootWrapper, makeWalletWrapper } from './demo';
 import { TONContext } from './context'
 
 
 export function useTON() {
-  console.log('hook useTON');
   const ton = useContext(TONContext)
   return ton
 }
@@ -33,4 +32,16 @@ export function useConsole() {
   const client = useTON()
   const [console,] = useState(makeConsoleWrapper(client))
   return console
+}
+
+export function useRoot() {
+  const client = useTON()
+  const [root] = useState(makeRootWrapper(client))
+  return root
+}
+
+export function useMedium() {
+  const client = useTON()
+  const [medium] = useState(makeMediumWrapper(client))
+  return medium
 }
