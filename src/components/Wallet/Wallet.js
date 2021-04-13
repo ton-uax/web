@@ -2,6 +2,7 @@ import s from './Wallet.module.css';
 import React, { useRef, useState } from 'react';
 import { useAsync, useAsyncFn, useAsyncRetry, useCopyToClipboard, useUpdate } from 'react-use';
 import { useTONAccount } from '../../uax/hooks';
+import Loader from '../Loader/Loader'
 
 
 function Wallet({ address }) {
@@ -59,14 +60,14 @@ function Wallet({ address }) {
 
       </div>
       <form className={s.block}>
-        <label className={s.label}>To</label>
+        <label className="i-target">To</label>
         <input
           className={s.input}
           type="text"
           placeholder="0:..."
           ref={toInput}
         />
-        <label className={s.label}>Value</label>
+        <label className="i-card">Value</label>
         <input
           className={s.input}
           type="text"
@@ -74,7 +75,7 @@ function Wallet({ address }) {
           ref={valueInput}
         />
         <button className={s.button} onClick={send1}>transferTokensExt</button>
-
+        <button className={s.buttonLoading}><Loader /></button>
       </form>
     </div >
   );

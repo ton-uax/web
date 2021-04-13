@@ -26,11 +26,11 @@
 .sign span:first-child {
   border-radius: 3px;
   background-color: #ff8cb8;
-  color: white;
+  color: var(--text-main-color-light);
 }
 
 .hold span:first-child {
   border-radius: 3px;
   background-color: #c8d6df;
-  color: white;
+  color: var(--text-main-color-light);
 }

@@ -39,7 +39,7 @@ p {
 
 .aside {
   display: inline-block;
-  background-color: #f3f6fe;
+  background-color: var (--aside-bg-color);
   padding: 32px 24px;
   width: 200px;
 }

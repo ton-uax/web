@@ -13,6 +13,7 @@ import SmallWallet from './components/SmallWallet';
 import Log from './components/Log';
 import UltraSmallWallet from './components/UltraSmallWallet';
 
+import Home from './components/Home';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
                   <h2 className="i-alert">Hello</h2>
                   <h2>Hello</h2>
                 </div>
+                {/* <Home></Home> */}
               </Route>
               <Route path="/demo1">
                 <Demo1 />
@@ -59,7 +61,32 @@ function App() {
                     <SmallWallet active={false} address="123..456" />
                     <SmallWallet active={true} address="123..456" />
                     <SmallWallet /> */}
+
+                    <UltraSmallWallet
+                      address="235...763"
+                      ton="357"
+                      uax="25"
+                    ></UltraSmallWallet>
+                    <UltraSmallWallet uax="34"></UltraSmallWallet>
+                    <UltraSmallWallet uax="345"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet uax="65"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
                     <UltraSmallWallet uax="25"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet uax="25"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet uax="25"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet uax="25"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet uax="25"></UltraSmallWallet>
+                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet
+                      address="235...763"
+                      ton="357"
+                      uax="34"
+                    ></UltraSmallWallet>
                     <UltraSmallWallet uax="137"></UltraSmallWallet>
                     <UltraSmallWallet uax="25"></UltraSmallWallet>
                     <UltraSmallWallet uax="137"></UltraSmallWallet>
@@ -78,23 +105,11 @@ function App() {
                     <UltraSmallWallet uax="25"></UltraSmallWallet>
                     <UltraSmallWallet uax="137"></UltraSmallWallet>
                     <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
-                    <UltraSmallWallet uax="25"></UltraSmallWallet>
-                    <UltraSmallWallet uax="137"></UltraSmallWallet>
+                    <UltraSmallWallet
+                      address="235...763"
+                      ton="357"
+                      uax="137"
+                    ></UltraSmallWallet>
                   </div>
                 </section>
                 <section className="container">
