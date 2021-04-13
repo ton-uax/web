@@ -15,8 +15,8 @@ function Aside() {
       <div>
         <StatsRow name="Supply" value={123456} />
         <StatsRow name="Users" value={2567} />
-        <StatsRow name="Transactions" value={2567} />
-        <StatsRow name="Fee" value={123456} />
+        <StatsRow name="Transfers" value={2567} />
+        <StatsRow name="CurrentFee" value={123456} />
         <StatsRow name="CollectedFees" value={2567} />
         <StatsRow name="GasLeft" value={123456} />
       </div>

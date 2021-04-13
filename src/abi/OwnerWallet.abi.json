@@ -1,0 +1,284 @@
+{
+	"ABI version": 2,
+	"header": ["time"],
+	"functions": [
+		{
+			"name": "constructor",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"key","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "approve",
+			"inputs": [
+				{"name":"eventID","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "reject",
+			"inputs": [
+				{"name":"eventID","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "propose",
+			"inputs": [
+				{"name":"eType","type":"uint8"},
+				{"name":"desc","type":"bytes"},
+				{"name":"value","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "proposeEvent",
+			"inputs": [
+				{"name":"eventID","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateEventState",
+			"inputs": [
+				{"name":"eventID","type":"uint32"},
+				{"name":"state","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateEvent",
+			"inputs": [
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"e","type":"tuple"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getEventStates",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"l","type":"uint32[]"},
+				{"name":"ss","type":"uint8[]"}
+			]
+		},
+		{
+			"name": "onApproval",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"l","type":"uint32[]"}
+			]
+		},
+		{
+			"name": "eventIDsByState",
+			"inputs": [
+				{"name":"state","type":"uint8"}
+			],
+			"outputs": [
+				{"name":"l","type":"uint32[]"}
+			]
+		},
+		{
+			"name": "getEvents",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"ss","type":"tuple[]"}
+			]
+		},
+		{
+			"name": "eventsByState",
+			"inputs": [
+				{"name":"state","type":"uint8"}
+			],
+			"outputs": [
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"ss","type":"tuple[]"}
+			]
+		},
+		{
+			"name": "eventsByType",
+			"inputs": [
+				{"name":"t","type":"uint8"}
+			],
+			"outputs": [
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"ss","type":"tuple[]"}
+			]
+		},
+		{
+			"name": "adopt",
+			"inputs": [
+				{"name":"id","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "setupTokenWallet",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"warnBalance","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "credit",
+			"inputs": [
+				{"name":"tid","type":"uint64"},
+				{"name":"n","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "debit",
+			"inputs": [
+				{"name":"tid","type":"uint64"},
+				{"name":"n","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "buyTokens",
+			"inputs": [
+				{"name":"amount","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "transferTokens",
+			"inputs": [
+				{"name":"to","type":"address"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "transferTokensExt",
+			"inputs": [
+				{"name":"to","type":"address"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "lightTransferTokens",
+			"inputs": [
+				{"name":"to","type":"address"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "doppel",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "initMember",
+			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"},
+				{"name":"id","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "meet",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"a","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateMode",
+			"inputs": [
+				{"name":"logLevel","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "getMode",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"logLevel","type":"uint16"}
+			]
+		},
+		{
+			"name": "getEnv",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"}
+			]
+		},
+		{
+			"name": "_clients",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"_clients","type":"map(address,uint16)"}
+			]
+		},
+		{
+			"name": "_balance",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"_balance","type":"uint32"}
+			]
+		},
+		{
+			"name": "_eventStates",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"_eventStates","type":"map(uint32,uint8)"}
+			]
+		},
+		{
+			"name": "_events",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"_events","type":"map(uint32,tuple)"}
+			]
+		}
+	],
+	"data": [
+	],
+	"events": [
+	]
+}
