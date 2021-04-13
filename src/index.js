@@ -1,6 +1,4 @@
 import 'modern-normalize/modern-normalize.css';
-import './components/common.css';
-import './icons.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';

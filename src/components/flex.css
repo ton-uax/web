@@ -1,0 +1,37 @@
+h2 {
+  display: flex;
+  align-items: center;
+}
+
+:root {
+  --header-bg-color: #0d0d3f;
+  --text-main-color-dark: #252833;
+  --text-main-color-light: #ffffff;
+  --bg-main-color-light: #ffffff;
+  --message-text-color: rgba(0, 0, 0, 0.5);
+  --message-text-color-hover: rgba(0, 0, 0, 0.8);
+  --message-bg-color: #5dff5d;
+  --copy-text-color: #2c22e0;
+  --btn-bg-color: #2c22e0;
+  --copy-bg-color: #f3f6fe;
+  --aside-bg-color: #f3f6fe;
+  --accent-color: #2e71f0;
+  --wrapper-color: #edf0f6;
+}
+
+.flex {
+  display: flex;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  position: relative;
+}
+
+.container:not(:last-child) {
+  margin-right: 48px;
+}
