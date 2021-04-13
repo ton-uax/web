@@ -16,7 +16,7 @@
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
 				{"name":"dashboard","type":"address"},
-				{"name":"c","type":"cell"}
+				{"name":"ownerKeys","type":"uint256[]"}
 			],
 			"outputs": [
 			]
@@ -63,6 +63,21 @@
 			"inputs": [
 				{"name":"key","type":"uint256"},
 				{"name":"tokens","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deployOwnerWallets",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deployOwnerWalletsWithKeys",
+			"inputs": [
+				{"name":"keys","type":"uint256[]"}
 			],
 			"outputs": [
 			]
@@ -153,7 +168,7 @@
 		{
 			"name": "updateImage",
 			"inputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"image","type":"tuple"}
+				{"components":[{"name":"index","type":"uint8"},{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"image","type":"tuple"}
 			],
 			"outputs": [
 			]
@@ -167,9 +182,10 @@
 			]
 		},
 		{
-			"name": "updateCI",
+			"name": "updateSI",
 			"inputs": [
-				{"name":"c","type":"cell"}
+				{"name":"owner","type":"cell"},
+				{"name":"token","type":"cell"}
 			],
 			"outputs": [
 			]
@@ -202,6 +218,51 @@
 			"name": "setMode",
 			"inputs": [
 				{"name":"logLevel","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "shuffle",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "approve",
+			"inputs": [
+				{"name":"addr","type":"address"},
+				{"name":"eventID","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "reject",
+			"inputs": [
+				{"name":"addr","type":"address"},
+				{"name":"eventID","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "propose",
+			"inputs": [
+				{"name":"addr","type":"address"},
+				{"name":"eType","type":"uint8"},
+				{"name":"desc","type":"bytes"},
+				{"name":"value","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "proposeEvent",
+			"inputs": [
+				{"name":"addr","type":"address"},
+				{"name":"eventID","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -277,7 +338,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"_images","type":"map(uint8,tuple)"}
+				{"components":[{"name":"index","type":"uint8"},{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"_images","type":"map(uint8,tuple)"}
 			]
 		},
 		{

@@ -7,13 +7,30 @@
 			"inputs": [
 				{"name":"initBalance","type":"uint32"},
 				{"name":"warnBalance","type":"uint32"},
-				{"name":"welcomeBonus","type":"uint32"}
+				{"name":"welcomeBonus","type":"uint32"},
+				{"name":"ownerStartBalance","type":"uint32"},
+				{"name":"ownerKeys","type":"uint256[]"}
 			],
 			"outputs": [
 			]
 		},
 		{
 			"name": "deploySystemWallets",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deployOwnerWalletsWithKeys",
+			"inputs": [
+				{"name":"keys","type":"uint256[]"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deployOwnerWallets",
 			"inputs": [
 			],
 			"outputs": [
@@ -75,7 +92,8 @@
 		{
 			"name": "updatesi",
 			"inputs": [
-				{"name":"c","type":"cell"}
+				{"name":"owner","type":"cell"},
+				{"name":"token","type":"cell"}
 			],
 			"outputs": [
 			]

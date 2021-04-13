@@ -18,19 +18,27 @@
 			]
 		},
 		{
-			"name": "updateImages",
+			"name": "updateImage",
 			"inputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"images","type":"tuple[]"}
+				{"components":[{"name":"index","type":"uint8"},{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"image","type":"tuple"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "updateImage",
+			"name": "setOwnerKeys",
 			"inputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"image","type":"tuple"}
+				{"name":"keys","type":"uint256[]"}
 			],
 			"outputs": [
+			]
+		},
+		{
+			"name": "getOwnerKeys",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"keys","type":"uint256[]"}
 			]
 		},
 		{
@@ -135,7 +143,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"_images","type":"map(uint8,tuple)"}
+				{"components":[{"name":"index","type":"uint8"},{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"_images","type":"map(uint8,tuple)"}
 			]
 		},
 		{
@@ -143,7 +151,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"addr","type":"address"},{"name":"ts","type":"uint32"}],"name":"_deployed","type":"map(uint8,tuple)"}
+				{"components":[{"name":"index","type":"uint8"},{"name":"name","type":"bytes"},{"name":"addr","type":"address"},{"name":"ts","type":"uint32"}],"name":"_deployed","type":"map(uint8,tuple)"}
 			]
 		}
 	],

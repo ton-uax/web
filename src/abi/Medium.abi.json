@@ -143,11 +143,61 @@
 			]
 		},
 		{
+			"name": "approve",
+			"inputs": [
+				{"name":"eventID","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "reject",
+			"inputs": [
+				{"name":"eventID","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "propose",
+			"inputs": [
+				{"name":"eType","type":"uint8"},
+				{"name":"desc","type":"bytes"},
+				{"name":"value","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "proposeEvent",
+			"inputs": [
+				{"name":"eid","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "commit",
+			"inputs": [
+				{"name":"eventID","type":"uint32"},
+				{"name":"st","type":"uint8"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "notifyOwners",
+			"inputs": [
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"e","type":"tuple"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "getStatsSelf",
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"state","type":"uint8"},
 				{"name":"total","type":"uint32"},
 				{"name":"distributed","type":"uint32"},
 				{"name":"available","type":"uint32"},
@@ -259,11 +309,35 @@
 			]
 		},
 		{
-			"name": "_mediumState",
+			"name": "_onApproval",
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"_mediumState","type":"uint8"}
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"_onApproval","type":"map(uint32,tuple)"}
+			]
+		},
+		{
+			"name": "_confirmed",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"_confirmed","type":"map(uint32,tuple)"}
+			]
+		},
+		{
+			"name": "_archived",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"_archived","type":"map(uint32,tuple)"}
+			]
+		},
+		{
+			"name": "_proposals",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"createdAt","type":"uint32"},{"name":"validUntil","type":"uint32"},{"name":"confirmedAt","type":"uint32"},{"name":"state","type":"uint8"},{"name":"signsAt","type":"uint8"},{"name":"signs","type":"uint16[]"},{"name":"signsReq","type":"uint8"},{"name":"desc","type":"bytes"},{"name":"value","type":"uint32"},{"name":"actor","type":"uint16"}],"name":"_proposals","type":"map(uint32,tuple)"}
 			]
 		},
 		{
