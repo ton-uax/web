@@ -73,6 +73,7 @@ function Demo1() {
 
   return (
     <div className="flex">
+
       <Wallet
         address={addr1}
       />

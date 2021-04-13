@@ -1,0 +1,36 @@
+.history div span {
+  margin-right: 1em;
+  padding: 0 3px;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'Menlo';
+  font-size: 11px;
+  line-height: 1.4em;
+  letter-spacing: -0.03em;
+}
+
+.send span:first-child {
+  border-radius: 3px;
+  background-color: #ffd609;
+}
+
+.fee span:first-child {
+  border-radius: 3px;
+  background-color: #a9ff4b;
+}
+
+.mint span:first-child {
+  border-radius: 3px;
+  background-color: #90ffe1;
+}
+
+.sign span:first-child {
+  border-radius: 3px;
+  background-color: #ff8cb8;
+  color: white;
+}
+
+.hold span:first-child {
+  border-radius: 3px;
+  background-color: #c8d6df;
+  color: white;
+}

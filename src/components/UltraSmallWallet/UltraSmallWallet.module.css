@@ -1,9 +1,8 @@
 .smallwallet {
   position: relative;
-  width: calc((100% - 30px) / 4);
-  display: flex;
+  width: calc((100% - 50px) / 7);
   align-items: center;
-  height: 58px;
+  height: 25px;
   padding: 5px;
   margin-bottom: 10px;
   opacity: 0.7;
@@ -19,8 +18,8 @@
   box-shadow: 4px 4px 8px 0px rgba(3, 1, 21, 0.63);
 }
 
-.smallwallet:not(:nth-child(4n)) {
-  margin-right: 10px;
+.smallwallet:not(:nth-child(7n)) {
+  margin-right: 5px;
 }
 
 .status {
@@ -43,20 +42,22 @@
   background-color: #f63a42;
 }
 
-.smallwallet-active {
-  composes: smallwallet;
-  opacity: 1;
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 6px;
+  background-color: rgb(255, 187, 187);
+  color: rgb(8, 0, 116);
+  font-size: 0.85em;
+  transition: 1s;
 }
 
-.smallwallet-empty {
-  composes: smallwallet;
-  pointer-events: none;
-  cursor: default;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #2e71f0;
+[data-tooltip]:hover::after {
   opacity: 1;
-  box-shadow: inset 0 0 0 2px #2e71f0;
-  background: transparent;
 }

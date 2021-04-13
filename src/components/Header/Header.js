@@ -1,9 +1,6 @@
 import s from './Header.module.css';
 import logo from '../../img/logo.svg';
-import {
-  Link
-} from "react-router-dom";
-
+import { Link } from 'react-router-dom';
 
 function Header({ title }) {
   return (
@@ -12,12 +9,7 @@ function Header({ title }) {
         <h1>
           <Link to="/" className={s.title}>
             {' '}
-            <img
-              className={s.logoImage}
-              src={logo}
-              alt="logo"
-              width="30px"
-            />
+            <img className={s.logoImage} src={logo} alt="logo" width="30px" />
             {title}
           </Link>
         </h1>
@@ -29,7 +21,7 @@ function Header({ title }) {
         <Link to="demo1" className={s.link}>
           Demo 1
         </Link>
-        <Link to="demo2" className={s.link}>
+        <Link to="demo2" className={(s.link, s.active)}>
           Demo 2
         </Link>
       </div>

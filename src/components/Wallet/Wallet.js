@@ -46,15 +46,17 @@ function Wallet({ address }) {
 
   return (
     <div className={s.wallet}>
+      <h2 className="i-card"> Wallet</h2>
       <div className={s.balanceContainer}>
         <div className={s.balance}>
           <div className={s.info}>BALANCE</div>
-          <p className={s.value}>{balance.uax}</p>
-          <p className={s.value}>{balance.ton}</p>
+          <p className={`${s.value} i-uax`}>{balance.uax}</p>
+          <p className={`${s.value} i-gas`}>{balance.ton}</p>
         </div>
-        <div className={`${s.yadd} i-copy`} onClick={() => copyToClipboard(address)}>
+        <a className={`${s.yadd} i-copy`} onClick={() => copyToClipboard(address)}>
           {addressShort}
-        </div>
+        </a>
+
       </div>
       <form className={s.block}>
         <label className={s.label}>To</label>
@@ -71,9 +73,7 @@ function Wallet({ address }) {
           placeholder="123.45"
           ref={valueInput}
         />
-        <button className={s.button} onClick={send1}>
-          transferTokensExt
-      </button>
+        <button className={s.button} onClick={send1}>transferTokensExt</button>
 
       </form>
     </div >

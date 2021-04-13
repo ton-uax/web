@@ -7,13 +7,7 @@ body {
   color: #252833;
 }
 
-h2:before {
-  position: relative;
-  top: 2px;
-  margin-right: 3px;
-}
-
-.main {
+.wrapper {
   position: absolute;
   display: flex;
   height: 100%;
@@ -23,8 +17,8 @@ h2:before {
   background-color: #edf0f6;
 }
 
-.desk {
-  max-height: 600px;
+.page {
+  max-height: 800px;
   min-width: 1140px;
   background-color: #fff;
   border-radius: 20px;
@@ -32,7 +26,7 @@ h2:before {
   overflow: hidden;
 }
 
-.page {
+.desk {
   position: relative;
   top: 0px;
   width: 100%;
@@ -43,6 +37,12 @@ h2:before {
   background-size: 70%;
   background-repeat: no-repeat;
   background-position: 100% 100%;
+}
+
+.main {
+  height: 570px;
+  display: flex;
+  flex-direction: row;
 }
 
 .matrix {
