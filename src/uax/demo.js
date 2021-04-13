@@ -1,11 +1,13 @@
 import { Account } from '@tonclient/appkit';
 import TokenWalletABI from '../abi/TokenWallet.abi.json'
 import ConsoleABI from '../abi/Console.abi.json'
+import StatsABI from '../abi/Dashboard.abi.json'
 
 const UAXCodeHashes = [
   "aaf0d9290df6c1f3aa630a37f3d69a716b35f9bbafe9e06b14d824e82effe5fd"
 ];
 const consoleAddr = "0:b22d597168df97e54bad718f942a1f0d5b2c768bcf81436ddacf531bf0597c63";
+const statsAddr = "";
 const addr1 = "0:db750d25142152b6e8d740a63b9a1e4503072ab7a5c51c7ab014c7a366e1a148";
 const addr2 = "0:26675a7185708c1e277c224f3afc70aff040484d372bbeeac455d99fdfc6a201";
 
@@ -24,16 +26,13 @@ export async function getUAXWallets(client) {
   return result
 }
 
-const Console = {
-  abi: ConsoleABI
-}
-
-const TokenWallet = {
-  abi: TokenWalletABI
-}
+const Console = {abi: ConsoleABI}
+const Stats = {abi: StatsABI}
+const TokenWallet = {abi: TokenWalletABI}
 
 export const makeWalletWrapper = (client, address) => new Account(TokenWallet, { address, client });
 export const makeConsoleWrapper = (client) => new Account(Console, { address: consoleAddr, client });
+export const makeStatsWrapper = (client) => new Account(Stats, {address: statsAddr, client});
 
 const doTransfer = async (client, from, to, value) => {
   let ConsoleAcc = makeConsoleWrapper(client)
@@ -41,6 +40,21 @@ const doTransfer = async (client, from, to, value) => {
     to: to,
     from: from,
     val: value
+  })
+}
+
+async function subscribeStats(client, onStatsUpdate) {
+  const stats = makeStatsWrapper(client)
+  return stats.subscribeMessages('id', async (msg) => {
+    const statsResponse = (await stats.runLocal('getOwnerStats')).decoded.output
+
+    onStatsUpdate({
+      transfers: statsResponse.transfers,
+      wallets: statsResponse.wallets,
+      supply: statsResponse.supply,
+      collectedFees: statsResponse.commission,
+      gasRemaining: statsResponse.gasReserve
+    })
   })
 }
 
@@ -69,6 +83,6 @@ const getBalance = async (client, address) => {
   }
 }
 
-const uax = { getBalance, getTONBalance, getUAXBalance, makeWalletWrapper, doTransfer };
+const uax = { getBalance, getTONBalance, getUAXBalance, makeWalletWrapper, subscribeStats, doTransfer };
 
 export default uax;
