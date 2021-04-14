@@ -1,7 +1,7 @@
 import s from './SmallWallet.module.css';
 import Loader from '../Loader';
 
-function SmallWallet({ address, uax, ton, active }) {
+function SmallWallet({ address, uax, ton, active, show = true }) {
   console.log(Object.keys(s));
   const empty = !address;
   const walletLoading = <Loader />;
@@ -14,18 +14,22 @@ function SmallWallet({ address, uax, ton, active }) {
   );
 
   return (
-    <div
-      className={
-        active
-          ? s['smallwallet-active']
-          : empty
-            ? s['smallwallet-empty']
-            : s.smallwallet
-      }
-    >
-      <span className={s.status}></span>
-      {empty ? walletLoading : walletInfo}
-    </div>
+    show && (
+      <div
+        className={
+          s.ultra
+
+          // active
+          //   ? s['smallwallet-active']
+          //   : empty
+          //   ? s['smallwallet-empty']
+          //   : s.smallwallet
+        }
+      >
+        <span className={s.status}></span>
+        {empty ? walletLoading : walletInfo}
+      </div>
+    )
   );
 }
 

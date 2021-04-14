@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Wallet from '../Wallet';
+import OwnerWallet from '../OwnerWallet';
 import { get2OwnerAddresses } from '../../uax/demo';
 import { useTON, useTONAccount } from '../../uax/hooks';
-
 
 function Demo1() {
   const [addr1, addr2] = get2OwnerAddresses();
@@ -70,20 +69,11 @@ function Demo1() {
   // console.log(balance1)
   // console.log(balance11)
 
-
   return (
     <div className="flex">
-
-      <Wallet
-        address={addr1}
-      />
-      <Wallet
-        address={addr2}
-      />
-
+      <OwnerWallet address={addr1} />
     </div>
   );
-
 }
 
 export default Demo1;
