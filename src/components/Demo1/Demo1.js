@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Wallet from '../Wallet';
-import { get2Addresses } from '../../uax/demo';
+import { get2OwnerAddresses } from '../../uax/demo';
 import { useTON, useTONAccount } from '../../uax/hooks';
 
 
 function Demo1() {
-  const [addr1, addr2] = get2Addresses();
+  const [addr1, addr2] = get2OwnerAddresses();
 
   // useEffect(() => {
   //   console.log('hook balances',)

@@ -45,16 +45,16 @@ function Aside() {
         <StatsRow name="Supply" value={stats.supply} />
         <StatsRow name="Wallets" value={stats.wallets} />
         <StatsRow name="Transfers" value={stats.transfers} />
-        <StatsRow name="AccruedFee" value={stats.accruedFee} />
-        <StatsRow name="ClaimedFee" value={stats.claimedFee} />
+        <StatsRow name="AccruedFeeUAX" value={stats.accruedFee} />
+        <StatsRow name="ClaimedFeeUAX" value={stats.claimedFee} />
         <StatsRow name="RemainingTONs" value={stats.tons} />
       </div>
       <div className={s.stats}>
         <h2>Config</h2>
         <StatsRow name="InitialUAX" value={config.initUAX} />
         <StatsRow name="InitialTON" value={config.initTON} />
-        <StatsRow name="WarnTON" value={config.warnTON} />
-        <StatsRow name="TransferFee" value={config.transferFee} />
+        <StatsRow name="ThresholdTON" value={config.warnTON} />
+        <StatsRow name="TransferFeeUAX" value={config.transferFee} />
       </div>
       {/* <div>
         <h2>Dev</h2>

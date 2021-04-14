@@ -15,12 +15,13 @@ const repoAddr = "0:90339a44a8700fc6c9516aa05f1b98942cc86fe6eafdf7aa161050443093
 const rootAddr = "0:2e81cc106ee7d08d73394cc647289f625afe6b4bce543644852dc6c467344894"
 
 
-const addr1 = "0:db750d25142152b6e8d740a63b9a1e4503072ab7a5c51c7ab014c7a366e1a148";
-const addr2 = "0:26675a7185708c1e277c224f3afc70aff040484d372bbeeac455d99fdfc6a201";
+const owner1 = "0:09959787ce76badf2fc440487490f1dff3ca0baa3d72451a98095c1fe56c3736";
+const owner2 = "0:092e2efabd144113cb194f6396ccc63906a92dcce90c9e6a3f9d4d7085b22a9e";
 
-export function get2Addresses() {
-  return [addr1, addr2];
+export function get2OwnerAddresses() {
+  return [owner1, owner2];
 }
+
 
 export async function getUAXWallets(client) {
   const result = (await client.net.query_collection({
@@ -100,8 +101,8 @@ const getTONBalance = async (client, address) => {
     },
     result: 'balance',
   })).result[0].balance;
-  const tonBalance = parseInt(hexBalance, 16) / 10 ** 9;
-  return tonBalance.toString();
+  const tonBalance = +(parseInt(hexBalance, 16) / 10 ** 9).toFixed(2);
+  return tonBalance;
 }
 
 const getBalance = async (client, address) => {
