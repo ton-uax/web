@@ -12,7 +12,8 @@ function Message({ show }) {
         <span className="i-gas">20</span>
         <span className="i-cycle"> Expired: 08:51:02</span>
         <span className="i-eye">Signed: 1/3</span>
-        <div className={s.button}>SIGN</div>
+        <div className={s.button}>APPROVE</div>
+        <div className={s.button}>REJECT</div>
       </div>
     )
   );

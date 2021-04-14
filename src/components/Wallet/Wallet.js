@@ -1,14 +1,22 @@
 import s from './Wallet.module.css';
 import React, { useRef, useState } from 'react';
-import { useInterval, useAsyncFn, useAsyncRetry, useCopyToClipboard, useUpdate } from 'react-use';
+import {
+  useInterval,
+  useAsyncFn,
+  useAsyncRetry,
+  useCopyToClipboard,
+  useUpdate,
+} from 'react-use';
 import { useConsole, useTONAccount, useTON } from '../../uax/hooks';
-import Loader from '../Loader/Loader'
-import uax from '../../uax/demo'
+import Loader from '../Loader/Loader';
+import uax from '../../uax/demo';
 
 function Wallet({ address }) {
-  const addressShort = !address ? "0:" : address.slice(0, 7) + '...' + address.slice(-4);
+  const addressShort = !address
+    ? '0:'
+    : address.slice(0, 7) + '...' + address.slice(-4);
   const [, copyToClipboard] = useCopyToClipboard();
-  const [w] = useTONAccount(address)
+  const [w] = useTONAccount(address);
   // const updateBalance = useUpdate()
   // const balanceState = useAsync(async () => {
   //   const uax = (await w.runLocal("_balance")).decoded.output._balance
@@ -17,49 +25,55 @@ function Wallet({ address }) {
   //   return { uax, ton }
   // }, [])
   // const balance = balanceState.value || { uax: "0", ton: "0" }
-  const [uaxBalance, setUAXBalance] = useState("0")
-  const [tonBalance, setTONBalance] = useState("0")
-  const ton = useTON()
+  const [uaxBalance, setUAXBalance] = useState('0');
+  const [tonBalance, setTONBalance] = useState('0');
+  const ton = useTON();
   useInterval(() => {
-    uax.getUAXBalance(ton, address).then(setUAXBalance)
-    uax.getTONBalance(ton, address).then(setTONBalance)
-  }, 1000)
+    uax.getUAXBalance(ton, address).then(setUAXBalance);
+    uax.getTONBalance(ton, address).then(setTONBalance);
+  }, 1000);
   // function onMessage(msg) {
   //   console.log('onMessage', msg)
   //   updateBalance()
   // }
   // w.subscribeMessages("id,boc,code,data,created_at_string,msg_type,msg_type_name,status,status_name", onMessage)
 
-  const toInput = useRef()
-  const valueInput = useRef()
+  const toInput = useRef();
+  const valueInput = useRef();
 
   async function send1(event) {
-    console.log('send')
-    console.log(await w.run("transferTokensExt", {
-      to: toInput.current.value,
-      val: Number(valueInput.current.value)
-    }))
-    console.log('send end')
+    console.log('send');
+    console.log(
+      await w.run('transferTokensExt', {
+        to: toInput.current.value,
+        val: Number(valueInput.current.value),
+      }),
+    );
+    console.log('send end');
   }
 
-  const Console = useConsole()
+  const Console = useConsole();
   async function proposeMint(event) {
-    console.log('propose', address)
-    console.log(await Console.run("propose", {
-      addr: address,
-      eType: 1,
-      value: 15
-    }))
-    console.log('propose end')
+    console.log('propose', address);
+    console.log(
+      await Console.run('propose', {
+        addr: address,
+        eType: 1,
+        value: 15,
+      }),
+    );
+    console.log('propose end');
   }
 
   async function approveMint(event) {
-    console.log('approve')
-    console.log(await Console.run("approve", {
-      addr: address,
-      eventID: 7,
-    }))
-    console.log('propose end')
+    console.log('approve');
+    console.log(
+      await Console.run('approve', {
+        addr: address,
+        eventID: 7,
+      }),
+    );
+    console.log('propose end');
   }
 
   return (
@@ -71,10 +85,12 @@ function Wallet({ address }) {
           <p className={`${s.value} i-uax`}>{uaxBalance} uax</p>
           <p className={`${s.value} i-gas`}>{tonBalance} ton</p>
         </div>
-        <a className={`${s.yadd} i-copy`} onClick={() => copyToClipboard(address)}>
+        <a
+          className={`${s.yadd} i-copy`}
+          onClick={() => copyToClipboard(address)}
+        >
           {addressShort}
         </a>
-
       </div>
       <form className={s.block}>
         <label className="i-target">To</label>
@@ -91,12 +107,11 @@ function Wallet({ address }) {
           placeholder="123.45"
           ref={valueInput}
         />
-        <button className={s.button} onClick={send1}>doTransfer</button>
-        <button className={s.button} onClick={proposeMint}>proposeMint 15</button>
-        <button className={s.button} onClick={approveMint}>approveMint</button>
-        {/* <button className={s.buttonLoading}><Loader /></button> */}
+        <button className={s.buttonLoading}>
+          <Loader />
+        </button>
       </form>
-    </div >
+    </div>
   );
 }
 
