@@ -34,10 +34,10 @@ function App() {
                 </div>
                 {/* <Home></Home> */}
               </Route>
-              <Route path="/demo1">
+              <Route path="/owner">
                 <Demo1 />
               </Route>
-              <Route path="/demo2">
+              <Route path="/dev">
                 <Demo2 />
               </Route>
             </Switch>
