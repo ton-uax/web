@@ -71,20 +71,24 @@ function Demo1() {
   // console.log(balance11)
 
   return (
-    <>
-      <section className="container">
-        <h2 className="i-card">Wallet</h2>
-        <Wallet address={addr1} />
-      </section>
-      <section className="container">
-        {/* <h2 className="i-uax">Manage Supply</h2> */}
-        <Owner.SupplyManagement address={addr1} />
-      </section>
-      <section className="container">
-        {/* <h2 className="i-proc">Global Settings</h2> */}
-        <Owner.Config address={addr1} />
-      </section>
-    </>
+
+    <section>
+      <h2 className="i-card">Owner Wallet</h2>
+      <div className="flex">
+        <div className="container">
+          <h3 className="i-card">Wallet</h3>
+          <Wallet address={addr1} />
+        </div>
+        <div className="container">
+          <h3 className="i-uax">Manage Supply</h3>
+          <Owner.SupplyManagement address={addr1} />
+        </div>
+        <div className="container">
+          <h3 className="i-proc">Global Settings</h3>
+          <Owner.Config address={addr1} />
+        </div>
+      </div>
+    </section>
   );
 }
 
