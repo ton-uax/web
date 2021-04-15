@@ -6,7 +6,7 @@ function Config() {
   return (
     <div>
       <form className={s.block}>
-        {/* <h3 className="i-proc">Config</h3> */}
+        <h3 className="i-proc">Config</h3>
         <label>InitialUAX</label>
         <input
           className={s.input}

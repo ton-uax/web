@@ -77,11 +77,11 @@ function Demo1() {
         <Wallet address={addr1} />
       </section>
       <section className="container">
-        <h2 className="i-uax">Manage Supply</h2>
+        {/* <h2 className="i-uax">Manage Supply</h2> */}
         <Owner.SupplyManagement address={addr1} />
       </section>
       <section className="container">
-        <h2 className="i-proc">Global Settings</h2>
+        {/* <h2 className="i-proc">Global Settings</h2> */}
         <Owner.Config address={addr1} />
       </section>
     </>

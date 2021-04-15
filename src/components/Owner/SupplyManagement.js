@@ -6,25 +6,25 @@ function SupplyManagement() {
   return (
     <div>
       <form className={s.block}>
-        {/* <h3 className="i-star">Mint</h3> */}
-        <label>Mint</label>
+        <h3 className="i-star">Mint</h3>
+        <label>Value</label>
         <input
           className={s.input}
           type="text"
-          placeholder="UAX amount to issue"
+          placeholder="123"
         />
         <button className={s.button}>
-          Mint
+          Value
             {/* <Loader /> */}
         </button>
       </form>
       <form className={s.block}>
-        {/* <h3 className="i-unview">Burn</h3> */}
-        <label>Burn</label>
+        <h3 className="i-unview">Burn</h3>
+        <label>Value</label>
         <input
           className={s.input}
           type="text"
-          placeholder="UAX amount to burn"
+          placeholder="123"
         />
         <button className={s.button}>
           Burn
@@ -32,12 +32,12 @@ function SupplyManagement() {
         </button>
       </form>
       <form className={s.block}>
-        {/* <h3 className="i-bal">Claim Fee</h3> */}
-        <label>Claim Fee</label>
+        <h3 className="i-bal">Claim Fee</h3>
+        <label>Value</label>
         <input
           className={s.input}
           type="text"
-          placeholder="withdraw fees"
+          placeholder="123"
         />
         <button className={s.button}>
           Claim Fee
