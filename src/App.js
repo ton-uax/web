@@ -5,13 +5,12 @@ import './icons.css';
 import s from './App.module.css';
 
 import Header from './components/Header';
-import Wallet from './components/Wallet';
+
 import Demo1 from './components/Demo1';
+import Demo2 from './components/Demo2';
 import Aside from './components/Aside';
 import Message from './components/Message';
-import SmallWallet from './components/SmallWallet';
-import Log from './components/Log';
-import UltraSmallWallet from './components/UltraSmallWallet';
+
 
 import Home from './components/Home';
 
@@ -39,65 +38,7 @@ function App() {
                 <Demo1 />
               </Route>
               <Route path="/demo2">
-                <section className="container">
-                  <Wallet
-                    address={
-                      '0:db750d25142152b6e8d740a63b9a1e4503072ab7a5c51c7ab014c7a366e1a148'
-                    }
-                    balance={{ ton: '2.34', uax: '123' }}
-                  />
-                </section>
-
-                <section className="container">
-                  <h2 className="i-matrix"> Desk</h2>
-
-                  <div className={s.matrix}>
-                    {/* <SmallWallet active={false} address="123..456" />
-                    <SmallWallet active={false} address="123..456" />
-                    <SmallWallet active={false} address="123..456" />
-                    <SmallWallet active={false} address="123..456" />
-                    <SmallWallet active={false} address="123..456" />
-                    <SmallWallet active={false} address="123..456" />
-                    <SmallWallet active={false} address="123..456" />
-                    <SmallWallet active={false} address="123..456" />
-                    <SmallWallet active={true} address="123..456" /> */}
-                    <SmallWallet
-                      address="235...763"
-                      ton="357"
-                      uax="25"
-                      show={showSmallWal}
-                    ></SmallWallet>
-                    <UltraSmallWallet
-                      address="235...763"
-                      ton="357"
-                      uax="25"
-                    ></UltraSmallWallet>
-                    <UltraSmallWallet
-                      address="784...793"
-                      ton="743"
-                      uax="92"
-                    ></UltraSmallWallet>
-                    <UltraSmallWallet
-                      address="235...763"
-                      ton="357"
-                      uax="25"
-                    ></UltraSmallWallet>
-                    <UltraSmallWallet
-                      address="784...793"
-                      ton="743"
-                      uax="92"
-                    ></UltraSmallWallet>
-                    <UltraSmallWallet
-                      address="235...763"
-                      ton="357"
-                      uax="25"
-                    ></UltraSmallWallet>
-                  </div>
-                </section>
-                <section className="container">
-                  <h2 className="i-message"> Log</h2>
-                  <Log />
-                </section>
+                <Demo2 />
               </Route>
             </Switch>
           </div>

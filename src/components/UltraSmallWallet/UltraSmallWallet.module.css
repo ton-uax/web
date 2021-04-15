@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   width: calc((100% - 50px) / 7);
+  /* width: 46px; */
   height: 25px;
   padding: 5px;
   margin-bottom: 10px;
@@ -16,13 +17,20 @@
 
 .smallwallet:hover {
   box-shadow: 4px 4px 8px 0px rgba(3, 1, 21, 0.63);
+  opacity: 1;
+}
+
+.smallwallet-active {
+  composes: smallwallet;
+  box-shadow: 4px 4px 8px 0px rgba(3, 1, 21, 0.63);
+  opacity: 1;
 }
 
 .smallwallet:not(:nth-child(7n)) {
   margin-right: 5px;
 }
 
-.status {
+/* .status {
   position: absolute;
   top: 3px;
   right: 3px;
@@ -40,7 +48,7 @@
 .notActive {
   composes: status;
   background-color: #f63a42;
-}
+} */
 
 /* .tooltipcontent {
   visibility: hidden;

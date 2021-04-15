@@ -1,4 +1,6 @@
 import s from './Home.module.css';
+import qr from '../../img/qr.png';
+
 
 function Home() {
   return (
@@ -25,7 +27,7 @@ function Home() {
         </form>
         <span>or</span>
         <p>Scan for login</p>
-        <img src="../../img/qr.png" alt="Scan for login"></img>
+        <img src={qr} alt="Scan for login"></img>
       </div>
     </div>
   );

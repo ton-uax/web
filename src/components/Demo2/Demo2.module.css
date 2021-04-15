@@ -1,0 +1,5 @@
+.matrix {
+  width: 376px;
+  display: flex;
+  flex-wrap: wrap;
+}

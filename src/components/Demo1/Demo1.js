@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import OwnerWallet from '../OwnerWallet';
+import Owner from '../Owner';
+import Wallet from '../Wallet';
 import { get2OwnerAddresses } from '../../uax/demo';
 import { useTON, useTONAccount } from '../../uax/hooks';
 
@@ -70,9 +71,20 @@ function Demo1() {
   // console.log(balance11)
 
   return (
-    <div className="flex">
-      <OwnerWallet address={addr1} />
-    </div>
+    <>
+      <section className="container">
+        <h2 className="i-card">Wallet</h2>
+        <Wallet address={addr1} />
+      </section>
+      <section className="container">
+        <h2 className="i-uax">Manage Supply</h2>
+        <Owner.SupplyManagement address={addr1} />
+      </section>
+      <section className="container">
+        <h2 className="i-proc">Global Settings</h2>
+        <Owner.Config address={addr1} />
+      </section>
+    </>
   );
 }
 

@@ -77,8 +77,31 @@ function Wallet({ address }) {
   }
 
   return (
+    /*
+    <div>
+          <div className={s.balanceContainer}>
+            <div className={s.balance}>
+              <div className={s.info}>BALANCE</div>
+              <p className={`${s.value} i-uax`}>{uaxBalance} uax</p>
+              <p className={`${s.value} i-gas`}>{tonBalance} ton</p>
+            </div>
+            <a className={`${s.yadd} i-copy`}>0:db750...a148</a>
+          </div>
+
+          <form className={s.block}>
+            <h3 className="i-card2">Send</h3>
+            <label>To</label>
+            <input className={s.input} type="text" placeholder="0:..." />
+            <label>Value</label>
+            <input className={s.input} type="text" placeholder="123.45" />
+            <button className={s.buttonLoading}>
+              <Loader />
+            </button>
+          </form>
+        </div>
+    */
     <div className={s.wallet}>
-      <h2 className="i-card"> Wallet</h2>
+      
       <div className={s.balanceContainer}>
         <div className={s.balance}>
           <div className={s.info}>BALANCE</div>
@@ -100,11 +123,11 @@ function Wallet({ address }) {
           placeholder="0:..."
           ref={toInput}
         />
-        <label className="i-card">Value</label>
+        <label className="i-card">Amount</label>
         <input
           className={s.input}
           type="text"
-          placeholder="123.45"
+          placeholder="UAX to send"
           ref={valueInput}
         />
         <button className={s.buttonLoading}>
