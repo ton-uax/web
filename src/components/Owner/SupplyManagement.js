@@ -5,7 +5,7 @@ function SupplyManagement() {
   return (
     <div>
       <form className={s.block}>
-        /*<h3 className="i-star">Mint</h3>*/
+        {/*<h3 className="i-star">Mint</h3>*/}
         <label>Mint</label>
         <input
           className={s.input}
@@ -18,7 +18,7 @@ function SupplyManagement() {
         </button>
       </form>
       <form className={s.block}>
-        /*<h3 className="i-unview">Burn</h3>*/
+        {/*<h3 className="i-unview">Burn</h3>*/}
         <label>Burn</label>
         <input
           className={s.input}

@@ -73,7 +73,7 @@ function Demo1() {
   return (
 
     <section>
-      <h2 className="i-card">Owner Wallet</h2>
+      <h2>Owner UI</h2>
       <div className="flex">
         <div className="container">
           <h3 className="i-card">Wallet</h3>

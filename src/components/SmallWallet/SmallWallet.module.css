@@ -65,7 +65,7 @@
   composes: smallwallet;
   width: 100px;
   position: absolute;
-  top: 0;
-  right: 10px;
+  top: -40px;
+  right: 20px;
   opacity: 0.7;
 }

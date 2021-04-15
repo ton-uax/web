@@ -65,29 +65,34 @@ function Demo2({ }) {
     ></SmallWallet>
     console.log("---", selectedWallet)
     return (<>
-        <section className="container">
-            <h2 className="i-card"> Wallet</h2>
-            <Wallet
-                address={
-                    '0:db750d25142152b6e8d740a63b9a1e4503072ab7a5c51c7ab014c7a366e1a148'
-                }
-                balance={{ ton: '2.34', uax: '123' }}
-            />
-        </section>
+        <section>
+            <h2>Dev UI</h2>
+            <div className="flex">
+                <div className="container">
+                    <h3 className="i-card"> Wallet</h3>
+                    <Wallet
+                        address={
+                            '0:db750d25142152b6e8d740a63b9a1e4503072ab7a5c51c7ab014c7a366e1a148'
+                        }
+                        balance={{ ton: '2.34', uax: '123' }}
+                    />
+                </div>
 
-        <section className="container">
-            <h2 className="i-matrix">Explore Wallets</h2>
+                <div className="container">
+                    <h3 className="i-matrix">Explore Wallets</h3>
 
-            <div>
-                {selectedWallet}
-                <div className={s.matrix}>
-                    {wallets}
+                    <div>
+                        {selectedWallet}
+                        <div className={s.matrix}>
+                            {wallets}
+                        </div>
+                    </div>
+                </div>
+                <div className="container">
+                    <h3 className="i-message"> Log</h3>
+                    <Log />
                 </div>
             </div>
-        </section>
-        <section className="container">
-            <h2 className="i-message"> Log</h2>
-            <Log />
         </section>
     </>
     )
