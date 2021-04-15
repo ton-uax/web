@@ -19,7 +19,7 @@ body {
 
 .page {
   max-height: 800px;
-  min-width: 1140px;
+  min-width: 1200px;
   background-color: var(--bg-main-color-light);
   border-radius: 20px;
   box-shadow: 0 5px 7px rgba(0, 0, 0, 0.07), 0 34px 51px rgba(0, 0, 0, 0.011);

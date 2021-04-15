@@ -1,8 +1,7 @@
 .smallwallet {
   position: relative;
   display: flex;
-  width: calc((100% - 50px) / 7);
-  /* width: 46px; */
+  width: calc((100% - 50px) / 5);
   height: 25px;
   padding: 5px;
   margin-bottom: 10px;
@@ -26,7 +25,7 @@
   opacity: 1;
 }
 
-.smallwallet:not(:nth-child(7n)) {
+.smallwallet:not(:nth-child(5n)) {
   margin-right: 5px;
 }
 
