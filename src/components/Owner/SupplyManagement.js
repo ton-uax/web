@@ -1,7 +1,6 @@
 import s from './Forms.module.css';
 import Loader from '../Loader/Loader';
 
-
 function SupplyManagement() {
   return (
     <div>
@@ -15,7 +14,7 @@ function SupplyManagement() {
         />
         <button className={s.button}>
           Mint
-            {/* <Loader /> */}
+          {/* <Loader /> */}
         </button>
       </form>
       <form className={s.block}>
@@ -28,20 +27,16 @@ function SupplyManagement() {
         />
         <button className={s.button}>
           Burn
-            {/* <Loader /> */}
+          {/* <Loader /> */}
         </button>
       </form>
       <form className={s.block}>
         {/* <h3 className="i-bal">Claim Fee</h3> */}
         <label>Claim Fee</label>
-        <input
-          className={s.input}
-          type="text"
-          placeholder="withdraw fees"
-        />
+        <input className={s.input} type="text" placeholder="withdraw fees" />
         <button className={s.button}>
           Claim Fee
-            {/* <Loader /> */}
+          {/* <Loader /> */}
         </button>
       </form>
     </div>
