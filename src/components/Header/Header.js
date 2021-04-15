@@ -7,7 +7,7 @@ function Header({ title }) {
     <header className={s.main}>
       <div className={s.logo}>
         <h1>
-          <Link to="/" className={s.title}>
+          <Link to="/dev" className={s.title}>
             {' '}
             <img className={s.logoImage} src={logo} alt="logo" width="30px" />
             {title}
@@ -15,14 +15,15 @@ function Header({ title }) {
         </h1>
       </div>
       <div className={s.menu}>
+        
+        <Link to="owner" className={s.link}>
+          Owner UI Demo
+        </Link>
+        <Link to="dev" className={(s.link, s.active)}>
+          Dev UI Demo
+        </Link>
         <Link to="/" className={(s.act, s.link)}>
-          Home
-        </Link>
-        <Link to="demo1" className={s.link}>
-          Demo 1
-        </Link>
-        <Link to="demo2" className={(s.link, s.active)}>
-          Demo 2
+          Don't touch
         </Link>
       </div>
     </header>
