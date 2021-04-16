@@ -68,7 +68,7 @@ function Demo2({ }) {
         <section>
             <h2>Dev UI</h2>
             <div className="flex">
-                <div className="container">
+                {/* <div className="container">
                     <h3 className="i-card"> Wallet</h3>
                     <Wallet
                         address={
@@ -76,7 +76,7 @@ function Demo2({ }) {
                         }
                         balance={{ ton: '2.34', uax: '123' }}
                     />
-                </div>
+                </div> */}
 
                 <div className="container">
                     <h3 className="i-matrix">Explore Wallets</h3>
