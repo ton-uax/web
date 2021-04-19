@@ -2,7 +2,7 @@ import s from './Forms.module.css';
 import Loader from '../Loader/Loader';
 import { useRef, useState } from 'react';
 
-function ProposeEventForm({inputLabel, buttonCaption, account, eType}) {
+function ProposeEventForm({ inputHint, buttonCaption, account, eType }) {
   const input = useRef()
   const [loading, setLoading] = useState(false)
 
@@ -12,7 +12,7 @@ function ProposeEventForm({inputLabel, buttonCaption, account, eType}) {
     let value = Number(input.current.value)
     if ((!Number.isInteger(value)) || !(value > 0))
       return
-    
+
     try {
       setLoading(true)
       let r = await account.run('propose', {
@@ -29,19 +29,19 @@ function ProposeEventForm({inputLabel, buttonCaption, account, eType}) {
       setLoading(false)
     }
   }
-  
+
   return (
     <form className={s.block}>
-      <label>{inputLabel}</label>
-        <input
-          className={s.input}
-          type="text"
-          placeholder="123"
-          ref={input}
-        />
-        <button className={loading ? s.buttonLoading : s.button} onClick={propose}>
-          {loading ? <Loader /> : buttonCaption}
-        </button>
+      {/* <label>{inputLabel}</label> */}
+      <input
+        className={s.input}
+        type="text"
+        placeholder={inputHint}
+        ref={input}
+      />
+      <button className={loading ? s.buttonLoading : s.button} onClick={propose}>
+        {loading ? <Loader /> : buttonCaption}
+      </button>
     </form>
   )
 }
@@ -50,25 +50,31 @@ function ProposeEventForm({inputLabel, buttonCaption, account, eType}) {
 function SupplyManagement({ account }) {
   return (
     <div>
-      <ProposeEventForm 
-        inputLabel="Mint"
-        buttonCaption="Propose Mint" 
+      <ProposeEventForm
+        inputHint="Mint UAX"
+        buttonCaption="Mint"
         account={account}
         eType={1}
       />
-      <ProposeEventForm 
-        inputLabel="Burn"
-        buttonCaption="Propose Burn" 
+      <ProposeEventForm
+        inputHint="Burn UAX"
+        buttonCaption="Burn"
         account={account}
         eType={2}
       />
-      <ProposeEventForm 
-        inputLabel="Claim Fee"
-        buttonCaption="Propose Claim Fee" 
+      <ProposeEventForm
+        inputHint="Set Transfer Fee"
+        buttonCaption="Set Fee"
+        account={account}
+        eType={3}
+      />
+      <ProposeEventForm
+        inputHint="Withdraw Transfer Fee"
+        buttonCaption="Withdraw Fee"
         account={account}
         eType={4}
       />
-      
+
     </div>
   );
 }
