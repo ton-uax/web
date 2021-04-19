@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { TonClient as ton } from '@tonclient/core';
+import { TonClient as ton, DebotModule } from '@tonclient/core';
 import { libWeb, libWebSetup } from '@tonclient/lib-web';
 libWebSetup({
     debugLog: console.log,
@@ -16,8 +16,10 @@ export const TONContextProvider = props => {
         }
     }));
 
+    const [dengine] = useState(new DebotModule(client))
+
     return (
-        <TONContext.Provider value={client}>
+        <TONContext.Provider value={{ client, dengine }}>
             {props.children}
         </TONContext.Provider>
     );

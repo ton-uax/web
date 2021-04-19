@@ -22,27 +22,6 @@
 			]
 		},
 		{
-			"name": "scenario0",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "scenario1",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "deploySystemWallets",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "deployTokenWallets",
 			"inputs": [
 				{"name":"n","type":"uint16"}
@@ -59,61 +38,9 @@
 			]
 		},
 		{
-			"name": "deployTokenWalletWithTokens",
-			"inputs": [
-				{"name":"key","type":"uint256"},
-				{"name":"tokens","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "deployOwnerWallets",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "deployOwnerWalletsWithKeys",
 			"inputs": [
 				{"name":"keys","type":"uint256[]"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "assignTo",
-			"inputs": [
-				{"name":"addr","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "airdrop",
-			"inputs": [
-				{"name":"addrs","type":"address[]"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "mintTo",
-			"inputs": [
-				{"name":"addr","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "burnFrom",
-			"inputs": [
-				{"name":"addr","type":"address"},
-				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -124,43 +51,6 @@
 				{"name":"from","type":"address"},
 				{"name":"to","type":"address"},
 				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "doLightTransfer",
-			"inputs": [
-				{"name":"from","type":"address"},
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "doTwoTransfers",
-			"inputs": [
-				{"name":"from","type":"address"},
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "roundTransfer",
-			"inputs": [
-				{"name":"addrs","type":"address[]"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "doDoppel",
-			"inputs": [
-				{"name":"addrs","type":"address[]"}
 			],
 			"outputs": [
 			]
@@ -212,8 +102,13 @@
 			]
 		},
 		{
-			"name": "setMode",
+			"name": "setEnv",
 			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"},
 				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
@@ -285,19 +180,16 @@
 			]
 		},
 		{
-			"name": "updateMode",
+			"name": "updateEnv",
 			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"},
 				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
-			]
-		},
-		{
-			"name": "getMode",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"logLevel","type":"uint16"}
 			]
 		},
 		{
@@ -309,7 +201,8 @@
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"}
+				{"name":"dashboard","type":"address"},
+				{"name":"logLevel","type":"uint16"}
 			]
 		},
 		{

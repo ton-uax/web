@@ -74,68 +74,10 @@
 			]
 		},
 		{
-			"name": "initMember",
-			"inputs": [
-				{"name":"console","type":"address"},
-				{"name":"eventLog","type":"address"},
-				{"name":"root","type":"address"},
-				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"},
-				{"name":"id","type":"uint16"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "meet",
-			"inputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"a","type":"address"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "updateMode",
-			"inputs": [
-				{"name":"logLevel","type":"uint16"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "getMode",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"logLevel","type":"uint16"}
-			]
-		},
-		{
-			"name": "getEnv",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"console","type":"address"},
-				{"name":"eventLog","type":"address"},
-				{"name":"root","type":"address"},
-				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"}
-			]
-		},
-		{
 			"name": "constructor",
 			"inputs": [
 			],
 			"outputs": [
-			]
-		},
-		{
-			"name": "_clients",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"_clients","type":"map(address,uint16)"}
 			]
 		},
 		{

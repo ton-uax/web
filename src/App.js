@@ -6,13 +6,11 @@ import s from './App.module.css';
 
 import Header from './components/Header';
 
+import Demo from './components/Demo';
 import Demo1 from './components/Demo1';
 import Demo2 from './components/Demo2';
 import Aside from './components/Aside';
-import Message from './components/Message';
 
-
-import Home from './components/Home';
 
 function App() {
   const [showMessage, setShowMessage] = useState(true);
@@ -25,14 +23,10 @@ function App() {
         <div className={s.main}>
           <Aside></Aside>
           <div className={s.desk}>
-            <Message show={showMessage}></Message>
+            
             <Switch>
               <Route exact path="/">
-                <div>
-                  <h2 className="i-alert">Hello</h2>
-                  <h2>Hello</h2>
-                </div>
-                {/* <Home></Home> */}
+                <Demo />
               </Route>
               <Route path="/owner">
                 <Demo1 />

@@ -46,9 +46,7 @@
 			"name": "logDeploy",
 			"inputs": [
 				{"name":"id","type":"uint16"},
-				{"name":"eType","type":"uint8"},
-				{"name":"s","type":"uint8"},
-				{"name":"eventID","type":"uint32"}
+				{"name":"s","type":"uint8"}
 			],
 			"outputs": [
 			]
@@ -58,11 +56,11 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"x","type":"uint32"},{"name":"code","type":"uint16"}],"name":"errors","type":"tuple[]"},
-				{"components":[{"name":"x","type":"uint32"},{"name":"from","type":"uint16"},{"name":"to","type":"uint16"},{"name":"val","type":"uint32"},{"name":"id","type":"uint32"}],"name":"transfers","type":"tuple[]"},
-				{"components":[{"name":"x","type":"uint32"},{"name":"val","type":"int32"}],"name":"records","type":"tuple[]"},
-				{"components":[{"name":"x","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"events","type":"tuple[]"},
-				{"components":[{"name":"x","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"deploys","type":"tuple[]"}
+				{"components":[{"name":"id","type":"uint16"},{"name":"code","type":"uint16"}],"name":"errors","type":"map(uint32,tuple)"},
+				{"components":[{"name":"from","type":"uint16"},{"name":"to","type":"uint16"},{"name":"val","type":"uint32"},{"name":"tid","type":"uint32"}],"name":"transfers","type":"map(uint32,tuple)"},
+				{"components":[{"name":"id","type":"uint16"},{"name":"val","type":"int32"}],"name":"records","type":"map(uint32,tuple)"},
+				{"components":[{"name":"id","type":"uint16"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"events","type":"map(uint32,tuple)"},
+				{"components":[{"name":"id","type":"uint16"},{"name":"s","type":"uint8"}],"name":"deploys","type":"map(uint32,tuple)"}
 			]
 		},
 		{
@@ -70,8 +68,8 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"x","type":"uint32"},{"name":"code","type":"uint16"}],"name":"errors","type":"tuple[]"},
-				{"components":[{"name":"id","type":"uint32"},{"name":"subject","type":"uint16"},{"name":"sentBy","type":"uint16"},{"name":"ts","type":"uint32"}],"name":"details","type":"tuple[]"}
+				{"components":[{"name":"id","type":"uint16"},{"name":"code","type":"uint16"}],"name":"errors","type":"tuple[]"},
+				{"components":[{"name":"id","type":"uint32"},{"name":"sentBy","type":"uint16"},{"name":"ts","type":"uint32"}],"name":"details","type":"tuple[]"}
 			]
 		},
 		{
@@ -104,19 +102,16 @@
 			]
 		},
 		{
-			"name": "updateMode",
+			"name": "updateEnv",
 			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"},
 				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
-			]
-		},
-		{
-			"name": "getMode",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"logLevel","type":"uint16"}
 			]
 		},
 		{
@@ -128,7 +123,8 @@
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"}
+				{"name":"dashboard","type":"address"},
+				{"name":"logLevel","type":"uint16"}
 			]
 		},
 		{
@@ -151,7 +147,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"x","type":"uint32"},{"name":"code","type":"uint16"}],"name":"_errors","type":"tuple[]"}
+				{"components":[{"name":"id","type":"uint16"},{"name":"code","type":"uint16"}],"name":"_errors","type":"map(uint32,tuple)"}
 			]
 		},
 		{
@@ -159,7 +155,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"x","type":"uint32"},{"name":"from","type":"uint16"},{"name":"to","type":"uint16"},{"name":"val","type":"uint32"},{"name":"id","type":"uint32"}],"name":"_transfers","type":"tuple[]"}
+				{"components":[{"name":"from","type":"uint16"},{"name":"to","type":"uint16"},{"name":"val","type":"uint32"},{"name":"tid","type":"uint32"}],"name":"_transfers","type":"map(uint32,tuple)"}
 			]
 		},
 		{
@@ -167,7 +163,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"x","type":"uint32"},{"name":"val","type":"int32"}],"name":"_records","type":"tuple[]"}
+				{"components":[{"name":"id","type":"uint16"},{"name":"val","type":"int32"}],"name":"_records","type":"map(uint32,tuple)"}
 			]
 		},
 		{
@@ -175,7 +171,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"x","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"_events","type":"tuple[]"}
+				{"components":[{"name":"id","type":"uint16"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"_events","type":"map(uint32,tuple)"}
 			]
 		},
 		{
@@ -183,7 +179,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"x","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"s","type":"uint8"},{"name":"eventID","type":"uint32"}],"name":"_deploys","type":"tuple[]"}
+				{"components":[{"name":"id","type":"uint16"},{"name":"s","type":"uint8"}],"name":"_deploys","type":"map(uint32,tuple)"}
 			]
 		},
 		{
@@ -191,7 +187,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"id","type":"uint32"},{"name":"subject","type":"uint16"},{"name":"sentBy","type":"uint16"},{"name":"ts","type":"uint32"}],"name":"_log","type":"tuple[]"}
+				{"components":[{"name":"id","type":"uint32"},{"name":"sentBy","type":"uint16"},{"name":"ts","type":"uint32"}],"name":"_log","type":"tuple[]"}
 			]
 		}
 	],

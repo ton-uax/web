@@ -1,25 +1,28 @@
 import { Account } from '@tonclient/appkit';
-import TokenWalletABI from '../abi/TokenWallet.abi.json'
-import ConsoleABI from '../abi/Console.abi.json'
-import MediumABI from '../abi/Medium.abi.json'
-import RootABI from '../abi/Root.abi.json'
-import RepoABI from '../abi/Repo.abi.json'
+
+import TokenWalletABI from '../ton-abi/TokenWallet.abi.json'
+import ConsoleABI from '../ton-abi/Console.abi.json'
+import MediumABI from '../ton-abi/Medium.abi.json'
+import RootABI from '../ton-abi/Root.abi.json'
+import RepoABI from '../ton-abi/Repo.abi.json'
 
 const UAXCodeHashes = [
   "aaf0d9290df6c1f3aa630a37f3d69a716b35f9bbafe9e06b14d824e82effe5fd"
 ];
-const consoleAddr = "0:fdaa7e29dd74559be50f0a55027edcb2157f68bf8a986b55e21e2e6e30b08758";
 const eventlogAddr = "0:582560651aa223db4b6031f69b50c375b7c05cad816c6a16d7b47da0ac383369";
-const mediumAddr = "0:866dc8aa64e4840c3a4ff051b6fd02b7d9d40b0178b715a14ea6f374fa5a3326";
 const repoAddr = "0:90339a44a8700fc6c9516aa05f1b98942cc86fe6eafdf7aa1610504430939712";
-const rootAddr = "0:2e81cc106ee7d08d73394cc647289f625afe6b4bce543644852dc6c467344894"
 
 
-const owner1 = "0:09959787ce76badf2fc440487490f1dff3ca0baa3d72451a98095c1fe56c3736";
-const owner2 = "0:092e2efabd144113cb194f6396ccc63906a92dcce90c9e6a3f9d4d7085b22a9e";
+const ownerPubKeys = [
+  "0x1466d9488f4fb2d76d1a13dddb7e80ba3256acc94b567c174845b3704a907ce2",
+  "0x544627298804466cd05fa82b6f06be94b931c3ebba0ed9d21bd1d2ec56630ef8",
+  "0x592151b11fa6125e3ec20dc5f673cacc429c7e1867da45db08a39cd917a167f3"
+]
 
-export function get2OwnerAddresses() {
-  return [owner1, owner2];
+export const addresses = {
+  "Medium": "0:0e8bd76eeecd77d9870a13b7c93618b1477d7a0b9dd018599ddf0e810469f0bf",
+  "Root": "0:79c86fb401d74706321b6328866723cbe154689927de0eb9a14d2ccc8fb9aa8d",
+  "Console": "0:d6bad31b76a3de3af8290efabb2aa7fa7f3953fa7ec7a63174f5a0b18ab5e8eb"
 }
 
 
@@ -34,25 +37,19 @@ export async function getUAXWallets(client) {
   return result
 }
 
-const Console = { abi: ConsoleABI }
-const Medium = { abi: MediumABI }
 const TokenWallet = { abi: TokenWalletABI }
 const Repo = { abi: RepoABI }
-const Root = { abi: RootABI }
 
 export const makeWalletWrapper = (client, address) => new Account(TokenWallet, { address, client });
-export const makeConsoleWrapper = (client) => new Account(Console, { address: consoleAddr, client });
-export const makeMediumWrapper = (client) => new Account(Medium, { address: mediumAddr, client });
 export const makeRepoWrapper = (client) => new Account(Repo, { address: repoAddr, client });
-export const makeRootWrapper = (client) => new Account(Root, { address: rootAddr, client });
 
-const doTransfer = async (client, from, to, value) => {
-  let ConsoleAcc = makeConsoleWrapper(client)
-  return await ConsoleAcc.run("doTransfer", {
-    to: to,
-    from: from,
-    val: value
-  })
+export async function getOwners(root) {
+  let walletsInfo = (await root.runLocal("_walletsInfo", {})).decoded.output["_walletsInfo"]
+  let owners = {}
+  for (let [addr, info] of Object.entries(walletsInfo))
+  if (info["id"] < 10)
+    owners[info["key"]] = addr
+  return owners
 }
 
 export async function getConfig(console) {
@@ -76,15 +73,6 @@ export async function getStats(root, medium) {
     accruedFee: statsResponse.accruedFee,
     claimedFee: statsResponse.totalFeeClaimed,
   }
-}
-export async function updateStatsForever(client, onStatsUpdate) {
-  const medium = makeMediumWrapper(client)
-  const root = makeRootWrapper(client)
-  const currentStats = await getStats(root, medium)
-  onStatsUpdate(currentStats)
-  await medium.subscribeMessages('id', async (msg) => {
-    onStatsUpdate(await getStats(root, medium))
-  })
 }
 
 const getUAXBalance = async (client, address) => {
@@ -112,6 +100,6 @@ const getBalance = async (client, address) => {
   }
 }
 
-const uax = { getBalance, getTONBalance, getUAXBalance, makeWalletWrapper, updateStatsForever, getStats, getConfig, doTransfer };
+const uax = { getBalance, getTONBalance, getUAXBalance, makeWalletWrapper, getStats, getConfig };
 
 export default uax;

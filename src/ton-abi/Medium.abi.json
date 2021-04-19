@@ -40,42 +40,7 @@
 			]
 		},
 		{
-			"name": "buyTokens",
-			"inputs": [
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "assignTo",
-			"inputs": [
-				{"name":"addr","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "deductFrom",
-			"inputs": [
-				{"name":"addr","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "transferTokens",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "lightTransferTokens",
 			"inputs": [
 				{"name":"to","type":"address"},
 				{"name":"val","type":"uint32"}
@@ -202,19 +167,16 @@
 			]
 		},
 		{
-			"name": "updateMode",
+			"name": "updateEnv",
 			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"},
 				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
-			]
-		},
-		{
-			"name": "getMode",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"logLevel","type":"uint16"}
 			]
 		},
 		{
@@ -226,7 +188,8 @@
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"}
+				{"name":"dashboard","type":"address"},
+				{"name":"logLevel","type":"uint16"}
 			]
 		},
 		{
@@ -253,14 +216,6 @@
 			]
 		},
 		{
-			"name": "_confirmed",
-			"inputs": [
-			],
-			"outputs": [
-				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"_confirmed","type":"map(uint32,tuple)"}
-			]
-		},
-		{
 			"name": "_archived",
 			"inputs": [
 			],
@@ -273,7 +228,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"createdAt","type":"uint32"},{"name":"validUntil","type":"uint32"},{"name":"confirmedAt","type":"uint32"},{"name":"state","type":"uint8"},{"name":"signsAt","type":"uint8"},{"name":"signs","type":"uint16[]"},{"name":"signsReq","type":"uint8"},{"name":"value","type":"uint32"},{"name":"actor","type":"uint16"}],"name":"_proposals","type":"map(uint32,tuple)"}
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"createdAt","type":"uint32"},{"name":"validUntil","type":"uint32"},{"name":"confirmedAt","type":"uint32"},{"name":"state","type":"uint8"},{"name":"signsAt","type":"uint8"},{"name":"signs","type":"uint16"},{"name":"signsReq","type":"uint8"},{"name":"value","type":"uint32"},{"name":"actor","type":"uint16"}],"name":"_proposals","type":"map(uint32,tuple)"}
 			]
 		},
 		{
@@ -282,6 +237,14 @@
 			],
 			"outputs": [
 				{"components":[{"name":"balance","type":"uint32"},{"name":"addr","type":"address"},{"name":"lastAccessed","type":"uint32"}],"name":"_ledger","type":"map(uint16,tuple)"}
+			]
+		},
+		{
+			"name": "_owners",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"_owners","type":"map(uint8,address)"}
 			]
 		}
 	],

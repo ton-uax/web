@@ -1,5 +1,5 @@
 import SupplyManagement from "./SupplyManagement";
 import Config from './Config';
-
-export default { SupplyManagement, Config }
+import Message from './Message';
+export default { SupplyManagement, Config, Message }
 

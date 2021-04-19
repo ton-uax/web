@@ -14,13 +14,6 @@
 			]
 		},
 		{
-			"name": "deploySystemWallets",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "deployOwnerWalletsWithKeys",
 			"inputs": [
 				{"name":"keys","type":"uint256[]"}
@@ -52,15 +45,6 @@
 			]
 		},
 		{
-			"name": "deployTokenWalletWithTokens",
-			"inputs": [
-				{"name":"key","type":"uint256"},
-				{"name":"tokens","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "onTokenWalletDeploy",
 			"inputs": [
 				{"name":"id","type":"uint16"},
@@ -84,6 +68,13 @@
 			"inputs": [
 				{"name":"id","type":"uint16"},
 				{"name":"tonBalance","type":"uint64"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateWalletsEnv",
+			"inputs": [
 			],
 			"outputs": [
 			]
@@ -130,19 +121,16 @@
 			]
 		},
 		{
-			"name": "updateMode",
+			"name": "updateEnv",
 			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"},
 				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
-			]
-		},
-		{
-			"name": "getMode",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"logLevel","type":"uint16"}
 			]
 		},
 		{
@@ -154,7 +142,8 @@
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"}
+				{"name":"dashboard","type":"address"},
+				{"name":"logLevel","type":"uint16"}
 			]
 		},
 		{
@@ -177,7 +166,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"id","type":"uint16"},{"name":"key","type":"uint256"},{"name":"addr","type":"address"},{"name":"startingTokens","type":"uint32"},{"name":"createdAt","type":"uint32"}],"name":"_walletsInfo","type":"map(address,tuple)"}
+				{"components":[{"name":"id","type":"uint16"},{"name":"key","type":"uint256"},{"name":"startingTokens","type":"uint32"},{"name":"createdAt","type":"uint32"}],"name":"_walletsInfo","type":"map(address,tuple)"}
 			]
 		},
 		{

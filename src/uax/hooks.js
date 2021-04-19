@@ -1,47 +1,47 @@
-import { useState, useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useAsync } from 'react-use';
-import { getUAXWallets, makeConsoleWrapper, makeMediumWrapper, makeRootWrapper, makeWalletWrapper } from './demo';
+
+import { signerKeys } from '@tonclient/core';
+import { Account } from '@tonclient/appkit';
+
+import OwnerWalletABI from '../ton-abi/OwnerWallet.abi.json';
+import RootABI from '../ton-abi/Root.abi.json';
+import { addresses, getOwners } from './demo';
+
 import { TONContext } from './context'
 
 
 export function useTON() {
-  const ton = useContext(TONContext)
-  return ton
+  const { client, dengine } = useContext(TONContext)
+  return client
 }
 
-export function useUAXAddresses() {
-  console.log('hook use addresses')
-  const client = useTON()
-  const addrs = useAsync(async () => {
-    const addresses = await getUAXWallets(client)
-    return addresses.map(item => item.id)
-  }, [client])
-  if (addrs.loading)
-    return []
-  return addrs.value;
-}
 
-export function useTONAccount(address) {
-  console.log('hook use wallet', address)
+export function useOwnerAccount(phrase) {
   const ton = useTON()
-  const [account, setAccount] = useState(makeWalletWrapper(ton, address))
-  return [account, setAccount]
-}
 
-export function useConsole() {
-  const client = useTON()
-  const [console,] = useState(makeConsoleWrapper(client))
-  return console
-}
+  const account = useAsync(async () => {
+    const kp = await ton.crypto.mnemonic_derive_sign_keys({ phrase })
+    const Root = new Account(
+      { abi: RootABI }, 
+      { address: addresses["Root"], client: ton })
 
-export function useRoot() {
-  const client = useTON()
-  const [root] = useState(makeRootWrapper(client))
-  return root
-}
+    let owners = await getOwners(Root)
+    console.log(owners)
+    return new Account(
+      { abi: OwnerWalletABI },
+      {
+        address: owners[`0x${kp.public}`], client: ton, signer: signerKeys(kp)
+      }
+    )
+  }, [ton])
 
-export function useMedium() {
-  const client = useTON()
-  const [medium] = useState(makeMediumWrapper(client))
-  return medium
+  useEffect(() => {
+    return () => {
+      if (account.value)
+        account.value.free()
+    }
+  }, [account])
+
+  return account
 }

@@ -3,28 +3,28 @@ import s from './Log.module.css';
 function Log() {
   return (
     <div className={s.history}>
-      <div class={s.send}>
+      <div className={s.send}>
         <span>user-user</span>
         <span>₴5 324..FD5 ➜ 5A2..821</span>
       </div>
-      <div class={s.fee}>
+      <div className={s.fee}>
         <span>new fee dest</span>
         <span>324..FD5 ➜ 044..EE2</span>
       </div>
-      <div class={s.fee}>
+      <div className={s.fee}>
         <span>new fee val</span>
         <span>₴2</span>
       </div>
-      <div class={s.mint}>
+      <div className={s.mint}>
         <span>mint</span>
         <span>₴2 ⚡️30</span>
         <span>AAA..00E ➜ ADE..12D</span>
       </div>
-      <div class={s.sign}>
+      <div className={s.sign}>
         <span>sign</span>
         <span>0BB</span>
       </div>
-      <div class={s.hold}>
+      <div className={s.hold}>
         <span>user-user</span>
         <span>* 19:03:24</span>
       </div>

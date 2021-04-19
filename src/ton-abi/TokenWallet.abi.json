@@ -47,14 +47,6 @@
 			]
 		},
 		{
-			"name": "buyTokens",
-			"inputs": [
-				{"name":"amount","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "transferTokens",
 			"inputs": [
 				{"name":"to","type":"address"},
@@ -68,22 +60,6 @@
 			"inputs": [
 				{"name":"to","type":"address"},
 				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "lightTransferTokens",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "doppel",
-			"inputs": [
 			],
 			"outputs": [
 			]
@@ -111,19 +87,16 @@
 			]
 		},
 		{
-			"name": "updateMode",
+			"name": "updateEnv",
 			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"},
 				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
-			]
-		},
-		{
-			"name": "getMode",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"logLevel","type":"uint16"}
 			]
 		},
 		{
@@ -135,7 +108,8 @@
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"}
+				{"name":"dashboard","type":"address"},
+				{"name":"logLevel","type":"uint16"}
 			]
 		},
 		{

@@ -1,117 +1,80 @@
 import s from './Wallet.module.css';
-import React, { useRef, useState } from 'react';
-import {
-  useInterval,
-  useAsyncFn,
-  useAsyncRetry,
-  useCopyToClipboard,
-  useUpdate,
-} from 'react-use';
-import { useConsole, useTONAccount, useTON } from '../../uax/hooks';
 import Loader from '../Loader/Loader';
+import { useRef, useState } from 'react';
+import {
+  useAsync,
+  useCopyToClipboard,
+} from 'react-use';
+
+import { useTON } from '../../uax/hooks';
 import uax from '../../uax/demo';
 
-function Wallet({ address }) {
-  const addressShort = !address
-    ? '0:'
-    : address.slice(0, 7) + '...' + address.slice(-4);
-  const [, copyToClipboard] = useCopyToClipboard();
-  const [w] = useTONAccount(address);
-  // const updateBalance = useUpdate()
-  // const balanceState = useAsync(async () => {
-  //   const uax = (await w.runLocal("_balance")).decoded.output._balance
-  //   const ton = (Number(await w.getBalance()) / 10 ** 9).toString().slice(0, 4)
-  //   console.log('updated', address, { uax, ton })
-  //   return { uax, ton }
-  // }, [])
-  // const balance = balanceState.value || { uax: "0", ton: "0" }
-  const [uaxBalance, setUAXBalance] = useState('0');
-  const [tonBalance, setTONBalance] = useState('0');
-  const ton = useTON();
-  useInterval(() => {
-    uax.getUAXBalance(ton, address).then(setUAXBalance);
-    uax.getTONBalance(ton, address).then(setTONBalance);
-  }, 1000);
-  // function onMessage(msg) {
-  //   console.log('onMessage', msg)
-  //   updateBalance()
-  // }
-  // w.subscribeMessages("id,boc,code,data,created_at_string,msg_type,msg_type_name,status,status_name", onMessage)
 
+function Wallet({ label, account }) {
   const toInput = useRef();
   const valueInput = useRef();
+  const address = account.address
+  const addressShort = !address
+    ? '-'
+    : address.slice(0, 10) + '...' + address.slice(-10)
 
-  async function send1(event) {
-    console.log('send');
-    console.log(
-      await w.run('transferTokensExt', {
-        to: toInput.current.value,
-        val: Number(valueInput.current.value),
-      }),
-    );
-    console.log('send end');
-  }
+  const [uaxBalance, setUAXBalance] = useState('')
+  const [tonBalance, setTONBalance] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const Console = useConsole();
-  async function proposeMint(event) {
-    console.log('propose', address);
-    console.log(
-      await Console.run('propose', {
-        addr: address,
-        eType: 1,
-        value: 15,
-      }),
-    );
-    console.log('propose end');
-  }
+  const [, copyToClipboard] = useCopyToClipboard()
 
-  async function approveMint(event) {
-    console.log('approve');
-    console.log(
-      await Console.run('approve', {
-        addr: address,
-        eventID: 7,
-      }),
-    );
-    console.log('propose end');
+  const ton = useTON()
+  useAsync(async () => {
+    console.log('Wallet.subscribe', Date.now())
+    uax.getUAXBalance(ton, address).then(setUAXBalance);
+    uax.getTONBalance(ton, address).then(setTONBalance);
+    return await account.subscribeMessages("id", msg => {
+      console.log('Wallet.onMessage', Date.now(), address, msg)
+      uax.getUAXBalance(ton, address).then(setUAXBalance);
+      uax.getTONBalance(ton, address).then(setTONBalance);
+    })
+  }, [account])
+
+  async function transfer(event) {
+    if (loading)
+      return
+    let to = toInput.current.value
+    let val = Number(valueInput.current.value)
+    if (!to.match(/^0:[a-fA-F0-9]{64}$/) || !Number.isInteger(val) || !(val > 0))
+      return
+
+    try {
+      setLoading(true)
+      let r = await account.run('transferTokensExt', {
+        to: to,
+        val: val,
+      })
+      console.log(r)
+      toInput.current.value = ''
+      valueInput.current.value = ''
+    }
+    catch (e) {
+      console.error(e)
+    }
+    finally {
+      setLoading(false)
+    }
+
+
   }
 
   return (
-    /*
-    <div>
-          <div className={s.balanceContainer}>
-            <div className={s.balance}>
-              <div className={s.info}>BALANCE</div>
-              <p className={`${s.value} i-uax`}>{uaxBalance} uax</p>
-              <p className={`${s.value} i-gas`}>{tonBalance} ton</p>
-            </div>
-            <a className={`${s.yadd} i-copy`}>0:db750...a148</a>
-          </div>
-
-          <form className={s.block}>
-            <h3 className="i-card2">Send</h3>
-            <label>To</label>
-            <input className={s.input} type="text" placeholder="0:..." />
-            <label>Value</label>
-            <input className={s.input} type="text" placeholder="123.45" />
-            <button className={s.buttonLoading}>
-              <Loader />
-            </button>
-          </form>
-        </div>
-    */
     <div className={s.wallet}>
-      
       <div className={s.balanceContainer}>
         <div className={s.balance}>
-          <div className={s.info}>BALANCE</div>
+          <div className={s.info}>{label}</div>
           <p className={`${s.value} i-uax`}>{uaxBalance} uax</p>
           <p className={`${s.value} i-gas`}>{tonBalance} ton</p>
         </div>
         <a
           className={`${s.yadd} i-copy`}
-          onClick={() => copyToClipboard(address)}
-        >
+          onClick={() => copyToClipboard(address)}>
           {addressShort}
         </a>
       </div>
@@ -127,11 +90,11 @@ function Wallet({ address }) {
         <input
           className={s.input}
           type="text"
-          placeholder="UAX to send"
+          placeholder="123"
           ref={valueInput}
         />
-        <button className={s.buttonLoading}>
-          <Loader />
+        <button className={loading ? s.buttonLoading : s.button} onClick={transfer}>
+          {loading ? <Loader /> : "Send"}
         </button>
       </form>
     </div>

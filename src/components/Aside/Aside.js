@@ -1,9 +1,17 @@
-import { useState } from 'react';
-import { useInterval } from 'react-use';
-import uax from '../../uax/demo';
-import { useConsole, useMedium, useRoot } from '../../uax/hooks';
-import Btn from '../AdminBtn';
 import s from './Aside.module.css';
+import Btn from '../AdminBtn';
+
+import { useState } from 'react';
+import { useAsync } from 'react-use';
+
+import { Account } from '@tonclient/appkit';
+
+import uax, {addresses} from '../../uax/demo';
+import { useTON } from '../../uax/hooks';
+import MediumABI from '../../ton-abi/Medium.abi.json';
+import RootABI from '../../ton-abi/Root.abi.json';
+import ConsoleABI from '../../ton-abi/Console.abi.json';
+
 
 function StatsRow({ name, value }) {
   return (
@@ -15,9 +23,6 @@ function StatsRow({ name, value }) {
 }
 
 function Aside() {
-  const medium = useMedium()
-  const root = useRoot()
-  const console = useConsole()
   const [stats, setStats] = useState({
     supply: "",
     wallets: "",
@@ -32,12 +37,28 @@ function Aside() {
     warnTON: "",
     transferFee: "",
   })
-  useInterval(() => {
-    medium.refresh()
-    console.refresh()
-    uax.getStats(root, medium).then(setStats)
-    uax.getConfig(console).then(setConfig)
-  }, 1000)
+  const ton = useTON()
+
+  useAsync(async () => {
+    const Medium = new Account({ abi: MediumABI }, { client: ton, address: addresses["Medium"] })
+    const Root = new Account({ abi: RootABI }, { client: ton, address: addresses["Root"] })
+    const Console = new Account({ abi: ConsoleABI }, { client: ton, address: addresses["Console"] })
+    
+    uax.getStats(Root, Medium).then(setStats)
+    uax.getConfig(Console).then(setConfig)
+
+    console.log('Medium.subscribe', Date.now())
+    await Medium.subscribeMessages('id', msg => {
+      console.log('Medium.onMessage', Date.now(), msg)
+      uax.getStats(Root, Medium).then(setStats)
+    })
+    console.log('Console.subscribe', Date.now())
+    await Console.subscribeMessages('id', msg => {
+      console.log('Console.onMessage', Date.now(), msg)
+      uax.getConfig(Console).then(setConfig)
+    })
+  }, [ton, setStats, setConfig])
+
   return (
     <aside className={s.aside}>
       <div className={s.stats}>
