@@ -25,10 +25,10 @@ function Demo1() {
             <h3 className="i-uax">Manage Supply</h3>
             {!o1.loading && <Owner.SupplyManagement account={o1.value} />}
           </div>
-          <div className="container">
+          {/* <div className="container">
             <h3 className="i-proc">Global Settings</h3>
             {!o1.loading && <Owner.Config account={o1.value} />}
-          </div>
+          </div> */}
         </div>
       </section>
     </>
