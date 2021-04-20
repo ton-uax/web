@@ -18,23 +18,25 @@ function getTimeLeftString(t) {
   const now = new Date()
   const d = (t - now) / 1000;
   let days = Math.floor(d / (60 * 60 * 24));
-  let hours = Math.floor((d % (60 * 60 * 24)) / (60 * 60));
-  let minutes = Math.floor((d % (60 * 60)) / (60));
-  let seconds = Math.floor((d % (60)));
+  let hours = Math.floor((d % (60 * 60 * 24)) / (60 * 60)).toString().padStart(2, "0")
+  let minutes = Math.floor((d % (60 * 60)) / (60)).toString().padStart(2, "0")
+  let seconds = Math.floor((d % (60))).toString().padStart(2, "0")
   // const left = leftSeconds
-  return `${days}d ${hours}:${minutes}:${seconds}`
+  return `${days} days ${hours}:${minutes}:${seconds}`
 }
 
 function Message({ account }) {
   const eventTypes = {
     1: "mint",
     2: "burn",
+    3: "setfee",
     4: "claimfee"
   }
   const eventTypesDisplay = {
     "mint": "mint",
     "burn": "burn",
-    "claimfee": "fee"
+    "setfee": "set fee",
+    "claimfee": "withdraw fee"
   }
   const approvalStateID = 2
 
@@ -80,7 +82,7 @@ function Message({ account }) {
       ?
       <div className={s.message}>
         <span className="i-alert">
-          Request for {eventTypesDisplay[lastProposal.type]}: <b>{shortAddress(lastProposal.author)}</b>
+          <b>{eventTypesDisplay[lastProposal.type]}</b> request from <b>{shortAddress(lastProposal.author)}</b>
         </span>
         <span className="i-uax">{lastProposal.value}</span>
         <span className="i-cycle">Expires in {getTimeLeftString(lastProposal.expire)}</span>
