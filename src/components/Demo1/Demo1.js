@@ -5,6 +5,7 @@ import { useAsyncRetry } from 'react-use';
 
 import { useOwnerAccount } from '../../uax/hooks';
 import { fetchLastProposal } from '../../uax/owner';
+import Loader from '../Loader/Loader';
 
 
 function Demo1({ kp }) {
@@ -13,13 +14,13 @@ function Demo1({ kp }) {
 
   return (
     <>
-      <Owner.Message
+      {owner.loading ? "" :<Owner.Message
         account={owner.value}
         proposal={lastProposal.value}
         updateProposal={lastProposal.retry}
-      />
-      <section>
-        <h2>Owner {owner.loading ? "loading" : owner.value.address.slice(0, 5)}</h2>
+      />}
+      {owner.loading ? "" : <section>
+        <h2>Owner {owner.value.address.slice(0, 5)}</h2>
         <div className="flex">
           <div className="container">
             <h3 className="i-card">Wallet</h3>
@@ -34,7 +35,7 @@ function Demo1({ kp }) {
             {!owner.loading && <Owner.Config account={owner.value} />}
           </div> */}
         </div>
-      </section>
+      </section>}
     </>
   );
 }

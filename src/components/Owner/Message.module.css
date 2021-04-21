@@ -22,7 +22,6 @@
 .button {
   display: inline-block;
   min-width: 44px;
-  min-height: 16px;
   margin-left: 2em;
   background-color: transparent;
   border-radius: 3.5px;
@@ -34,7 +33,6 @@
   padding: 1px 3.5px 1px 4px;
   position: relative;
   cursor: pointer;
-  outline: none;
 }
 
 .buttonvoted {
@@ -50,7 +48,6 @@
   letter-spacing: -0.03em;
   padding: 1px 3.5px 1px 4px;
   position: relative;
-  cursor: pointer;
   border: 1px solid #000;
   background-color: #000;
   color: var(--text-main-color-light);

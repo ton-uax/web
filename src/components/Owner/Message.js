@@ -33,12 +33,19 @@ function Message({ account, proposal, updateProposal }) {
   }, 1000)
 
   const [resolution, setResolution] = useState(null)
+  const [last, setLast] = useState(null)
+
+  if (last && last !== proposal.id) {
+    setResolution(null)
+  }
   const btnClassName = (resolution === null) ? s.button : s.buttonvoted
 
   async function resolve(positive) {
     let res = positive ? "approve" : "reject"
     setResolution(res)
-    await account.run(res, { eventID: proposal.id })
+    let result = await account.run(res, { eventID: proposal.id })
+    console.log(result)
+    setLast(proposal.id)
   }
   return !proposal || (proposal.author === account.address) ? <></> : (
     <div className={s.message}>
@@ -48,16 +55,13 @@ function Message({ account, proposal, updateProposal }) {
       <span className="i-uax">{proposal.value}</span>
       <span className="i-cycle">Expire in {getTimeLeftString(proposal.expire)}</span>
       <span className="i-eye">Signed: {proposal.hasSigs}/{proposal.reqSigs}</span>
-      {(resolution === "approve") && <div
+
+      {(resolution !== "reject") && <div
         className={btnClassName}
-        onClick={async () => await resolve(true)}>
-        APPROVE
-          </div>}
-      {(resolution === "reject") && <div
+        onClick={async () => await resolve(true)}>APPROVE</div>}
+      {(resolution !== "approve") && <div
         className={btnClassName}
-        onClick={async () => await resolve(false)}>
-        REJECT
-          </div>}
+        onClick={async () => await resolve(false)}>REJECT</div>}
     </div>)
 }
 
