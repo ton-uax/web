@@ -20,7 +20,6 @@ function getTimeLeftString(t) {
 }
 
 function Message({ account, proposal, updateProposal }) {
-  // console.log("PROPOSAL", proposal)
   const eventTypesDisplay = {
     "mint": "mint",
     "burn": "burn",
@@ -33,13 +32,15 @@ function Message({ account, proposal, updateProposal }) {
     updateProposal()
   }, 1000)
 
-  const [showVotingBtns, setShowVotingBtns] = useState(proposal.hasSigs !== proposal.reqSigs)
   const [resolution, setResolution] = useState(null)
+  const btnClassName = (resolution === null) ? s.button : s.buttonvoted
 
-  const approveBtnClassName = (resolution === "approve") ? s.buttonvoted : s.button
-  const rejectBtnClassName = (resolution === "reject") ? s.buttonvoted : s.button
-
-  return (
+  async function resolve(positive) {
+    let res = positive ? "approve" : "reject"
+    setResolution(res)
+    await account.run(res, { eventID: proposal.id })
+  }
+  return !proposal | proposal.author === account.address ? <></> : (
     <div className={s.message}>
       <span className="i-alert">
         <b>{shortAddress(proposal.author)}</b> proposed to <b>{eventTypesDisplay[proposal.type]}</b>
@@ -47,27 +48,16 @@ function Message({ account, proposal, updateProposal }) {
       <span className="i-uax">{proposal.value}</span>
       <span className="i-cycle">Expire in {getTimeLeftString(proposal.expire)}</span>
       <span className="i-eye">Signed: {proposal.hasSigs}/{proposal.reqSigs}</span>
-      {
-        showVotingBtns &&
-        <>
-          <div
-            className={approveBtnClassName}
-            onClick={resolution ? null : async () => {
-              setResolution("approve")
-              await account.run("approve", { eventID: proposal.id })
-            }}>
-            APPROVE
-          </div>
-          <div
-            className={rejectBtnClassName}
-            onClick={resolution ? null : async () => {
-              setResolution("reject")
-              await account.run("reject", { eventID: proposal.id })
-            }}>
-            REJECT
-          </div>
-        </>
-      }
+      {(resolution === "approve") && <div
+        className={btnClassName}
+        onClick={async () => await resolve(true)}>
+        APPROVE
+          </div>}
+      {(resolution === "reject") && <div
+        className={btnClassName}
+        onClick={async () => await resolve(false)}>
+        REJECT
+          </div>}
     </div>)
 }
 

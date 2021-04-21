@@ -30,7 +30,6 @@ export async function fetchLastProposal(ownerAccount) {
   const actors = (await Medium.runLocal("_ledger", {})).decoded.output["_ledger"]
 
   const lastProposal = proposals[lastPending["id"]]
-  console.log(lastProposal)
   return {
     id: Number(lastProposal["id"]),
     type: eventTypes[lastProposal["eType"]],

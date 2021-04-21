@@ -33,12 +33,12 @@ export function useOwnerAccount(kp_or_phrase) {
         address: owners[kp.public], client: ton, signer: signerKeys(kp)
       }
     )
-  }, [ton])
+  }, [kp_or_phrase])
 
   useEffect(() => {
     if ((!account.loading) && (!account.value))
       return () => account.value.free()
-  }, [account])
+  }, [kp_or_phrase])
 
   return account
 }

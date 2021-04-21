@@ -9,15 +9,15 @@ import { fetchLastProposal } from '../../uax/owner';
 
 function Demo1({ kp }) {
   const owner = useOwnerAccount(kp)
-  const lastProposal = useAsyncRetry(async () => await fetchLastProposal(owner), [owner])
+  const lastProposal = useAsyncRetry(async () => await fetchLastProposal(owner), [kp])
 
   return (
     <>
-      {!owner.loading && lastProposal.value && <Owner.Message
+      <Owner.Message
         account={owner.value}
         proposal={lastProposal.value}
         updateProposal={lastProposal.retry}
-      />}
+      />
       <section>
         <h2>Owner {owner.loading ? "loading" : owner.value.address.slice(0, 5)}</h2>
         <div className="flex">
