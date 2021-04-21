@@ -35,7 +35,7 @@ function Message({ account, proposal, updateProposal }) {
   const [resolution, setResolution] = useState(null)
   const [last, setLast] = useState(null)
 
-  if (last && last !== proposal.id) {
+  if (last && proposal && last !== proposal.id) {
     setResolution(null)
   }
   const btnClassName = (resolution === null) ? s.button : s.buttonvoted
