@@ -13,6 +13,7 @@ import uax from '../../uax/demo';
 function Wallet({ label, account }) {
   const toInput = useRef();
   const valueInput = useRef();
+  console.log(account)
   const address = account.address
   const addressShort = !address
     ? '-'

@@ -34,10 +34,31 @@
   position: relative;
   cursor: pointer;
 }
+
+.buttonvoted {
+  display: inline-block;
+  min-width: 44px;
+  margin-left: 2em;
+  background-color: transparent;
+  border-radius: 3.5px;
+  border: 1px solid var(--message-text-color);
+  color: var(--message-text-color);
+  font-size: 0.7em;
+  font-weight: bold;
+  letter-spacing: -0.03em;
+  padding: 1px 3.5px 1px 4px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #000;
+  background-color: #000;
+  color: var(--text-main-color-light);
+}
+
 .message .button:hover {
   border: 1px solid var(--message-text-color-hover);
   color: var(--message-text-color-hover);
 }
+
 .message .button:active {
   border: 1px solid #000;
   background-color: #000;

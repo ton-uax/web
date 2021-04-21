@@ -6,49 +6,28 @@ import MediumABI from '../ton-abi/Medium.abi.json'
 import RootABI from '../ton-abi/Root.abi.json'
 import RepoABI from '../ton-abi/Repo.abi.json'
 
-const UAXCodeHashes = [
-  "aaf0d9290df6c1f3aa630a37f3d69a716b35f9bbafe9e06b14d824e82effe5fd"
-];
-const eventlogAddr = "0:582560651aa223db4b6031f69b50c375b7c05cad816c6a16d7b47da0ac383369";
-const repoAddr = "0:90339a44a8700fc6c9516aa05f1b98942cc86fe6eafdf7aa1610504430939712";
-
-
 const ownerPubKeys = [
-  "0x1466d9488f4fb2d76d1a13dddb7e80ba3256acc94b567c174845b3704a907ce2",
-  "0x544627298804466cd05fa82b6f06be94b931c3ebba0ed9d21bd1d2ec56630ef8",
-  "0x592151b11fa6125e3ec20dc5f673cacc429c7e1867da45db08a39cd917a167f3"
+  "0x10b2bf44efdb3c58d8083a39377f589e3c5f3bef5e1dc585bae4d1ef938d019a",
+  "0xd57d90cf28f00910f7a3689b12e0acd1ff92ad2558df8f06781c74f059df5c43",
+  "0xc5680b1e15c8ce3536098e294e8c2326049f92874e1ad7af6c1cc253f1b0cd5e"
 ]
 
-export const addresses = {
-  "Medium": "0:0e8bd76eeecd77d9870a13b7c93618b1477d7a0b9dd018599ddf0e810469f0bf",
-  "Root": "0:79c86fb401d74706321b6328866723cbe154689927de0eb9a14d2ccc8fb9aa8d",
-  "Console": "0:d6bad31b76a3de3af8290efabb2aa7fa7f3953fa7ec7a63174f5a0b18ab5e8eb"
+export const system = {
+  "Repo": "0:9b03a1205ab9fc793e60a2f784b5a8151d5bfd0b2b8bb1088e3eed88f753f68e",
+  "Console": "0:10677a33d3a5edcb4b39a6beb43a124e73c62c70cbb99ed4f4e9d4b29c22f8be",
+  "Root": "0:397b4df5409c29d1c5ccc00f94706b9f025054262a509c827a9b99c270b99128",
+  "Medium": "0:f4e70848721e239245c6ab07bdae957021fa1a2ae421fdbc3f7e0467b5cec99e",
 }
 
+export const makeWalletWrapper = (client, address) => new Account({ abi: TokenWalletABI }, { address, client });
 
-export async function getUAXWallets(client) {
-  const result = (await client.net.query_collection({
-    collection: "accounts",
-    filter: {
-      code_hash: { in: UAXCodeHashes }
-    },
-    result: "id"
-  })).result
-  return result
-}
-
-const TokenWallet = { abi: TokenWalletABI }
-const Repo = { abi: RepoABI }
-
-export const makeWalletWrapper = (client, address) => new Account(TokenWallet, { address, client });
-export const makeRepoWrapper = (client) => new Account(Repo, { address: repoAddr, client });
-
-export async function getOwners(root) {
-  let walletsInfo = (await root.runLocal("_walletsInfo", {})).decoded.output["_walletsInfo"]
+export async function getOwners(client) {
+  let contr = new Account({ abi: RootABI }, { client, address: system["Root"] })
+  let walletsInfo = (await contr.runLocal("_walletsInfo", {})).decoded.output["_walletsInfo"]
   let owners = {}
   for (let [addr, info] of Object.entries(walletsInfo))
-  if (info["id"] < 10)
-    owners[info["key"]] = addr
+    if (info["id"] < 10)
+      owners[info["key"].slice(2)] = addr
   return owners
 }
 
@@ -93,13 +72,8 @@ const getTONBalance = async (client, address) => {
   return tonBalance;
 }
 
-const getBalance = async (client, address) => {
-  return {
-    uax: await getUAXBalance(client, address),
-    ton: await getTONBalance(client, address)
-  }
-}
 
-const uax = { getBalance, getTONBalance, getUAXBalance, makeWalletWrapper, getStats, getConfig };
+const uax = { getTONBalance, getUAXBalance, makeWalletWrapper, getStats, getConfig };
 
 export default uax;
+

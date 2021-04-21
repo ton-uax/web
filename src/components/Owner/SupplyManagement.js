@@ -1,34 +1,27 @@
 import s from './Forms.module.css';
 import Loader from '../Loader/Loader';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
+import { useAsyncFn } from 'react-use';
 
 function ProposeEventForm({ inputHint, buttonCaption, account, eType }) {
   const input = useRef()
-  const [loading, setLoading] = useState(false)
-
-  async function propose(event) {
-    if (loading)
-      return
-    let value = Number(input.current.value)
-    if ((!Number.isInteger(value)) || !(value > 0))
-      return
-
+  const [proposeTx, propose] = useAsyncFn(async () => {
     try {
-      setLoading(true)
-      let r = await account.run('propose', {
-        eType: eType,
-        value: value,
-      })
-      console.log(r)
-      input.current.value = ''
+      let value = Number(input.current.value)
+      if ((Number.isInteger(value)) && (value > 0)) {
+        let tx = await account.run('propose', {
+          eType: eType,
+          value: value,
+        })
+        input.current.value = ''
+        console.log(`Proposal Sent (${account.address}) eType=${eType} value=${value}`, tx)
+        return tx
+      }
     }
-    catch (e) {
-      console.error(e)
+    catch (err) {
+      console.error(err)
     }
-    finally {
-      setLoading(false)
-    }
-  }
+  }, [account, input])
 
   return (
     <form className={s.block}>
@@ -39,8 +32,8 @@ function ProposeEventForm({ inputHint, buttonCaption, account, eType }) {
         placeholder={inputHint}
         ref={input}
       />
-      <button className={loading ? s.buttonLoading : s.button} onClick={propose}>
-        {loading ? <Loader /> : buttonCaption}
+      <button className={proposeTx.loading ? s.buttonLoading : s.button} onClick={propose}>
+        {proposeTx.loading ? <Loader /> : buttonCaption}
       </button>
     </form>
   )

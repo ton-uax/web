@@ -1,33 +1,37 @@
 import Owner from '../Owner';
 import Wallet from '../Wallet';
 
+import { useAsyncRetry } from 'react-use';
+
 import { useOwnerAccount } from '../../uax/hooks';
+import { fetchLastProposal } from '../../uax/owner';
 
 
-
-function Demo1() {
-  const k1 = "torch chimney grab behave dust effort grape guard same nation lesson dutch"
-  const k2 = "merit have confirm very south nature mechanic slim list space dinner latin"
-  const o1 = useOwnerAccount(k1)
-  const o2 = useOwnerAccount(k2)
+function Demo1({ kp }) {
+  const owner = useOwnerAccount(kp)
+  const lastProposal = useAsyncRetry(async () => await fetchLastProposal(owner), [owner])
 
   return (
     <>
-      {!o2.loading && <Owner.Message account={o2.value} />}
+      {!owner.loading && lastProposal.value && <Owner.Message
+        account={owner.value}
+        proposal={lastProposal.value}
+        updateProposal={lastProposal.retry}
+      />}
       <section>
-        <h2>Owner UI</h2>
+        <h2>Owner {owner.loading ? "loading" : owner.value.address.slice(0, 5)}</h2>
         <div className="flex">
           <div className="container">
             <h3 className="i-card">Wallet</h3>
-            {!o1.loading && <Wallet label="OWNER" account={o1.value} />}
+            {!owner.loading && <Wallet label="OWNER" account={owner.value} />}
           </div>
           <div className="container">
             <h3 className="i-uax">Manage Supply</h3>
-            {!o1.loading && <Owner.SupplyManagement account={o1.value} />}
+            {!owner.loading && <Owner.SupplyManagement account={owner.value} />}
           </div>
           {/* <div className="container">
             <h3 className="i-proc">Global Settings</h3>
-            {!o1.loading && <Owner.Config account={o1.value} />}
+            {!owner.loading && <Owner.Config account={owner.value} />}
           </div> */}
         </div>
       </section>

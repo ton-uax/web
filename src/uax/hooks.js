@@ -5,8 +5,7 @@ import { signerKeys } from '@tonclient/core';
 import { Account } from '@tonclient/appkit';
 
 import OwnerWalletABI from '../ton-abi/OwnerWallet.abi.json';
-import RootABI from '../ton-abi/Root.abi.json';
-import { addresses, getOwners } from './demo';
+import { getOwners } from './demo';
 
 import { TONContext } from './context'
 
@@ -17,30 +16,28 @@ export function useTON() {
 }
 
 
-export function useOwnerAccount(phrase) {
+export function useOwnerAccount(kp_or_phrase) {
   const ton = useTON()
-
   const account = useAsync(async () => {
-    const kp = await ton.crypto.mnemonic_derive_sign_keys({ phrase })
-    const Root = new Account(
-      { abi: RootABI }, 
-      { address: addresses["Root"], client: ton })
-
-    let owners = await getOwners(Root)
-    console.log(owners)
+    let kp;
+    if (typeof kp_or_phrase === String)
+      kp = await ton.crypto.mnemonic_derive_sign_keys({ kp_or_phrase })
+    else
+      kp = kp_or_phrase
+    let owners = await getOwners(ton)
+    console.log(kp, owners)
+    console.log("--owners-", owners)
     return new Account(
       { abi: OwnerWalletABI },
       {
-        address: owners[`0x${kp.public}`], client: ton, signer: signerKeys(kp)
+        address: owners[kp.public], client: ton, signer: signerKeys(kp)
       }
     )
   }, [ton])
 
   useEffect(() => {
-    return () => {
-      if (account.value)
-        account.value.free()
-    }
+    if ((!account.loading) && (!account.value))
+      return () => account.value.free()
   }, [account])
 
   return account

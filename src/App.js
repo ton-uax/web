@@ -23,17 +23,26 @@ function App() {
         <div className={s.main}>
           <Aside></Aside>
           <div className={s.desk}>
-            
+
             <Switch>
               <Route exact path="/">
-                <Demo />
+
               </Route>
-              <Route path="/owner">
-                <Demo1 />
+              <Route path="/owner/1">
+                <Demo1 kp={{
+                  public: "10b2bf44efdb3c58d8083a39377f589e3c5f3bef5e1dc585bae4d1ef938d019a",
+                  secret: "6fc4bb169efade17220e8ccc22017a69ad1f489918978272c446c0436e9b498f"
+                }} />
               </Route>
-              <Route path="/dev">
+              <Route path="/owner/2">
+                <Demo1 kp={{
+                  public: "d57d90cf28f00910f7a3689b12e0acd1ff92ad2558df8f06781c74f059df5c43",
+                  secret: "70692987bac14f3b7b62d80d30597a34b18701fc3a3ef9d630e9f9009db84953"
+                }} />
+              </Route>
+              {/* <Route path="/dev">
                 <Demo2 />
-              </Route>
+              </Route> */}
             </Switch>
           </div>
         </div>

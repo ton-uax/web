@@ -1,13 +1,15 @@
 import s from './Header.module.css';
 import logo from '../../img/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Header({ title }) {
+  const location = useLocation()
+
   return (
     <header className={s.main}>
       <div className={s.logo}>
         <h1>
-          <Link to="/dev" className={s.title}>
+          <Link to="/owner/1" className={s.title}>
             {' '}
             <img className={s.logoImage} src={logo} alt="logo" width="30px" />
             {title}
@@ -15,14 +17,14 @@ function Header({ title }) {
         </h1>
       </div>
       <div className={s.menu}>
-        
-        <Link to="owner" className={s.link}>
-          Owner UI Demo
+
+        <Link to="/owner/1" className={location.pathname === "/owner/1" ? s.active : s.link}>
+          Owner 1
         </Link>
-        <Link to="dev" className={(s.link, s.active)}>
-          Dev UI Demo
+        <Link to="/owner/2" className={location.pathname === "/owner/2" ? s.active : s.link}>
+          Owner 2
         </Link>
-        <Link to="/" className={(s.act, s.link)}>
+        <Link to="/" className={location.pathname === "/" ? s.active : s.link}>
           Don't touch
         </Link>
       </div>
