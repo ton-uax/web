@@ -40,7 +40,7 @@ function Message({ account, proposal, updateProposal }) {
     setResolution(res)
     await account.run(res, { eventID: proposal.id })
   }
-  return !proposal | proposal.author === account.address ? <></> : (
+  return !proposal || (proposal.author === account.address) ? <></> : (
     <div className={s.message}>
       <span className="i-alert">
         <b>{shortAddress(proposal.author)}</b> proposed to <b>{eventTypesDisplay[proposal.type]}</b>
