@@ -3,12 +3,6 @@ import { useInterval } from 'react-use';
 import { useState } from 'react';
 
 
-function shortAddress(address) {
-  return !address
-    ? '-'
-    : address.slice(0, 10) + '...' + address.slice(-10)
-}
-
 function getTimeLeftString(t) {
   const now = new Date()
   const d = (t - now) / 1000;
@@ -20,6 +14,8 @@ function getTimeLeftString(t) {
 }
 
 function Message({ account, proposal, updateProposal }) {
+  const address = proposal?.author || ""
+  const addressShort = address.slice(0, 5) + ' ... ' + address.slice(-3)
   const eventTypesDisplay = {
     "mint": "mint",
     "burn": "burn",
@@ -50,7 +46,7 @@ function Message({ account, proposal, updateProposal }) {
   return !proposal || (proposal.author === account.address) ? <></> : (
     <div className={s.message}>
       <span className="i-alert">
-        <b>{shortAddress(proposal.author)}</b> proposed to <b>{eventTypesDisplay[proposal.type]}</b>
+        <b>{addressShort}</b> proposed to <b>{eventTypesDisplay[proposal.type]}</b>
       </span>
       <span className="i-uax">{proposal.value}</span>
       <span className="i-cycle">Expire in {getTimeLeftString(proposal.expire)}</span>

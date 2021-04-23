@@ -66,6 +66,14 @@
 			]
 		},
 		{
+			"name": "getDeployed",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"deployed","type":"bytes[]"}
+			]
+		},
+		{
 			"name": "upgrade",
 			"inputs": [
 				{"name":"c","type":"cell"}

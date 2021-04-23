@@ -12,7 +12,7 @@ import { useOwner } from './uax/hooks';
 function App() {
   const owner1 = useOwner(1)
   const owner2 = useOwner(2)
-  console.log(owner1, owner2)
+  const owner3 = useOwner(3)
   return (
     <main className={s.wrapper}>
       <div className={s.page}>
@@ -31,6 +31,9 @@ function App() {
               </Route>
               <Route exact path="/owner/2">
                 <Demo1 owner={owner2} />
+              </Route>
+              <Route exact path="/owner/3">
+                <Demo1 owner={owner3} />
               </Route>
               <Route path="/dev">
                 {/* <Demo2></Demo2> */}

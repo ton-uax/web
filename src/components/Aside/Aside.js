@@ -8,18 +8,27 @@ import uax from '../../uax';
 import { TONUAXContext } from '../../uax/context';
 
 
-function StatsRow({ name, value, unit }) {
+function StatsRow({ name, value, unit, children, child = false }) {
   return (
-    <div className={s.statrow}>
-      <p className={s.statname}>{name}</p>
-      <span>{value}</span><span className={s.unit}>{unit}</span>
-    </div>
+    <>
+      <div className={s.statrow}>
+        <p className={child ? s.childstatname : s.statname}>{name}</p>
+        <span>{value}</span><span className={s.unit}>{unit}</span>
+      </div>
+      <div>{children}</div>
+    </>
   );
 }
 
 function Aside() {
   const [stats, setStats] = useState({
     supply: "",
+    supplyBreakdown: {
+      twTotal: "",
+      owTotal: "",
+      feeTotal: "",
+      unallocated: "",
+    },
     wallets: "",
     transfers: "",
     accruedFee: "",
@@ -47,11 +56,22 @@ function Aside() {
     <aside className={s.aside}>
       <div className={s.stats}>
         <h2>Statistics</h2>
-        <StatsRow name="Supply" value={stats.supply} unit="uax" />
         <StatsRow name="Wallets" value={stats.wallets} />
         <StatsRow name="Transfers" value={stats.transfers} />
         <br />
-        <StatsRow name="AccruedFee" value={stats.accruedFee} unit="uax" />
+
+        <StatsRow name="Supply" value={stats.supply} unit="uax">
+          <StatsRow child name="Unallocated" value={stats.supplyBreakdown.unallocated} unit="uax" />
+          <StatsRow child name="OwnerWallets" value={stats.supplyBreakdown.owTotal} unit="uax" />
+          <StatsRow child name="UserWallets" value={stats.supplyBreakdown.twTotal} unit="uax" />
+
+          <StatsRow child name="CollectedFees" value={stats.supplyBreakdown.feeTotal} unit="uax" />
+
+        </StatsRow>
+        <br />
+
+
+
         <StatsRow name="ClaimedFee" value={stats.claimedFee} unit="uax" />
         <StatsRow name="RemainingGas" value={stats.tons} unit="ton" />
       </div>

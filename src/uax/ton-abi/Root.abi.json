@@ -42,6 +42,7 @@
 				{"name":"keys","type":"uint256[]"}
 			],
 			"outputs": [
+				{"name":"addrs","type":"address[]"}
 			]
 		},
 		{
@@ -50,15 +51,6 @@
 				{"name":"id","type":"uint16"},
 				{"name":"k","type":"uint256"},
 				{"name":"balance","type":"uint64"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "onTokenWalletSetup",
-			"inputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"tonBalance","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -112,15 +104,6 @@
 			]
 		},
 		{
-			"name": "meet",
-			"inputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"a","type":"address"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "updateEnv",
 			"inputs": [
 				{"name":"console","type":"address"},
@@ -138,6 +121,7 @@
 			"inputs": [
 			],
 			"outputs": [
+				{"name":"id","type":"uint16"},
 				{"name":"console","type":"address"},
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},

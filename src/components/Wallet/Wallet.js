@@ -14,9 +14,7 @@ function Wallet({ label, account }) {
   const toInput = useRef();
   const valueInput = useRef();
   const address = account.address
-  const addressShort = !address
-    ? '-'
-    : address.slice(0, 10) + '...' + address.slice(-10)
+  const addressShort = address.slice(0, 5) + ' ... ' + address.slice(-3)
 
   const [uaxBalance, setUAXBalance] = useState('')
   const [tonBalance, setTONBalance] = useState('')
@@ -24,7 +22,6 @@ function Wallet({ label, account }) {
 
   useAsync(async () => {
     console.log('Wallet.subscribe', Date.now())
-    console.log(uax)
     uax.getUAXBalance(account).then(setUAXBalance);
     uax.getTONBalance(account).then(setTONBalance);
     return await account.subscribeMessages("id", msg => {
@@ -58,16 +55,17 @@ function Wallet({ label, account }) {
   return (
     <div className={s.wallet}>
       <div className={s.balanceContainer}>
-        <div className={s.balance}>
-          <div className={s.info}>{label}</div>
-          <p className={`${s.value} i-uax`}>{uaxBalance} uax</p>
-          <p className={`${s.value} i-gas`}>{tonBalance} ton</p>
-        </div>
         <p
           className={`${s.yadd} i-copy`}
           onClick={() => copyToClipboard(address)}>
           {addressShort}
         </p>
+        <div className={s.balance}>
+          <div className={s.info}>{label}</div>
+          <p className={`${s.value} i-uax`}>{uaxBalance} uax</p>
+          <p className={`${s.value} i-gas`}>{tonBalance} ton</p>
+        </div>
+
       </div>
       <form className={s.block}>
         <label className="i-target">To</label>

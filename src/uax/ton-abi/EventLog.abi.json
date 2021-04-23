@@ -3,6 +3,15 @@
 	"header": ["time"],
 	"functions": [
 		{
+			"name": "meet",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"a","type":"address"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "logError",
 			"inputs": [
 				{"name":"id","type":"uint16"},
@@ -93,15 +102,6 @@
 			]
 		},
 		{
-			"name": "meet",
-			"inputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"a","type":"address"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "updateEnv",
 			"inputs": [
 				{"name":"console","type":"address"},
@@ -119,6 +119,7 @@
 			"inputs": [
 			],
 			"outputs": [
+				{"name":"id","type":"uint16"},
 				{"name":"console","type":"address"},
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},

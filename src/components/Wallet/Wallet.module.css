@@ -3,11 +3,13 @@
 }
 
 .balanceContainer {
-  margin-bottom: 27px;
+  margin-bottom: 16px;
 }
 
 .balance {
-  margin-bottom: 8px;
+  width: 200px;
+  height: 130px;
+  /* margin-bottom: 8px; */
   padding: 7px 10px;
   border-radius: 8px;
   background-color: var(--btn-bg-color);
@@ -38,7 +40,7 @@
 }
 
 .yadd {
-  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   font-weight: bold;
   font-size: 0.7em;
   color: var(--copy-text-color);

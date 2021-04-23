@@ -24,6 +24,9 @@ function Header() {
         <Link to="/owner/2" className={location.pathname === "/owner/2" ? s.active : s.link}>
           Owner 2
         </Link>
+        <Link to="/owner/3" className={location.pathname === "/owner/3" ? s.active : s.link}>
+          Owner 3
+        </Link>
         <Link to="/" className={location.pathname === "/" ? s.active : s.link}>
           Don't touch
         </Link>

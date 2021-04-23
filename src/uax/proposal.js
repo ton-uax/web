@@ -1,3 +1,5 @@
+import { readGetter, readPublic } from "."
+
 const pendingStateID = 2
 const eventTypes = {
   1: "mint",
@@ -6,13 +8,6 @@ const eventTypes = {
   4: "claimfee"
 }
 
-async function readGetter(contract, name, params = {}) {
-  return (await contract.runLocal(name, params)).decoded.output
-}
-
-async function readPublic(contract, name) {
-  return (await contract.runLocal(name, {})).decoded.output[name]
-}
 
 export async function lastProposalOnApproval(owner, UAXSystem) {
   const pending = (await readGetter(owner, "eventsByState", { state: pendingStateID }))["ss"]

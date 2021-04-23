@@ -49,6 +49,15 @@
 			]
 		},
 		{
+			"name": "processTransfer",
+			"inputs": [
+				{"name":"to","type":"address"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "updateTransferFee",
 			"inputs": [
 				{"name":"val","type":"uint8"}
@@ -76,6 +85,24 @@
 		{
 			"name": "raze",
 			"inputs": [
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "creditOwner",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "debitOwner",
+			"inputs": [
+				{"name":"id","type":"uint16"},
 				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
@@ -126,9 +153,20 @@
 		{
 			"name": "notifyOwners",
 			"inputs": [
-				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"e","type":"tuple"}
+				{"name":"st","type":"uint8"}
 			],
 			"outputs": [
+			]
+		},
+		{
+			"name": "supplyImproved",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"twTotal","type":"uint32"},
+				{"name":"owTotal","type":"uint32"},
+				{"name":"feeTotal","type":"uint32"},
+				{"name":"unallocated","type":"uint32"}
 			]
 		},
 		{
@@ -158,15 +196,6 @@
 			]
 		},
 		{
-			"name": "meet",
-			"inputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"a","type":"address"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "updateEnv",
 			"inputs": [
 				{"name":"console","type":"address"},
@@ -184,6 +213,7 @@
 			"inputs": [
 			],
 			"outputs": [
+				{"name":"id","type":"uint16"},
 				{"name":"console","type":"address"},
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
@@ -229,6 +259,14 @@
 			],
 			"outputs": [
 				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"createdAt","type":"uint32"},{"name":"validUntil","type":"uint32"},{"name":"confirmedAt","type":"uint32"},{"name":"state","type":"uint8"},{"name":"signsAt","type":"uint8"},{"name":"signs","type":"uint16"},{"name":"signsReq","type":"uint8"},{"name":"value","type":"uint32"},{"name":"actor","type":"uint16"}],"name":"_proposals","type":"map(uint32,tuple)"}
+			]
+		},
+		{
+			"name": "_currentEvent",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"_currentEvent","type":"tuple"}
 			]
 		},
 		{

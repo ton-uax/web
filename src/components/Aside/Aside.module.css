@@ -1,5 +1,5 @@
 .stats {
-  margin-bottom: 48px;
+  margin-bottom: 40px;
 }
 
 p {
@@ -18,14 +18,19 @@ p {
 .statname {
   margin: 0;
   display: flex;
-  font-weight: bold;
+  font-weight: 800;
   flex: 1;
+}
+
+.childstatname {
+  composes: statname;
+  padding-left: 10px;
+  font-weight: 450;
 }
 
 .statname:after {
   content: '';
   position: relative;
-  width: inherit;
   width: 100%;
   border-bottom: 1.7px dotted rgba(0, 0, 0, 0.212);
   top: -3px;
