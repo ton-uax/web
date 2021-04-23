@@ -1,5 +1,5 @@
 import s from './Forms.module.css';
-import Loader from '../Loader/Loader';
+// import Loader from '../Loader/Loader';
 
 
 function Config() {
@@ -28,17 +28,7 @@ function Config() {
           placeholder="min TON balance"
           defaultValue="1.5"
         />
-        <label>TransferFeeUAX</label>
-        <input
-          className={s.input}
-          type="text"
-          placeholder="transfer fee (UAX)"
-          defaultValue="1"
-        />
-        <button className={s.button}>
-          Save
-            {/* <Loader /> */}
-        </button>
+        
       </form>
     </div>
   );

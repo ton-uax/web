@@ -11,3 +11,7 @@
 .button:hover {
   color: var(--btn-bg-color);
 }
+
+.button:active {
+  top: 3px;
+}

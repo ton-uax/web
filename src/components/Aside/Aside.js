@@ -1,17 +1,11 @@
 import s from './Aside.module.css';
 import Btn from '../AdminBtn';
 
-import { useCallback, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useInterval } from 'react-use';
 
-import { Account } from '@tonclient/appkit';
-
-import uax, { system } from '../../uax/demo';
-import { useTON } from '../../uax/hooks';
-
-import MediumABI from '../../ton-abi/Medium.abi.json';
-import RootABI from '../../ton-abi/Root.abi.json';
-import ConsoleABI from '../../ton-abi/Console.abi.json';
+import uax from '../../uax';
+import { TONUAXContext } from '../../uax/context';
 
 
 function StatsRow({ name, value, unit }) {
@@ -38,19 +32,16 @@ function Aside() {
     warnTON: "",
     transferFee: "",
   })
-  const ton = useTON()
+  const { UAXSystem } = useContext(TONUAXContext)
 
-  const Medium = new Account({ abi: MediumABI }, { client: ton, address: system["Medium"] })
-  const Root = new Account({ abi: RootABI }, { client: ton, address: system["Root"] })
-  const Console = new Account({ abi: ConsoleABI }, { client: ton, address: system["Console"] })
 
-  useInterval(useCallback(() => {
-    Root.refresh()
-    Medium.refresh()
-    Console.refresh()
-    uax.getStats(Root, Medium).then(setStats)
-    uax.getConfig(Console).then(setConfig)
-  }, [ton, setStats, setConfig]), 1000)
+  useInterval(() => {
+    UAXSystem.Root.refresh()
+    UAXSystem.Medium.refresh()
+    UAXSystem.Console.refresh()
+    uax.getStats(UAXSystem.Root, UAXSystem.Medium).then(setStats)
+    uax.getConfig(UAXSystem.Console).then(setConfig)
+  }, 1000)
 
   return (
     <aside className={s.aside}>
@@ -60,21 +51,21 @@ function Aside() {
         <StatsRow name="Wallets" value={stats.wallets} />
         <StatsRow name="Transfers" value={stats.transfers} />
         <br />
-        <StatsRow name="TransferFee" value={config.transferFee} unit="uax" />
         <StatsRow name="AccruedFee" value={stats.accruedFee} unit="uax" />
         <StatsRow name="ClaimedFee" value={stats.claimedFee} unit="uax" />
         <StatsRow name="RemainingGas" value={stats.tons} unit="ton" />
       </div>
       <div className={s.stats}>
-        <h2>Config</h2>
+        <h2>Settings</h2>
+        <StatsRow name="TransferFee" value={config.transferFee} unit="uax" />
         <StatsRow name="InitialBalance" value={config.initUAX} unit="uax" />
         <StatsRow name="InitialGas" value={config.initTON} unit="ton" />
         <StatsRow name="GasReplenishThreshold" value={config.warnTON} unit="ton" />
       </div>
-      {/* <div>
+      <div>
         <h2>Dev</h2>
         <Btn title="Create wallet" icon="i-bot" />
-      </div> */}
+      </div>
 
     </aside>
   );

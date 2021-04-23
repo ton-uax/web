@@ -3,39 +3,40 @@ import Wallet from '../Wallet';
 
 import { useAsyncRetry } from 'react-use';
 
-import { useOwnerAccount } from '../../uax/hooks';
-import { fetchLastProposal } from '../../uax/owner';
-import Loader from '../Loader/Loader';
+import { useUAXSystem } from '../../uax/hooks';
+import { lastProposalOnApproval } from '../../uax/proposal';
 
 
-function Demo1({ kp }) {
-  const owner = useOwnerAccount(kp)
-  const lastProposal = useAsyncRetry(async () => await fetchLastProposal(owner), [kp])
 
+function Demo1({owner}) {
+  const UAXSystem = useUAXSystem()
+  const lastProposal = useAsyncRetry(async () => await lastProposalOnApproval(owner, UAXSystem), [owner])
+  if (!owner)
+    return <></>
   return (
     <>
-      {owner.loading ? "" :<Owner.Message
-        account={owner.value}
+      <Owner.Message
+        account={owner}
         proposal={lastProposal.value}
         updateProposal={lastProposal.retry}
-      />}
-      {owner.loading ? "" : <section>
-        <h2>Owner {owner.value.address.slice(0, 5)}</h2>
+      />
+      <section>
+        <h2>Owner {owner.address.slice(0, 5)}</h2>
         <div className="flex">
           <div className="container">
             <h3 className="i-card">Wallet</h3>
-            {!owner.loading && <Wallet label="OWNER" account={owner.value} />}
+            <Wallet label="OWNER" account={owner} />
           </div>
           <div className="container">
             <h3 className="i-uax">Manage Supply</h3>
-            {!owner.loading && <Owner.SupplyManagement account={owner.value} />}
+            <Owner.SupplyManagement account={owner} />
           </div>
           {/* <div className="container">
             <h3 className="i-proc">Global Settings</h3>
             {!owner.loading && <Owner.Config account={owner.value} />}
           </div> */}
         </div>
-      </section>}
+      </section>
     </>
   );
 }

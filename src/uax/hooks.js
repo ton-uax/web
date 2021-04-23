@@ -1,44 +1,26 @@
-import { useContext, useEffect } from 'react';
-import { useAsync } from 'react-use';
+import { useContext, useEffect, useState } from 'react';
 
-import { signerKeys } from '@tonclient/core';
-import { Account } from '@tonclient/appkit';
-
-import OwnerWalletABI from '../ton-abi/OwnerWallet.abi.json';
-import { getOwners } from './demo';
-
-import { TONContext } from './context'
+import { TONUAXContext } from './context'
 
 
 export function useTON() {
-  const { client, dengine } = useContext(TONContext)
-  return client
+  const { ton } = useContext(TONUAXContext)
+  return ton
 }
 
+export function useUAXSystem() {
+  const { UAXSystem } = useContext(TONUAXContext)
+  return UAXSystem
+}
 
-export function useOwnerAccount(kp_or_phrase) {
-  const ton = useTON()
-  const account = useAsync(async () => {
-    let kp;
-    if (typeof kp_or_phrase === String)
-      kp = await ton.crypto.mnemonic_derive_sign_keys({ kp_or_phrase })
-    else
-      kp = kp_or_phrase
-    let owners = await getOwners(ton)
-    console.log(kp, owners)
-    console.log("--owners-", owners)
-    return new Account(
-      { abi: OwnerWalletABI },
-      {
-        address: owners[kp.public], client: ton, signer: signerKeys(kp)
-      }
-    )
-  }, [kp_or_phrase])
+export function useOwner(id = 1) {
+  const { UAXOwner } = useContext(TONUAXContext)
+  const [ownerId] = useState(id)
+  const owner = UAXOwner(ownerId)
 
   useEffect(() => {
-    if ((!account.loading) && (!account.value))
-      return () => account.value.free()
-  }, [kp_or_phrase])
+    return () => owner && owner.free()
+  }, [owner, ownerId])
 
-  return account
+  return owner
 }

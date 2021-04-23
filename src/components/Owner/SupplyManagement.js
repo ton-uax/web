@@ -21,7 +21,7 @@ function ProposeEventForm({ inputHint, buttonCaption, account, eType }) {
     catch (err) {
       console.error(err)
     }
-  }, [account, input])
+  }, [account])
 
   return (
     <form className={s.block}>

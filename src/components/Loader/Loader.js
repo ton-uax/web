@@ -1,8 +1,8 @@
 import loader from '../../img/cycle.png';
 import s from './Loader.module.css';
 
-function Loader({ width }) {
-  return <img className={s.loader} src={loader} width="20" alt="loader" />;
+function Loader({ width = 20 }) {
+  return <img className={s.loader} src={loader} width={width} alt="loader" />;
 }
 
 export default Loader;

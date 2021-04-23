@@ -3,11 +3,11 @@ import Loader from '../Loader/Loader';
 import { useRef, useState } from 'react';
 import {
   useAsync,
+  useAsyncFn,
   useCopyToClipboard,
 } from 'react-use';
 
-import { useTON } from '../../uax/hooks';
-import uax from '../../uax/demo';
+import uax from '../../uax';
 
 
 function Wallet({ label, account }) {
@@ -20,49 +20,40 @@ function Wallet({ label, account }) {
 
   const [uaxBalance, setUAXBalance] = useState('')
   const [tonBalance, setTONBalance] = useState('')
-  const [loading, setLoading] = useState(false)
-
   const [, copyToClipboard] = useCopyToClipboard()
 
-  const ton = useTON()
   useAsync(async () => {
     console.log('Wallet.subscribe', Date.now())
-    uax.getUAXBalance(ton, address).then(setUAXBalance);
-    uax.getTONBalance(ton, address).then(setTONBalance);
+    console.log(uax)
+    uax.getUAXBalance(account).then(setUAXBalance);
+    uax.getTONBalance(account).then(setTONBalance);
     return await account.subscribeMessages("id", msg => {
       console.log('Wallet.onMessage', Date.now(), address, msg)
-      uax.getUAXBalance(ton, address).then(setUAXBalance);
-      uax.getTONBalance(ton, address).then(setTONBalance);
+      uax.getUAXBalance(account).then(setUAXBalance);
+      uax.getTONBalance(account).then(setTONBalance);
+      return true
     })
   }, [account])
 
-  async function transfer(event) {
-    if (loading)
-      return
-    let to = toInput.current.value
-    let val = Number(valueInput.current.value)
-    if (!to.match(/^0:[a-fA-F0-9]{64}$/) || !Number.isInteger(val) || !(val > 0))
-      return
-
+  const [sendTx, send] = useAsyncFn(async () => {
     try {
-      setLoading(true)
-      let r = await account.run('transferTokensExt', {
+      let to = toInput.current.value
+      let val = Number(valueInput.current.value)
+      if (!to.match(/^0:[a-fA-F0-9]{64}$/) || !Number.isInteger(val) || !(val > 0))
+        return
+      let tx = await account.run('transferTokensExt', {
         to: to,
         val: val,
       })
-      console.log(r)
+      console.log(`Transaction Sent (${account.address}) to=${to} val=${val}`, tx)
       toInput.current.value = ''
       valueInput.current.value = ''
+      return tx
     }
-    catch (e) {
-      console.error(e)
+    catch (err) {
+      console.error(err)
     }
-    finally {
-      setLoading(false)
-    }
-
-
-  }
+  }, [account, toInput, valueInput])
 
   return (
     <div className={s.wallet}>
@@ -72,11 +63,11 @@ function Wallet({ label, account }) {
           <p className={`${s.value} i-uax`}>{uaxBalance} uax</p>
           <p className={`${s.value} i-gas`}>{tonBalance} ton</p>
         </div>
-        <a
+        <p
           className={`${s.yadd} i-copy`}
           onClick={() => copyToClipboard(address)}>
           {addressShort}
-        </a>
+        </p>
       </div>
       <form className={s.block}>
         <label className="i-target">To</label>
@@ -93,8 +84,8 @@ function Wallet({ label, account }) {
           placeholder="123"
           ref={valueInput}
         />
-        <button className={loading ? s.buttonLoading : s.button} onClick={transfer}>
-          {loading ? <Loader /> : "Send"}
+        <button className={sendTx.loading ? s.buttonLoading : s.button} onClick={send}>
+          {sendTx.loading ? <Loader /> : "Send"}
         </button>
       </form>
     </div>

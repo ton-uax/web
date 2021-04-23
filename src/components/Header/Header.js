@@ -2,7 +2,7 @@ import s from './Header.module.css';
 import logo from '../../img/logo.svg';
 import { Link, useLocation } from 'react-router-dom';
 
-function Header({ title }) {
+function Header() {
   const location = useLocation()
 
   return (
@@ -12,7 +12,7 @@ function Header({ title }) {
           <Link to="/owner/1" className={s.title}>
             {' '}
             <img className={s.logoImage} src={logo} alt="logo" width="30px" />
-            {title}
+            UAX
           </Link>
         </h1>
       </div>

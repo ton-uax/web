@@ -1,4 +1,4 @@
-import SmallWallet from '../SmallWallet';
+// import SmallWallet from '../SmallWallet';
 import s from './UltraSmallWallet.module.css';
 
 function UltraSmallWallet({ address, uax, setSelected, isSelected }) {

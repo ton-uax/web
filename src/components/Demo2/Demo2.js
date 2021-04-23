@@ -5,7 +5,7 @@ import UltraSmallWallet from '../UltraSmallWallet';
 import Log from '../Log';
 
 
-function Demo2({ }) {
+function Demo2() {
   const allWallets = {
     "0:123...456": {
       balanceUAX: 2500,
@@ -47,7 +47,7 @@ function Demo2({ }) {
 
   const [selected, setSelected] = useState(null)
   const wallets = Object.entries(allWallets)
-  
+
   return <>
     <section>
       <h2>Dev UI</h2>
@@ -62,9 +62,9 @@ function Demo2({ }) {
                 wallets.map(([addr, w]) =>
                   <UltraSmallWallet
                     key={addr}
-                    address={addr} 
+                    address={addr}
                     uax={w.balanceUAX}
-                    isSelected={selected === addr} 
+                    isSelected={selected === addr}
                     setSelected={setSelected}
                   />)
               }
