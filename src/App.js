@@ -27,13 +27,13 @@ function App() {
               </Route>
 
               <Route exact path="/owner/1">
-                <Demo1 owner={owner1} />
+                <Demo1 owner={owner1} idx={1} />
               </Route>
               <Route exact path="/owner/2">
-                <Demo1 owner={owner2} />
+                <Demo1 owner={owner2} idx={2} />
               </Route>
               <Route exact path="/owner/3">
-                <Demo1 owner={owner3} />
+                <Demo1 owner={owner3} idx={3} />
               </Route>
               <Route path="/dev">
                 {/* <Demo2></Demo2> */}

@@ -1,11 +1,13 @@
 import s from './AdminBtn.module.css';
 
-function Btn({ title, icon }) {
+function Btn({ caption }) {
   // const [wallet]
+  const loading = true;
+  const icon = "i-bot"
   return (
     // onClick={deployWallet} >
-    <button className={`${s.button} ${icon}`} type="button">
-      {title}
+    <button className={`${s.button} ${!loading ? icon : icon + "-rotate"}`} type="button">
+      {caption}
     </button>
   );
 }

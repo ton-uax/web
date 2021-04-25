@@ -3,6 +3,13 @@
 	"header": ["time"],
 	"functions": [
 		{
+			"name": "deploy2",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "deploy",
 			"inputs": [
 			],
@@ -20,7 +27,8 @@
 		{
 			"name": "updateImage",
 			"inputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"image","type":"tuple"}
+				{"name":"index","type":"uint8"},
+				{"components":[{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"si","type":"cell"}],"name":"image","type":"tuple"}
 			],
 			"outputs": [
 			]
@@ -58,22 +66,6 @@
 			]
 		},
 		{
-			"name": "getSis",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"sis","type":"map(uint8,cell)"}
-			]
-		},
-		{
-			"name": "getDeployed",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"deployed","type":"bytes[]"}
-			]
-		},
-		{
 			"name": "upgrade",
 			"inputs": [
 				{"name":"c","type":"cell"}
@@ -93,7 +85,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"_images","type":"map(uint8,tuple)"}
+				{"components":[{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"si","type":"cell"}],"name":"_images","type":"map(uint8,tuple)"}
 			]
 		},
 		{
@@ -101,7 +93,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"name","type":"bytes"},{"name":"addr","type":"address"},{"name":"ts","type":"uint32"}],"name":"_deployed","type":"map(uint8,tuple)"}
+				{"name":"_deployed","type":"map(uint8,address)"}
 			]
 		}
 	],

@@ -10,7 +10,6 @@ function Header() {
       <div className={s.logo}>
         <h1>
           <Link to="/owner/1" className={s.title}>
-            {' '}
             <img className={s.logoImage} src={logo} alt="logo" width="30px" />
             UAX
           </Link>

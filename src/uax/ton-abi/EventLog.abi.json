@@ -6,7 +6,7 @@
 			"name": "meet",
 			"inputs": [
 				{"name":"id","type":"uint16"},
-				{"name":"a","type":"address"}
+				{"name":"addr","type":"address"}
 			],
 			"outputs": [
 			]
@@ -91,12 +91,13 @@
 		{
 			"name": "initMember",
 			"inputs": [
+				{"name":"id","type":"uint16"},
 				{"name":"console","type":"address"},
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
 				{"name":"dashboard","type":"address"},
-				{"name":"id","type":"uint16"}
+				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
 			]

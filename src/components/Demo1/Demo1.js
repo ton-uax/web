@@ -8,7 +8,7 @@ import { lastProposalOnApproval } from '../../uax/proposal';
 
 
 
-function Demo1({owner}) {
+function Demo1({owner, idx}) {
   const UAXSystem = useUAXSystem()
   const lastProposal = useAsyncRetry(async () => await lastProposalOnApproval(owner, UAXSystem), [owner])
   if (!owner)
@@ -25,7 +25,7 @@ function Demo1({owner}) {
         <div className="flex">
           <div className="container">
             <h3 className="i-card">Wallet</h3>
-            <Wallet label="OWNER" account={owner} />
+            <Wallet label={`OWNER ${idx}`} account={owner} />
           </div>
           <div className="container">
             <h3 className="i-uax">Manage Supply</h3>

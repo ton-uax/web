@@ -1,41 +1,56 @@
-.wallet:not(:last-child) {
+.wrapper:not(:last-child) {
   margin-right: 40px;
 }
 
-.balanceContainer {
+.walletContainer {
   margin-bottom: 16px;
+  /* display: flex; */
 }
 
-.balance {
+.wallet {
   width: 200px;
-  height: 130px;
-  /* margin-bottom: 8px; */
-  padding: 7px 10px;
+  height: 140px;
+  margin-bottom: 8px;
+  padding: 15px 12px 12px;
   border-radius: 8px;
   background-color: var(--btn-bg-color);
   background-image: url('../../img/wallet-b.png');
   background-size: cover;
   color: var(--text-main-color-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .info {
-  font-size: 9px;
-  opacity: 0.5;
-  margin-bottom: 3em;
-  margin-left: 5px;
-  margin-top: 2px;
-  letter-spacing: 1px;
+  margin: 0 0 0 3px;
+  /* padding-left: 3px; */
+  opacity: 0.7;
+  display: flex;
+  /* justify-content: space-between; */
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
 .value {
   display: flex;
-  align-items: center;
-  letter-spacing: -0.02em;
-  font-size: 23px;
-  line-height: 1.6em;
+  flex-direction: column;
 }
 
-.value:not(:last-child) {
+.value p {
+  padding-top: 5px;
+  
+  margin: 0;
+  display: flex;
+  font-size: 25px;
+  line-height: 1.2em;
+  letter-spacing: 1px;
+  align-items: center;
+}
+
+.value p:not(:last-child) {
+  padding-bottom: 5px;
   border-bottom: 1px dotted rgba(255, 255, 255, 0.5);
 }
 

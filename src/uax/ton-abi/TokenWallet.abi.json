@@ -111,6 +111,14 @@
 			]
 		},
 		{
+			"name": "donate",
+			"inputs": [
+				{"name":"val","type":"uint32"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "getFinances",
 			"inputs": [
 			],
@@ -125,12 +133,13 @@
 		{
 			"name": "initMember",
 			"inputs": [
+				{"name":"id","type":"uint16"},
 				{"name":"console","type":"address"},
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
 				{"name":"dashboard","type":"address"},
-				{"name":"id","type":"uint16"}
+				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
 			]

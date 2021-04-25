@@ -21,7 +21,7 @@ export function wrapContract(ton, address, abi, keys) {
 }
 
 export async function getConfig(console) {
-  const consoleResponse = (await console.runLocal('getConfig')).decoded.output
+  const consoleResponse = await readGetter(console, 'getConfig')
   return {
     initTON: consoleResponse.initialBalance / 10 ** 9,
     initUAX: consoleResponse.welcomeBonus,
@@ -49,7 +49,7 @@ export async function getStats(root, medium) {
 const getUAXBalance = async user => {
   const balance = await readGetter(user, 'getFinances')
   console.log(balance);
-  return balance.actualBalance
+  return balance.balance
 }
 
 const getTONBalance = async user => {

@@ -14,7 +14,7 @@
 		{
 			"name": "approve",
 			"inputs": [
-				{"name":"eventID","type":"uint32"}
+				{"name":"id","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -22,7 +22,7 @@
 		{
 			"name": "reject",
 			"inputs": [
-				{"name":"eventID","type":"uint32"}
+				{"name":"id","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -39,141 +39,42 @@
 		{
 			"name": "updateEventState",
 			"inputs": [
-				{"name":"eventID","type":"uint32"},
+				{"name":"id","type":"uint32"},
 				{"name":"state","type":"uint8"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "updateEvent",
+			"name": "updateTokenWallet",
 			"inputs": [
-				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"e","type":"tuple"}
+				{"name":"id","type":"uint16"},
+				{"name":"addr","type":"address"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "adopt",
-			"inputs": [
-				{"name":"id","type":"uint16"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "collect",
-			"inputs": [
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "incur",
-			"inputs": [
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "abort",
-			"inputs": [
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "withdraw",
-			"inputs": [
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "pay",
-			"inputs": [
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "debit",
-			"inputs": [
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "credit",
-			"inputs": [
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "transferTokens",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "transferTokensExt",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "instantTransfer",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "instantTransferExt",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "getFinances",
+			"name": "getInfo",
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"id","type":"uint32"},
-				{"name":"balance","type":"uint32"},
-				{"name":"accountsPayable","type":"uint32"},
-				{"name":"accountsReceivable","type":"uint32"},
-				{"name":"actualBalance","type":"uint32"}
+				{"name":"id","type":"uint16"},
+				{"name":"key","type":"uint256"},
+				{"name":"tokenWalletId","type":"uint16"},
+				{"name":"tokenWalletAddress","type":"address"}
 			]
 		},
 		{
 			"name": "initMember",
 			"inputs": [
+				{"name":"id","type":"uint16"},
 				{"name":"console","type":"address"},
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
 				{"name":"dashboard","type":"address"},
-				{"name":"id","type":"uint16"}
+				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
 			]
@@ -214,19 +115,11 @@
 			]
 		},
 		{
-			"name": "_eventStates",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"_eventStates","type":"map(uint32,uint8)"}
-			]
-		},
-		{
 			"name": "_events",
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"id","type":"uint32"},{"name":"eType","type":"uint8"},{"name":"state","type":"uint8"},{"name":"createdAt","type":"uint32"}],"name":"_events","type":"map(uint32,tuple)"}
+				{"name":"_events","type":"map(uint32,uint8)"}
 			]
 		}
 	],

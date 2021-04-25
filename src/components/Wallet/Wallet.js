@@ -53,17 +53,19 @@ function Wallet({ label, account }) {
   }, [account, toInput, valueInput])
 
   return (
-    <div className={s.wallet}>
-      <div className={s.balanceContainer}>
+    <div className={s.wrapper}>
+      <div className={s.walletContainer}>
         <p
           className={`${s.yadd} i-copy`}
           onClick={() => copyToClipboard(address)}>
           {addressShort}
         </p>
-        <div className={s.balance}>
-          <div className={s.info}>{label}</div>
-          <p className={`${s.value} i-uax`}>{uaxBalance} uax</p>
-          <p className={`${s.value} i-gas`}>{tonBalance} ton</p>
+        <div className={s.wallet}>
+          <p className={s.info}>{label}</p>
+          <div className={s.value}>
+            <p className={`i-uax`}>{uaxBalance}</p>
+            <p className={`i-gas`}>{tonBalance}</p>
+          </div>
         </div>
 
       </div>

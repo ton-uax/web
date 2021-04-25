@@ -1,14 +1,23 @@
+.aside {
+  display: inline-block;
+  background-color: var(--aside-bg-color);
+  padding: 32px 24px;
+  width: 280px;
+}
+
+
 .stats {
   margin-bottom: 40px;
 }
 
-p {
+/* p {
   margin: 0;
-}
+} */
 
 .statrow {
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 100%;
   letter-spacing: -0.5px;
   font-size: 12px;
@@ -47,21 +56,3 @@ p {
   width: 20px;
 }
 
-.aside {
-  display: inline-block;
-  background-color: var(--aside-bg-color);
-  padding: 32px 24px;
-  width: 280px;
-}
-
-.page {
-  position: relative;
-  display: flex;
-  padding: 32px 48px;
-  background-image: url('../../img/circle.png');
-  background-size: 70%;
-  background-repeat: no-repeat;
-  background-position: 100% 100%;
-  width: 100%;
-  height: 100%;
-}

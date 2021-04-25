@@ -8,16 +8,14 @@ import uax from '../../uax';
 import { TONUAXContext } from '../../uax/context';
 
 
-function StatsRow({ name, value, unit, children, child = false }) {
-  return (
-    <>
-      <div className={s.statrow}>
-        <p className={child ? s.childstatname : s.statname}>{name}</p>
-        <span>{value}</span><span className={s.unit}>{unit}</span>
-      </div>
-      <div>{children}</div>
-    </>
-  );
+function StatsRow({ name, value, icon, children, child }) {
+  return <>
+    <div className={s.statrow}>
+      <p className={child ? s.childstatname : s.statname}>{name}</p>
+      <span>{value}</span><span className={`${icon} ${s.unit}`}></span>
+    </div>
+    {children}
+  </>
 }
 
 function Aside() {
@@ -60,31 +58,31 @@ function Aside() {
         <StatsRow name="Transfers" value={stats.transfers} />
         <br />
 
-        <StatsRow name="Supply" value={stats.supply} unit="uax">
-          <StatsRow child name="Unallocated" value={stats.supplyBreakdown.unallocated} unit="uax" />
-          <StatsRow child name="OwnerWallets" value={stats.supplyBreakdown.owTotal} unit="uax" />
-          <StatsRow child name="UserWallets" value={stats.supplyBreakdown.twTotal} unit="uax" />
+        <StatsRow name="Supply" value={stats.supply} icon="i-uax">
+          <StatsRow child name="Unallocated" value={stats.supplyBreakdown.unallocated} />
+          <StatsRow child name="OwnerWallets" value={stats.supplyBreakdown.owTotal} />
+          <StatsRow child name="UserWallets" value={stats.supplyBreakdown.twTotal} />
 
-          <StatsRow child name="CollectedFees" value={stats.supplyBreakdown.feeTotal} unit="uax" />
+          <StatsRow child name="CollectedFees" value={stats.supplyBreakdown.feeTotal} />
 
         </StatsRow>
         <br />
 
 
 
-        <StatsRow name="ClaimedFee" value={stats.claimedFee} unit="uax" />
-        <StatsRow name="RemainingGas" value={stats.tons} unit="ton" />
+        <StatsRow name="ClaimedFee" value={stats.claimedFee} icon="i-uax" />
+        <StatsRow name="RemainingGas" value={stats.tons} icon="i-gas" />
       </div>
       <div className={s.stats}>
         <h2>Settings</h2>
-        <StatsRow name="TransferFee" value={config.transferFee} unit="uax" />
-        <StatsRow name="InitialBalance" value={config.initUAX} unit="uax" />
-        <StatsRow name="InitialGas" value={config.initTON} unit="ton" />
-        <StatsRow name="GasReplenishThreshold" value={config.warnTON} unit="ton" />
+        <StatsRow name="TransferFee" value={config.transferFee} icon="i-uax" />
+        <StatsRow name="InitialBalance" value={config.initUAX} icon="i-uax" />
+        <StatsRow name="InitialGas" value={config.initTON} icon="i-gas" />
+        <StatsRow name="GasReplenishThreshold" value={config.warnTON} icon="i-gas" />
       </div>
       <div>
         <h2>Dev</h2>
-        <Btn title="Create wallet" icon="i-bot" />
+        <Btn caption="Create wallet" />
       </div>
 
     </aside>

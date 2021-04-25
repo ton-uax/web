@@ -16,7 +16,7 @@
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
 				{"name":"dashboard","type":"address"},
-				{"name":"ownerKeys","type":"uint256[]"}
+				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
 			]
@@ -38,9 +38,8 @@
 			]
 		},
 		{
-			"name": "deployOwnerWalletsWithKeys",
+			"name": "deployOwners",
 			"inputs": [
-				{"name":"keys","type":"uint256[]"}
 			],
 			"outputs": [
 			]
@@ -56,49 +55,14 @@
 			]
 		},
 		{
-			"name": "updateImage",
+			"name": "setRefillOptions",
 			"inputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"image","type":"tuple"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "getSis",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"sis","type":"map(uint8,cell)"}
-			]
-		},
-		{
-			"name": "updateSI",
-			"inputs": [
-				{"name":"owner","type":"cell"},
-				{"name":"token","type":"cell"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "setConfig",
-			"inputs": [
-				{"name":"welcomeBonus","type":"uint32"},
-				{"name":"initialBalance","type":"uint64"},
-				{"name":"warnBalance","type":"uint64"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "getConfig",
-			"inputs": [
-			],
-			"outputs": [
-				{"name":"welcomeBonus","type":"uint32"},
 				{"name":"initialBalance","type":"uint64"},
 				{"name":"warnBalance","type":"uint64"},
-				{"name":"transferFee","type":"uint8"}
+				{"name":"refillValue","type":"uint64"},
+				{"name":"updateTimeout","type":"uint32"}
+			],
+			"outputs": [
 			]
 		},
 		{
@@ -160,12 +124,13 @@
 		{
 			"name": "initMember",
 			"inputs": [
+				{"name":"id","type":"uint16"},
 				{"name":"console","type":"address"},
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
 				{"name":"dashboard","type":"address"},
-				{"name":"id","type":"uint16"}
+				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
 			]
@@ -203,22 +168,6 @@
 			],
 			"outputs": [
 				{"name":"_clients","type":"map(address,uint16)"}
-			]
-		},
-		{
-			"name": "_images",
-			"inputs": [
-			],
-			"outputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"stateInit","type":"cell"}],"name":"_images","type":"map(uint8,tuple)"}
-			]
-		},
-		{
-			"name": "_deployed",
-			"inputs": [
-			],
-			"outputs": [
-				{"components":[{"name":"index","type":"uint8"},{"name":"addr","type":"address"},{"name":"ts","type":"uint32"}],"name":"_deployed","type":"map(uint8,tuple)"}
 			]
 		}
 	],

@@ -3,26 +3,45 @@
 	"header": ["time"],
 	"functions": [
 		{
-			"name": "initRoot",
+			"name": "constructor",
 			"inputs": [
-				{"name":"welcomeBonus","type":"uint32"},
-				{"name":"ownerStartBalance","type":"uint32"},
-				{"name":"initialBalance","type":"uint64"},
-				{"name":"ownerKeys","type":"uint256[]"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "deployOwnerWalletsWithKeys",
+			"name": "deploySystem",
 			"inputs": [
-				{"name":"keys","type":"uint256[]"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "deployOwnerWallets",
+			"name": "deployUser",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "onDeploy",
+			"inputs": [
+				{"name":"id","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateImage",
+			"inputs": [
+				{"name":"index","type":"uint8"},
+				{"components":[{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"si","type":"cell"}],"name":"image","type":"tuple"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "deployOwners",
 			"inputs": [
 			],
 			"outputs": [
@@ -72,20 +91,34 @@
 			]
 		},
 		{
-			"name": "updatesi",
+			"name": "updateSystemImage",
 			"inputs": [
-				{"name":"owner","type":"cell"},
-				{"name":"token","type":"cell"}
+				{"components":[{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"si","type":"cell"}],"name":"console","type":"tuple"},
+				{"components":[{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"si","type":"cell"}],"name":"eventLog","type":"tuple"},
+				{"components":[{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"si","type":"cell"}],"name":"root","type":"tuple"},
+				{"components":[{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"si","type":"cell"}],"name":"medium","type":"tuple"},
+				{"components":[{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"si","type":"cell"}],"name":"dashboard","type":"tuple"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "updateConfig",
+			"name": "updateUserImage",
 			"inputs": [
-				{"name":"welcomeBonus","type":"uint32"},
+				{"components":[{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"si","type":"cell"}],"name":"owner","type":"tuple"},
+				{"components":[{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"si","type":"cell"}],"name":"token","type":"tuple"},
+				{"name":"ownerKeys","type":"uint256[]"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateRefillConfig",
+			"inputs": [
 				{"name":"initialBalance","type":"uint64"},
-				{"name":"warnBalance","type":"uint64"}
+				{"name":"warnBalance","type":"uint64"},
+				{"name":"refillValue","type":"uint64"},
+				{"name":"updateTimeout","type":"uint32"}
 			],
 			"outputs": [
 			]
@@ -93,12 +126,13 @@
 		{
 			"name": "initMember",
 			"inputs": [
+				{"name":"id","type":"uint16"},
 				{"name":"console","type":"address"},
 				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
 				{"name":"medium","type":"address"},
 				{"name":"dashboard","type":"address"},
-				{"name":"id","type":"uint16"}
+				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
 			]
@@ -131,13 +165,6 @@
 			]
 		},
 		{
-			"name": "constructor",
-			"inputs": [
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "_clients",
 			"inputs": [
 			],
@@ -146,11 +173,19 @@
 			]
 		},
 		{
-			"name": "_walletsInfo",
+			"name": "_images",
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"id","type":"uint16"},{"name":"key","type":"uint256"},{"name":"startingTokens","type":"uint32"},{"name":"createdAt","type":"uint32"}],"name":"_walletsInfo","type":"map(address,tuple)"}
+				{"components":[{"name":"name","type":"bytes"},{"name":"initialBalance","type":"uint8"},{"name":"si","type":"cell"}],"name":"_images","type":"map(uint8,tuple)"}
+			]
+		},
+		{
+			"name": "_deployed",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"_deployed","type":"map(uint8,address)"}
 			]
 		},
 		{
@@ -158,7 +193,7 @@
 			"inputs": [
 			],
 			"outputs": [
-				{"components":[{"name":"id","type":"uint16"},{"name":"tonBalance","type":"uint64"},{"name":"addr","type":"address"},{"name":"updatedAt","type":"uint32"}],"name":"_roster","type":"map(uint16,tuple)"}
+				{"components":[{"name":"id","type":"uint16"},{"name":"tonBalance","type":"uint64"},{"name":"key","type":"uint256"},{"name":"createdAt","type":"uint32"},{"name":"updatedAt","type":"uint32"}],"name":"_roster","type":"map(address,tuple)"}
 			]
 		}
 	],
