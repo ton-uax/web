@@ -61,6 +61,7 @@
 				{"name":"keys","type":"uint256[]"}
 			],
 			"outputs": [
+				{"name":"ids","type":"uint16[]"},
 				{"name":"addrs","type":"address[]"}
 			]
 		},
@@ -84,7 +85,34 @@
 			]
 		},
 		{
+			"name": "setEnv",
+			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"},
+				{"name":"logLevel","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "updateWalletsEnv",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateSystemEnv",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "registerOwners",
 			"inputs": [
 			],
 			"outputs": [
@@ -186,6 +214,14 @@
 			],
 			"outputs": [
 				{"name":"_deployed","type":"map(uint8,address)"}
+			]
+		},
+		{
+			"name": "_owners",
+			"inputs": [
+			],
+			"outputs": [
+				{"components":[{"name":"clientId","type":"uint16"},{"name":"tokenWalletId","type":"uint16"},{"name":"addr","type":"address"},{"name":"tokenWalletAddr","type":"address"},{"name":"createdAt","type":"uint32"}],"name":"_owners","type":"map(uint8,tuple)"}
 			]
 		},
 		{

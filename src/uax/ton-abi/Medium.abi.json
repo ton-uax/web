@@ -14,6 +14,7 @@
 		{
 			"name": "registerOwner",
 			"inputs": [
+				{"name":"ownerId","type":"uint8"},
 				{"name":"id","type":"uint16"},
 				{"name":"a","type":"address"},
 				{"name":"tid","type":"uint16"},

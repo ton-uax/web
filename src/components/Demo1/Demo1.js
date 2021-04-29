@@ -1,15 +1,17 @@
 import Owner from '../Owner';
 import Wallet from '../Wallet';
 
-import { useAsyncRetry } from 'react-use';
+import { useAsync, useAsyncRetry } from 'react-use';
 
 import { useUAXSystem } from '../../uax/hooks';
 import { lastProposalOnApproval } from '../../uax/proposal';
+import { readGetter } from '../../uax';
 
 
 
-function Demo1({owner, idx}) {
+function Demo1({ owner, tw, idx }) {
   const UAXSystem = useUAXSystem()
+  
   const lastProposal = useAsyncRetry(async () => await lastProposalOnApproval(owner, UAXSystem), [owner])
   if (!owner)
     return <></>
@@ -25,7 +27,7 @@ function Demo1({owner, idx}) {
         <div className="flex">
           <div className="container">
             <h3 className="i-card">Wallet</h3>
-            <Wallet label={`OWNER ${idx}`} account={owner} />
+            <Wallet label={`OWNER ${idx}`} account={tw} />
           </div>
           <div className="container">
             <h3 className="i-uax">Manage Supply</h3>

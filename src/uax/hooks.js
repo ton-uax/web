@@ -14,13 +14,16 @@ export function useUAXSystem() {
 }
 
 export function useOwner(id = 1) {
-  const { UAXOwner } = useContext(TONUAXContext)
+  const { UAXOwner, UAXUser } = useContext(TONUAXContext)
   const [ownerId] = useState(id)
   const owner = UAXOwner(ownerId)
 
   useEffect(() => {
-    return () => owner && owner.free()
+    return () => {
+      owner && owner.owner.free()
+      owner && owner.tw.free()
+    }
   }, [owner, ownerId])
 
-  return owner
+  return [owner.owner, owner.tw]
 }

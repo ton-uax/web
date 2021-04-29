@@ -12,6 +12,15 @@
 			]
 		},
 		{
+			"name": "adopt",
+			"inputs": [
+				{"name":"id","type":"uint16"},
+				{"name":"key","type":"uint256"}
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "approve",
 			"inputs": [
 				{"name":"id","type":"uint32"}

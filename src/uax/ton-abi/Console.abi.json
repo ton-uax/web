@@ -66,6 +66,40 @@
 			]
 		},
 		{
+			"name": "setEnv2",
+			"inputs": [
+				{"name":"console","type":"address"},
+				{"name":"eventLog","type":"address"},
+				{"name":"root","type":"address"},
+				{"name":"medium","type":"address"},
+				{"name":"dashboard","type":"address"},
+				{"name":"logLevel","type":"uint16"}
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateWalletsEnv",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "updateSystemEnv",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
+			"name": "registerOwners",
+			"inputs": [
+			],
+			"outputs": [
+			]
+		},
+		{
 			"name": "setEnv",
 			"inputs": [
 				{"name":"console","type":"address"},

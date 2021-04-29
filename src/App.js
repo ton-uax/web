@@ -10,9 +10,9 @@ import { useOwner } from './uax/hooks';
 
 
 function App() {
-  const owner1 = useOwner(1)
-  const owner2 = useOwner(2)
-  const owner3 = useOwner(3)
+  const [owner1, tw1] = useOwner(1)
+  const [owner2, tw2] = useOwner(2)
+  const [owner3, tw3] = useOwner(3)
   return (
     <main className={s.wrapper}>
       <div className={s.page}>
@@ -27,13 +27,13 @@ function App() {
               </Route>
 
               <Route exact path="/owner/1">
-                <Demo1 owner={owner1} idx={1} />
+                <Demo1 owner={owner1} tw={tw1} idx={1} />
               </Route>
               <Route exact path="/owner/2">
-                <Demo1 owner={owner2} idx={2} />
+                <Demo1 owner={owner2} tw={tw2} idx={2} />
               </Route>
               <Route exact path="/owner/3">
-                <Demo1 owner={owner3} idx={3} />
+                <Demo1 owner={owner3} tw={tw3} idx={3} />
               </Route>
               <Route path="/dev">
                 {/* <Demo2></Demo2> */}
