@@ -6,7 +6,7 @@ function Btn({ caption }) {
   const icon = "i-bot"
   return (
     // onClick={deployWallet} >
-    <button className={`${s.button} ${!loading ? icon : icon + "-rotate"}`} type="button">
+    <button className={`${s.button} ${icon} ${loading ? "i-rotate" : ""}`} type="button">
       {caption}
     </button>
   );

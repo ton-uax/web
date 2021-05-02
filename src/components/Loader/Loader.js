@@ -1,8 +1,7 @@
-import loader from '../../img/cycle.png';
 import s from './Loader.module.css';
 
-function Loader({ width = 20 }) {
-  return <img className={s.loader} src={loader} width={width} alt="loader" />;
+function Loader({ color, width = 20 }) {
+  return <div className={`${s.loader} i-cycle i-rotate`} style={{ width, fontSize: width, color: color }} />
 }
 
 export default Loader;

@@ -1,25 +1,24 @@
-h3 {
-  margin-top: 0;
-  margin-bottom: 25px;
-  display: flex;
-  align-items: center;
+form {
+  margin-bottom: 0;
 }
 
-.block {
-  margin-bottom: 18px;
+.twoforms:not(:last-child) {
+  margin-bottom: 20px;
 }
-.block label {
-  display: flex;
-  align-items: center;
-  font-size: 1em;
-  font-weight: 600;
-  margin-bottom: 8px;
+
+.twoforms:last-child {
+  margin-bottom: 30px;
+}
+
+.block:not(:last-child) {
+  margin-right: 20px;
 }
 
 .input {
+  display: flex;
   margin-bottom: 16px;
   padding: 4px 8px;
-  width: 100%;
+  min-width: 160px;
   border-radius: 4px;
   border: 1px solid #d0d0d094;
   color: var(--accent-color);
@@ -34,12 +33,11 @@ h3 {
 }
 
 .input::selection {
-  background: #90ffe1;
+  background: var(--input-selection-color);
 }
 
 .button {
-  min-height: 30px;
-  height: fit-content;
+  min-height: 36px;
   width: 100%;
   text-align: center;
   color: var(--text-main-color-light);
@@ -47,10 +45,8 @@ h3 {
   outline: none;
   border: none;
   border-radius: 6px;
-  text-transform: none;
-  display: block;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 16px;
   user-select: none;
   transition: 0.1s ease-in-out;
 }
@@ -66,6 +62,3 @@ h3 {
   background-color: #2000b8;
 }
 
-.button:active {
-  top: 1px;
-}

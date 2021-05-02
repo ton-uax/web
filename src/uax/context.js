@@ -32,7 +32,6 @@ const UAXABI = {
 }
 
 libWebSetup({
-  debugLog: console.log,
   binaryURL: process.env.PUBLIC_URL + "/tonclient.wasm",
 })
 ton_.useBinaryLibrary(libWeb);
@@ -58,31 +57,33 @@ export const TONUAXContextProvider = props => {
   }
 
   const UAXOwners = useAsync(async () => {
-    let walletsInfo = await readPublic(UAXSystem.Root, "_roster")
-    let ownersInfo = {}
-    for (let [addr, info] of Object.entries(walletsInfo)) {
-      let i = Number(info["id"])
-      if ([1, 2, 3].includes(i))
-        ownersInfo[i] = {
-          pubkey: info["key"].slice(2),
-          address: addr
-        }
-    }
-    let owners = {}
     let owKeys = { 1: o1, 2: o2, 3: o3 }
-    for (let [idx, info] of Object.entries(ownersInfo)) {
-      let ownerAddr = info.address
+    let ownersInfo = await readPublic(UAXSystem.Root, "_owners")
+    let owners = {}
+
+    for (let ownerInfo of Object.values(ownersInfo)) {
+      let idx = ownerInfo.clientId
+      let ownerAddr = ownerInfo.addr
+      let ownerTWAddr = ownerInfo.tokenWalletAddr
       let ownerKeys = owKeys[idx]
-      let owner = wrapContract(ton, ownerAddr, UAXABI.OwnerWallet, ownerKeys)
-      let ownerInfo = await readGetter(owner, 'getInfo')
-      let tw = wrapContract(ton, ownerInfo.tokenWalletAddress, UAXABI.TokenWallet, ownerKeys)
-      owners[idx] = {owner, tw}
+      let contract = wrapContract(ton, ownerAddr, UAXABI.OwnerWallet, ownerKeys)
+      let wallet = wrapContract(ton, ownerTWAddr, UAXABI.TokenWallet, ownerKeys)
+      owners[idx] = { contract, wallet }
     }
     return owners
   }, [])
 
-  function UAXOwner(idx) {
-    return !UAXOwners.loading && UAXOwners.value[idx]
+  function UAXOwner({ idx, twAddr }) {
+    let owners = UAXOwners.value
+    if (UAXOwners.loading)
+      return
+    if (idx !== undefined)
+      return owners[idx]
+    if (twAddr !== undefined)
+      for (let owner of Object.values(owners)) {
+        if (owner.tw.address === twAddr)
+          return owner
+      }
   }
   return (
     <TONUAXContext.Provider value={{ ton, UAXSystem, UAXUser, UAXOwner }}>

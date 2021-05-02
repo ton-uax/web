@@ -10,38 +10,41 @@ import {
 import uax from '../../uax';
 
 
-function Wallet({ label, account }) {
-  const toInput = useRef();
-  const valueInput = useRef();
-  const address = account.address
-  const addressShort = address.slice(0, 5) + ' ... ' + address.slice(-3)
+function WalletAddress({ address, children }) {
+  const [, copyToClipboard] = useCopyToClipboard()
+  return <div className={`${s.yadd} i-copy`} onClick={() => copyToClipboard(address)}>{children}</div>
+}
 
+
+function Wallet({ label, account }) {
   const [uaxBalance, setUAXBalance] = useState('')
   const [tonBalance, setTONBalance] = useState('')
-  const [, copyToClipboard] = useCopyToClipboard()
+
 
   useAsync(async () => {
-    console.log('Wallet.subscribe', Date.now())
+    // console.log('Wallet.subscribe', Date.now())
     uax.getUAXBalance(account).then(setUAXBalance);
     uax.getTONBalance(account).then(setTONBalance);
-    return await account.subscribeMessages("id", msg => {
+    return await account.subscribeMessages("id,boc", msg => {
+      account.refresh()
       console.log('Wallet.onMessage', Date.now(), address, msg)
       uax.getUAXBalance(account).then(setUAXBalance);
       uax.getTONBalance(account).then(setTONBalance);
-      return true
     })
   }, [account])
 
-  const [sendTx, send] = useAsyncFn(async () => {
+  const toInput = useRef();
+  const valueInput = useRef();
+  const [sendResult, send] = useAsyncFn(async (e) => {
+    e.preventDefault()
     try {
       let to = toInput.current.value
       let val = Number(valueInput.current.value)
       if (!to.match(/^0:[a-fA-F0-9]{64}$/) || !Number.isInteger(val) || !(val > 0))
         return
-      let tx = await account.run('transferTokensExt', {
-        to: to,
-        val: val,
-      })
+
+      let tx = await account.run('instantTransferExt', { to: to, val: val })
+
       console.log(`Transaction Sent (${account.address}) to=${to} val=${val}`, tx)
       toInput.current.value = ''
       valueInput.current.value = ''
@@ -50,46 +53,44 @@ function Wallet({ label, account }) {
     catch (err) {
       console.error(err)
     }
-  }, [account, toInput, valueInput])
+  }, [account])
 
-  return (
-    <div className={s.wrapper}>
-      <div className={s.walletContainer}>
-        <p
-          className={`${s.yadd} i-copy`}
-          onClick={() => copyToClipboard(address)}>
-          {addressShort}
-        </p>
-        <div className={s.wallet}>
-          <p className={s.info}>{label}</p>
-          <div className={s.value}>
-            <p className={`i-uax`}>{uaxBalance}</p>
-            <p className={`i-gas`}>{tonBalance}</p>
-          </div>
-        </div>
+  const address = account.address
+  const addressShort = address.slice(0, 11) + ' ... ' + address.slice(-9)
 
+  const loadingBtn = <button className={s.buttonLoading}><Loader /></button>
+  const sendBtn = <button className={s.button} onClick={send}>Send</button>
+
+  return <>
+    <h3 className="i-card">Wallet</h3>
+    <div className={s.spacer}></div>
+    <div className={s.wallet}>
+      <p className={s.info}>{label}</p>
+      <div className={s.value}>
+        <p className={`i-uax`}>{uaxBalance}</p>
+        <p className={`i-gas`}>{tonBalance}</p>
       </div>
-      <form className={s.block}>
-        <label className="i-target">To</label>
-        <input
-          className={s.input}
-          type="text"
-          placeholder="0:..."
-          ref={toInput}
-        />
-        <label className="i-card">Amount</label>
-        <input
-          className={s.input}
-          type="text"
-          placeholder="123"
-          ref={valueInput}
-        />
-        <button className={sendTx.loading ? s.buttonLoading : s.button} onClick={send}>
-          {sendTx.loading ? <Loader /> : "Send"}
-        </button>
-      </form>
     </div>
-  );
+    <WalletAddress address={address}>{addressShort}</WalletAddress>
+    <h3 className="i-path">Transfer</h3>
+    <form className={s.block}>
+      {/* <label className="i-target">To</label> */}
+      <input
+        className={s.input}
+        type="text"
+        placeholder="Address (0:...)"
+        ref={toInput}
+      />
+      {/* <label className="i-card">Amount</label> */}
+      <input
+        className={s.input}
+        type="text"
+        placeholder="Amount"
+        ref={valueInput}
+      />
+      {sendResult.loading ? loadingBtn : sendBtn}
+    </form>
+  </>
 }
 
 export default Wallet;

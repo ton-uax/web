@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
+import { useAsyncRetry } from 'react-use';
 
 import { TONUAXContext } from './context'
+import { lastProposalOnApproval } from './proposal'
 
 
 export function useTON() {
@@ -13,17 +15,26 @@ export function useUAXSystem() {
   return UAXSystem
 }
 
-export function useOwner(id = 1) {
-  const { UAXOwner, UAXUser } = useContext(TONUAXContext)
-  const [ownerId] = useState(id)
-  const owner = UAXOwner(ownerId)
+export function useOwner(idx) {
+  const { UAXOwner } = useContext(TONUAXContext)
+  const owner = UAXOwner({ idx })
 
   useEffect(() => {
     return () => {
-      owner && owner.owner.free()
-      owner && owner.tw.free()
+      if (!owner)
+        return
+      // console.log('free', owner)
+      owner.contract.free()
+      owner.wallet.free()
     }
-  }, [owner, ownerId])
+  }, [owner])
 
-  return [owner.owner, owner.tw]
+  return [owner?.contract, owner?.wallet]
+}
+
+
+export function useCurrentProposal() {
+  const UAXSystem = useUAXSystem()
+  const proposal = useAsyncRetry(async () => await lastProposalOnApproval(UAXSystem.Medium), [])
+  return proposal
 }

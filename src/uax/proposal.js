@@ -4,21 +4,23 @@ const pendingStateID = 2
 const eventTypes = {
   1: "mint",
   2: "burn",
-  3: "setfee",
-  4: "claimfee"
+  3: "withdraw",
+  4: "setfee",
+  5: "claimfee"
 }
 
 
-export async function lastProposalOnApproval(owner, UAXSystem) {
-  const pending = (await readGetter(owner, "eventsByState", { state: pendingStateID }))["ss"]
-  if (pending.length === 0) return
+export async function lastProposalOnApproval(medium) {
+  // console.log('update last proposal')
+  medium.refresh()
+  const current = await readPublic(medium, "_currentEvent")
+  if (current.state != pendingStateID)
+    return
 
-  const lastPending = pending[pending.length - 1]
-  // fetch proposal details
-  const proposals = await readPublic(UAXSystem.Medium, "_proposals")
-  const ledger = await readPublic(UAXSystem.Medium, "_ledger")
+  const proposals = await readPublic(medium, "_proposals")
+  const ledger = await readPublic(medium, "_ledger")
 
-  const proposal = proposals[lastPending["id"]]
+  const proposal = proposals[current.id]
   const parsedProposal = {
     id: Number(proposal["id"]),
     type: eventTypes[proposal["eType"]],

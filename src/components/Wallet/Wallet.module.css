@@ -1,15 +1,12 @@
-.wrapper:not(:last-child) {
-  margin-right: 40px;
-}
-
-.walletContainer {
-  margin-bottom: 16px;
-  /* display: flex; */
+.spacer {
+  padding-bottom: 16px;
 }
 
 .wallet {
-  width: 200px;
-  height: 140px;
+  --proportion: 1.58577250834;
+  --height: 140px;
+  width: calc(var(--height) * var(--proportion));
+  height: var(--height) ;
   margin-bottom: 8px;
   padding: 15px 12px 12px;
   border-radius: 8px;
@@ -24,29 +21,20 @@
 
 .info {
   margin: 0 0 0 3px;
-  /* padding-left: 3px; */
-  opacity: 0.7;
-  display: flex;
-  /* justify-content: space-between; */
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-.value {
-  display: flex;
-  flex-direction: column;
+  opacity: 0.5;
+  font-size: 11px;
+  letter-spacing: 1px;
 }
 
 .value p {
-  padding-top: 5px;
-  
-  margin: 0;
   display: flex;
-  font-size: 25px;
-  line-height: 1.2em;
-  letter-spacing: 1px;
   align-items: center;
+
+  padding-top: 5px;
+  margin: 0;
+
+  font-size: 25px;
+  letter-spacing: 1px;
 }
 
 .value p:not(:last-child) {
@@ -55,15 +43,20 @@
 }
 
 .yadd {
-  margin-bottom: 0.5em;
-  font-weight: bold;
-  font-size: 0.7em;
+  display: flex;
+  justify-content: center;
+
+  padding: 5px 7px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 11px;
+
   color: var(--copy-text-color);
-  padding: 3px 7px 5px;
   border-radius: 8px;
+
   transition: 0.1s ease-in-out;
-  text-decoration: none;
   cursor: pointer;
+  user-select: none;
 }
 
 .yadd:hover {
@@ -71,7 +64,7 @@
 }
 
 .yadd:active {
-  color: red;
+  color: var(--copy-text-color-active);
 }
 
 .block {
@@ -87,11 +80,12 @@
 }
 
 .input {
+  display: flex;
   margin-bottom: 16px;
   padding: 4px 8px;
   width: 100%;
   border-radius: 4px;
-  border: 1px solid #d0d0d094;
+  border: 1px solid var(--input-border-color);
   color: var(--accent-color);
   font-family: 'Menlo';
   font-size: 13px;
@@ -104,7 +98,7 @@
 }
 
 .input::selection {
-  background: #90ffe1;
+  background: var(--input-selection-color);
 }
 
 .button {
@@ -116,10 +110,8 @@
   outline: none;
   border: none;
   border-radius: 6px;
-  text-transform: none;
-  display: block;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 16px;
   user-select: none;
   transition: 0.1s ease-in-out;
 }
@@ -132,9 +124,6 @@
 }
 
 .button:hover {
-  background-color: #2000b8;
+  background-color: var(--btn-bg-color-hover);
 }
 
-.button:active {
-  top: 1px;
-}

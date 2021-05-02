@@ -1,6 +1,14 @@
 h2 {
   display: flex;
   align-items: center;
+  margin-top: 0;
+}
+
+h3 {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 25px;
 }
 
 :root {
@@ -12,8 +20,12 @@ h2 {
   --message-text-color-hover: rgba(0, 0, 0, 0.8);
   --message-bg-color: #5dff5d;
   --copy-text-color: #2c22e0;
+  --copy-text-color-active: tomato;
+  --copy-bg-color: #3c80ff23;
+  --input-border-color: #d0d0d094;
+  --input-selection-color: #90ffe1;
   --btn-bg-color: #2c22e0;
-  --copy-bg-color: #f3f6fe;
+  --btn-bg-color-hover: #2000b8;
   --aside-bg-color: #f3f6fe;
   --accent-color: #2e71f0;
   --wrapper-color: #edf0f6;

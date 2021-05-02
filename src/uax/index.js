@@ -20,45 +20,37 @@ export function wrapContract(ton, address, abi, keys) {
   )
 }
 
-export async function getConfig(console) {
-  const consoleResponse = await readGetter(console, 'getConfig')
-  return {
-    initTON: consoleResponse.initialBalance / 10 ** 9,
-    initUAX: consoleResponse.welcomeBonus,
-    warnTON: +(consoleResponse.warnBalance / 10 ** 9).toFixed(2),
-    transferFee: consoleResponse.transferFee,
-  }
-}
-
 export async function getStats(root, medium) {
   const statsResponse = await readGetter(medium, 'getStats')
   const supplyResponse = await readGetter(medium, 'supplyImproved')
-  const rootBalance = Math.round(parseInt(await root.getBalance(), 16) / 10 ** 9)
+  const rootBalance = await getTONBalance(root)
+  const totalSupply = Object.values(supplyResponse).reduce((a, b) => Number(a) + Number(b))
   return {
-    transfers: statsResponse.transfers,
-    supply: statsResponse.supply,
-    supplyBreakdown: supplyResponse,
     wallets: statsResponse.wallets,
-    tons: rootBalance.toString(),
+    transfers: statsResponse.transfers,
     transferFee: statsResponse.transferFee,
-    accruedFee: statsResponse.accruedFee,
+
+    supply: totalSupply,
+    supplyBreakdown: supplyResponse,
     claimedFee: statsResponse.totalFeeClaimed,
+
+    accruedFee: statsResponse.accruedFee,
+    tons: rootBalance.toString(),
   }
 }
 
-const getUAXBalance = async user => {
-  const balance = await readGetter(user, 'getFinances')
-  console.log(balance);
+const getUAXBalance = async contract => {
+  const balance = await readGetter(contract, 'getFinances')
   return balance.balance
 }
 
-const getTONBalance = async user => {
-  const hexBalance = (await user.getBalance());
+const getTONBalance = async contract => {
+  const hexBalance = (await contract.getBalance());
   return +(parseInt(hexBalance, 16) / 10 ** 9).toFixed(2);
 }
 
 
-const uax = { getStats, getConfig, getUAXBalance, getTONBalance };
+const uax = { getStats, getUAXBalance, getTONBalance };
 
 export default uax;
 

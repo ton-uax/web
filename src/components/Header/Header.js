@@ -1,15 +1,14 @@
 import s from './Header.module.css';
 import logo from '../../img/logo.svg';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 function Header() {
-  const location = useLocation()
 
   return (
     <header className={s.main}>
       <div className={s.logo}>
         <h1>
-          <Link to="/owner/1" className={s.title}>
+          <Link to="/" className={s.title}>
             <img className={s.logoImage} src={logo} alt="logo" width="30px" />
             UAX
           </Link>
@@ -17,18 +16,21 @@ function Header() {
       </div>
       <div className={s.menu}>
 
-        <Link to="/owner/1" className={location.pathname === "/owner/1" ? s.active : s.link}>
+        <NavLink to="/user" className={s.link} activeClassName={s.active}>
+          User-User
+        </NavLink>
+        <NavLink to="/owner/1" className={s.link} activeClassName={s.active}>
           Owner 1
-        </Link>
-        <Link to="/owner/2" className={location.pathname === "/owner/2" ? s.active : s.link}>
+        </NavLink>
+        <NavLink to="/owner/2" className={s.link} activeClassName={s.active}>
           Owner 2
-        </Link>
-        <Link to="/owner/3" className={location.pathname === "/owner/3" ? s.active : s.link}>
+        </NavLink>
+        <NavLink to="/owner/3" className={s.link} activeClassName={s.active}>
           Owner 3
-        </Link>
-        <Link to="/" className={location.pathname === "/" ? s.active : s.link}>
+        </NavLink>
+        <NavLink to="/dev" className={s.link} activeClassName={s.active}>
           Don't touch
-        </Link>
+        </NavLink>
       </div>
     </header>
   );

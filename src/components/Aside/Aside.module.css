@@ -53,6 +53,12 @@
 
 .unit {
   margin-left: 5px;
-  width: 20px;
 }
 
+.value {
+  width: 30px;
+}
+
+.valueLoading {
+  text-align: center;
+}

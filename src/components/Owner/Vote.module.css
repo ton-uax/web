@@ -35,6 +35,23 @@
   cursor: pointer;
 }
 
+.buttondisabled {
+  display: inline-block;
+  min-width: 44px;
+  margin-left: 2em;
+  background-color: transparent;
+  border-radius: 3.5px;
+  border: 1px solid var(--message-text-color);
+  color: var(--message-text-color);
+  opacity: 0.5;
+  font-size: 0.7em;
+  font-weight: bold;
+  letter-spacing: -0.03em;
+  padding: 1px 3.5px 1px 4px;
+  position: relative;
+  cursor: default;
+}
+
 .buttonvoted {
   display: inline-block;
   min-width: 44px;

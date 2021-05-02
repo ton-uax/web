@@ -1,6 +1,5 @@
-import SupplyManagement from "./SupplyManagement";
-import Config from './Config';
-import Message from './Message';
-const Owner = { SupplyManagement, Config, Message }
+import Propose from "./Propose";
+import Vote from './Vote';
+const Owner = { Propose, Vote }
 
 export default Owner
