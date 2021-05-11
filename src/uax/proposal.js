@@ -10,7 +10,7 @@ const eventTypes = {
 }
 
 
-export async function lastProposalOnApproval(medium) {
+export async function lastProposalOnApproval(medium, authorContract) {
   // console.log('update last proposal')
   medium.refresh()
   const current = await readPublic(medium, "_currentEvent")
@@ -19,7 +19,9 @@ export async function lastProposalOnApproval(medium) {
 
   const proposals = await readPublic(medium, "_proposals")
   const ledger = await readPublic(medium, "_ledger")
-
+  let authorTWAddress = ledger[proposal["actor"]]["addr"]
+  let authorInfo = await readGetter(authorContract, "getInfo")
+  const authorAlias = `Owner ${authorInfo.id}`
   const proposal = proposals[current.id]
   const parsedProposal = {
     id: Number(proposal["id"]),
@@ -29,7 +31,7 @@ export async function lastProposalOnApproval(medium) {
     created: new Date(proposal["createdAt"] * 1000),
     expire: new Date(proposal["validUntil"] * 1000),
 
-    author: ledger[proposal["actor"]]["addr"],
+    author: authorAlias,
     hasSigs: Number(proposal["signsAt"]),
     reqSigs: Number(proposal["signsReq"])
   }

@@ -4,7 +4,8 @@ import Loader from '../Loader'
 import { useState } from 'react';
 import { useInterval, useAsync } from 'react-use';
 
-import { useUAXSystem } from '../../uax/hooks';
+import { useOwner, useUAXSystem } from '../../uax/hooks';
+import { readGetter } from '../../uax';
 
 
 function getTimeLeftString(t) {
@@ -20,7 +21,7 @@ function getTimeLeftString(t) {
 }
 
 
-function Vote({ owner, lastProposal }) {
+function Vote({ owner, proposal }) {
   const eventTypesDisplay = {
     "mint": "mint",
     "burn": "burn",
@@ -30,12 +31,13 @@ function Vote({ owner, lastProposal }) {
   }
 
   const UAXSystem = useUAXSystem()
-  const proposal = lastProposal.value
+  const [author,] = useOwner({ twAddr: proposal.author })
+  const authorAlias = useAsync(async () => {
+    let authorInfo = await readGetter(author, "getInfo")
+    return `Owner ${authorInfo.id}`
+  }, [author])
 
-  const address = proposal.author || ""
-  const addressShort = address.slice(0, 5) + ' ... ' + address.slice(-3)
-
-  const [expireIn, setExpireIn] = useState("")
+  const [expireIn, setExpireIn] = useState(getTimeLeftString(proposal.expire))
   useInterval(() => setExpireIn(getTimeLeftString(proposal.expire)), 1000)
 
   useAsync(async () => {
@@ -54,7 +56,7 @@ function Vote({ owner, lastProposal }) {
         console.log('Owner.onMessage', new Date())
         let m = await ((msg.dst == medium.address) ? medium : owner).decodeMessage(msg.boc)
         console.log(msg.id.slice(0, 5), msg.src.slice(0, 5), '->', msg.dst.slice(0, 5), m.name, m.value)
-        lastProposal.retry()
+        // lastProposal.retry()
       })
   }, [owner])
 
@@ -75,7 +77,7 @@ function Vote({ owner, lastProposal }) {
   return (
     <div className={s.message}>
       <span>
-        <b>{addressShort}</b> proposed to <b>{eventTypesDisplay[proposal.type]}</b>
+        <b>{authorAlias.value}</b> proposed to <b>{eventTypesDisplay[proposal.type]}</b>
         <span className="i-uax">{proposal.value}</span>
       </span>
 

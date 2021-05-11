@@ -15,21 +15,25 @@ export function useUAXSystem() {
   return UAXSystem
 }
 
-export function useOwner(idx) {
+export function useOwner({ idx, twAddr }) {
   const { UAXOwner } = useContext(TONUAXContext)
-  const owner = UAXOwner({ idx })
-
+  const owner = UAXOwner({ idx, twAddr })
+  console.log('###', owner, idx, twAddr)
   useEffect(() => {
     return () => {
-      if (!owner)
-        return
-      // console.log('free', owner)
-      owner.contract.free()
-      owner.wallet.free()
+      if (owner) {
+        owner.contract.free()
+        owner.wallet.free()
+      }
     }
   }, [owner])
 
   return [owner?.contract, owner?.wallet]
+}
+
+export function useUser(idx) {
+  const { UAXUser } = useContext(TONUAXContext)
+  return UAXUser(idx)
 }
 
 

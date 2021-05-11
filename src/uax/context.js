@@ -5,6 +5,8 @@ import { libWeb, libWebSetup } from '@tonclient/lib-web';
 import o1 from './ton-keys/ow1.keys.json'
 import o2 from './ton-keys/ow2.keys.json'
 import o3 from './ton-keys/ow3.keys.json'
+import u1 from './ton-keys/u1.json'
+import u2 from './ton-keys/u2.json'
 import RepoABI from './ton-abi/Repo.abi.json'
 import ConsoleABI from './ton-abi/Console.abi.json'
 import EventLogABI from './ton-abi/EventLog.abi.json'
@@ -73,6 +75,18 @@ export const TONUAXContextProvider = props => {
     return owners
   }, [])
 
+  function UAXUser(idx) {
+    let addr, ukeys;
+    if (idx == 1) {
+      addr = "0:0a89c12f0d085b10d73a7b494a3ade7044aa260b00651b37d048af05e0618868"
+      ukeys = u1
+    }
+    else if (idx == 2) {
+      addr = "0:dca50972b7da18509356594443897369bac4d56f81e595253d703218731d5429"
+      ukeys = u2
+    }
+    return wrapContract(ton, addr, UAXABI.TokenWallet, ukeys)
+  }
   function UAXOwner({ idx, twAddr }) {
     let owners = UAXOwners.value
     if (UAXOwners.loading)
@@ -81,12 +95,12 @@ export const TONUAXContextProvider = props => {
       return owners[idx]
     if (twAddr !== undefined)
       for (let owner of Object.values(owners)) {
-        if (owner.tw.address === twAddr)
+        if (owner.wallet.address === twAddr)
           return owner
       }
   }
   return (
-    <TONUAXContext.Provider value={{ ton, UAXSystem, UAXUser, UAXOwner }}>
+    <TONUAXContext.Provider value={{ ton, UAXSystem, UAXOwners, UAXOwner, UAXUser }}>
       {props.children}
     </TONUAXContext.Provider>
   );
