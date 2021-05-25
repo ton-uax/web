@@ -14,18 +14,18 @@ import RootABI from './ton-abi/Root.abi.json'
 import MediumABI from './ton-abi/Medium.abi.json'
 import TokenWalletABI from './ton-abi/TokenWallet.abi.json'
 import OwnerWalletABI from './ton-abi/OwnerWallet.abi.json'
-import { readGetter, readPublic, wrapContract } from '.';
+import { readPublic, wrapContract } from '.';
 import { useAsync } from 'react-use';
 
 
-const U1 = "0:b449971e781ee433710f7b48f97497aa23295ea7083b3262fd8e723950ee7db9"
-const U2 = "0:6358601ca6a2ea48577937391dbb40b3460a31a8d4fcb59c6a8d0f30a02ef9fd"
+const U1 = "0:bf64ae636b3812c43610b19c41d12769167eb60c2af809655df6b385ef991780"
+const U2 = "0:678d101d27680ad065892a7e2198bcd58dbafcadb534a1bf534c13576cebda2e"
 
-const REPO = "0:2dce986fa32a257d86c239e222dda010389a33e1d2f46cf0bbf5f5be511cf697"
-const CONSOLE = "0:67454881a9e79aa0743b6c8b1e6df9ac00c93469e0c70495d51795e95879d28b"
-const EVENTLOG = "0:c8aa23e3510265d2a22da266f2037a58e12a16eb475340688451b989f8d1a451"
-const ROOT = "0:70c0587c9b91be890bd5dab54ace8c2b5baacd6aa07e3032b77ce402a27515b6"
-const MEDIUM = "0:8d1ff4d8f66661f05a01434d91ed04eaceda5483cc42711ad095cbdfe4ff5a6a"
+const REPO = "0:6819b3c7bb378e466425a96fbcff9edddb6e4dd97ac936ac5319f5c7a7128af8"
+const CONSOLE = "0:633b1caabb44409329ae0f75df5b4985d34e68503f9f1c3263151bab48392fb3"
+const EVENTLOG = "0:78c2387f3c0175496d8712c76a8a66f05b0a4e418741fc9584e612a00979d703"
+const ROOT = "0:2769a6f4092a0813fb41e793b1e10a8f585ab6291d32db86eef166c54dea0ede"
+const MEDIUM = "0:c6b8a5b5dc01450f74149d627e41e97eae77fad76030db6f4bb62ec8894d22c8"
 const UAXABI = {
   Repo: RepoABI,
   Console: ConsoleABI,

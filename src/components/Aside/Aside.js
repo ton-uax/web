@@ -79,10 +79,10 @@ function Aside() {
         <StatsRow name="InitialGas" value={config.initTON} icon="i-gas" />
         <StatsRow name="GasReplenishThreshold" value={config.warnTON} icon="i-gas" />
       </div> */}
-      <div>
+      {/* <div>
         <h2>Dev</h2>
         <Btn caption="Create wallet" />
-      </div>
+      </div> */}
 
     </aside>
   );
