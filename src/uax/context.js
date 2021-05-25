@@ -2,11 +2,11 @@ import { createContext } from 'react';
 import { TonClient as ton_ } from '@tonclient/core';
 import { libWeb, libWebSetup } from '@tonclient/lib-web';
 
-import o1 from './ton-keys/ow1.keys.json'
-import o2 from './ton-keys/ow2.keys.json'
-import o3 from './ton-keys/ow3.keys.json'
-import u1 from './ton-keys/u1.json'
-import u2 from './ton-keys/u2.json'
+import o1 from './ton-keys/o1.keys.json'
+import o2 from './ton-keys/o2.keys.json'
+import o3 from './ton-keys/o3.keys.json'
+import u1 from './ton-keys/u1.keys.json'
+import u2 from './ton-keys/u2.keys.json'
 import RepoABI from './ton-abi/Repo.abi.json'
 import ConsoleABI from './ton-abi/Console.abi.json'
 import EventLogABI from './ton-abi/EventLog.abi.json'
@@ -18,11 +18,14 @@ import { readGetter, readPublic, wrapContract } from '.';
 import { useAsync } from 'react-use';
 
 
-const REPO = "0:18b1bf111050687482433565af5fe47febafe22132aa9fd27cdca8b8e0d75e9d"
-const CONSOLE = "0:16aa946dfaa4bb991642e840754b754af8a5b07fe29d90579b48dcb09afa5453"
-const EVENTLOG = "0:dc5a432c7173f1ee96429a806d33b550e3b8ac5159c90d90fc0e76c9c1af1238"
-const ROOT = "0:510e83b7a659578f4b4c87289171d0fe16e8001930e44d4eca16d0520bd14cbe"
-const MEDIUM = "0:9e1c4a632c058a9dadfc8d356a22aa246ffd267e80725e70e2be72e4098b0d39"
+const U1 = "0:b449971e781ee433710f7b48f97497aa23295ea7083b3262fd8e723950ee7db9"
+const U2 = "0:6358601ca6a2ea48577937391dbb40b3460a31a8d4fcb59c6a8d0f30a02ef9fd"
+
+const REPO = "0:2dce986fa32a257d86c239e222dda010389a33e1d2f46cf0bbf5f5be511cf697"
+const CONSOLE = "0:67454881a9e79aa0743b6c8b1e6df9ac00c93469e0c70495d51795e95879d28b"
+const EVENTLOG = "0:c8aa23e3510265d2a22da266f2037a58e12a16eb475340688451b989f8d1a451"
+const ROOT = "0:70c0587c9b91be890bd5dab54ace8c2b5baacd6aa07e3032b77ce402a27515b6"
+const MEDIUM = "0:8d1ff4d8f66661f05a01434d91ed04eaceda5483cc42711ad095cbdfe4ff5a6a"
 const UAXABI = {
   Repo: RepoABI,
   Console: ConsoleABI,
@@ -54,10 +57,6 @@ export const TONUAXContextProvider = props => {
     Medium: wrapContract(ton, MEDIUM, UAXABI.Medium)
   }
 
-  function UAXUser(address, keys) {
-    return wrapContract(ton, address, UAXABI.TokenWallet, keys)
-  }
-
   const UAXOwners = useAsync(async () => {
     let owKeys = { 1: o1, 2: o2, 3: o3 }
     let ownersInfo = await readPublic(UAXSystem.Root, "_owners")
@@ -78,11 +77,11 @@ export const TONUAXContextProvider = props => {
   function UAXUser(idx) {
     let addr, ukeys;
     if (idx == 1) {
-      addr = "0:0a89c12f0d085b10d73a7b494a3ade7044aa260b00651b37d048af05e0618868"
+      addr = U1
       ukeys = u1
     }
     else if (idx == 2) {
-      addr = "0:dca50972b7da18509356594443897369bac4d56f81e595253d703218731d5429"
+      addr = U2
       ukeys = u2
     }
     return wrapContract(ton, addr, UAXABI.TokenWallet, ukeys)

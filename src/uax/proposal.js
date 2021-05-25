@@ -1,4 +1,4 @@
-import { readGetter, readPublic } from "."
+import { readPublic } from "."
 
 const pendingStateID = 2
 const eventTypes = {
@@ -10,30 +10,30 @@ const eventTypes = {
 }
 
 
-export async function lastProposalOnApproval(medium, authorContract) {
+export async function lastProposalOnApproval(medium) {
   // console.log('update last proposal')
   medium.refresh()
   const current = await readPublic(medium, "_currentEvent")
+  console.log(current)
   if (current.state != pendingStateID)
     return
 
   const proposals = await readPublic(medium, "_proposals")
-  const ledger = await readPublic(medium, "_ledger")
-  let authorTWAddress = ledger[proposal["actor"]]["addr"]
-  let authorInfo = await readGetter(authorContract, "getInfo")
-  const authorAlias = `Owner ${authorInfo.id}`
+  // let authorInfo = await readGetter(authorContract, "getInfo")
+  // const authorAlias = `Owner ${authorInfo.id}`
   const proposal = proposals[current.id]
+  console.log(proposal)
   const parsedProposal = {
-    id: Number(proposal["id"]),
-    type: eventTypes[proposal["eType"]],
-    value: Number(proposal["value"]),
+    id: Number(proposal.id),
+    type: eventTypes[proposal.eType],
+    value: Number(proposal.value),
 
-    created: new Date(proposal["createdAt"] * 1000),
-    expire: new Date(proposal["validUntil"] * 1000),
+    created: new Date(proposal.createdAt * 1000),
+    expire: new Date(proposal.validUntil * 1000),
 
-    author: authorAlias,
-    hasSigs: Number(proposal["signsAt"]),
-    reqSigs: Number(proposal["signsReq"])
+    author: proposal.actor,
+    hasSigs: Number(proposal.signsAt),
+    reqSigs: Number(proposal.signsReq)
   }
   return parsedProposal
 }

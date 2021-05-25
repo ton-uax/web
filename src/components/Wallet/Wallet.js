@@ -43,7 +43,7 @@ function Wallet({ label, account }) {
       if (!to.match(/^0:[a-fA-F0-9]{64}$/) || !Number.isInteger(val) || !(val > 0))
         return
 
-      let tx = await account.run('instantTransferExt', { to: to, val: val })
+      let tx = await account.run('transferTokensExt', { to: to, val: val })
 
       console.log(`Transaction Sent (${account.address}) to=${to} val=${val}`, tx)
       toInput.current.value = ''

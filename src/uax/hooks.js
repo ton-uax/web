@@ -1,8 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
-import { useAsyncRetry } from 'react-use';
+import { useContext, useEffect } from 'react';
 
 import { TONUAXContext } from './context'
-import { lastProposalOnApproval } from './proposal'
 
 
 export function useTON() {
@@ -18,7 +16,7 @@ export function useUAXSystem() {
 export function useOwner({ idx, twAddr }) {
   const { UAXOwner } = useContext(TONUAXContext)
   const owner = UAXOwner({ idx, twAddr })
-  console.log('###', owner, idx, twAddr)
+  // console.log('###', owner, idx, twAddr)
   useEffect(() => {
     return () => {
       if (owner) {
@@ -33,12 +31,15 @@ export function useOwner({ idx, twAddr }) {
 
 export function useUser(idx) {
   const { UAXUser } = useContext(TONUAXContext)
-  return UAXUser(idx)
+  const user = UAXUser(idx)
+  useEffect(() => {
+    return () => {
+      if (user) {
+        user.free()
+      }
+    }
+  }, [user])
+  return user
 }
 
 
-export function useCurrentProposal() {
-  const UAXSystem = useUAXSystem()
-  const proposal = useAsyncRetry(async () => await lastProposalOnApproval(UAXSystem.Medium), [])
-  return proposal
-}

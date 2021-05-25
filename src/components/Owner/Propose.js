@@ -22,7 +22,7 @@ function PositiveIntValueForm({
       let tx = await account.run(method, { [argName]: value, ...otherArgs })
 
       input.current.value = ''
-      console.log(`Proposal Sent (${account.address}) params=${otherArgs} value=${value}`, tx)
+      console.log(`Proposal Sent (${account.address}) params=${JSON.stringify(otherArgs)} value=${value}`, tx)
       return tx
     }
     catch (err) {
@@ -101,7 +101,7 @@ function Propose({ owner, wallet }) {
         {proposeEventForm("lock")} {proposeEventForm("pull")}
       </div>
     </div>
-  
+
     <h3 className="i-fee">UAX Fee Operations</h3>
     <div className="flex">
       {proposeEventForm("updfee")} {proposeEventForm("harvest")}

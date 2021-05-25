@@ -2,13 +2,9 @@ import s from './Vote.module.css';
 import Loader from '../Loader'
 
 import { useState } from 'react';
-import { useInterval, useAsync } from 'react-use';
+import { useInterval } from 'react-use';
 
-import { useOwner, useUAXSystem } from '../../uax/hooks';
-import { readGetter } from '../../uax';
-
-
-function getTimeLeftString(t) {
+function getTimeLeftString(t, refresh) {
   if (!t)
     return ""
   const now = new Date()
@@ -17,11 +13,13 @@ function getTimeLeftString(t) {
   let hours = Math.floor((d % (60 * 60 * 24)) / (60 * 60)).toString().padStart(2, "0")
   let minutes = Math.floor((d % (60 * 60)) / (60)).toString().padStart(2, "0")
   let seconds = Math.floor((d % (60))).toString().padStart(2, "0")
+  if (seconds < 0) 
+    refresh()
   return `${days} days ${hours}:${minutes}:${seconds}`
 }
 
 
-function Vote({ owner, proposal }) {
+function Vote({ owner, proposal, refresh }) {
   const eventTypesDisplay = {
     "mint": "mint",
     "burn": "burn",
@@ -30,35 +28,29 @@ function Vote({ owner, proposal }) {
     "claimfee": "withdraw fee"
   }
 
-  const UAXSystem = useUAXSystem()
-  const [author,] = useOwner({ twAddr: proposal.author })
-  const authorAlias = useAsync(async () => {
-    let authorInfo = await readGetter(author, "getInfo")
-    return `Owner ${authorInfo.id}`
-  }, [author])
+  const authorAlias = `Owner ${proposal.author - 10000 + 1}`
 
   const [expireIn, setExpireIn] = useState(getTimeLeftString(proposal.expire))
-  useInterval(() => setExpireIn(getTimeLeftString(proposal.expire)), 1000)
+  useInterval(() => setExpireIn(getTimeLeftString(proposal.expire, refresh)), 1000)
 
-  useAsync(async () => {
-    let medium = UAXSystem.Medium
-    console.log('Owner.subscribe', new Date(), owner)
-    return await owner.subscribe(
-      "messages",
-      {
-        src: { eq: medium.address }, dst: { eq: owner.address },
-        OR: {
-          src: { eq: owner.address }, dst: { eq: medium.address }
-        }
-      },
-      "id,boc,src,dst",
-      async msg => {
-        console.log('Owner.onMessage', new Date())
-        let m = await ((msg.dst == medium.address) ? medium : owner).decodeMessage(msg.boc)
-        console.log(msg.id.slice(0, 5), msg.src.slice(0, 5), '->', msg.dst.slice(0, 5), m.name, m.value)
-        // lastProposal.retry()
-      })
-  }, [owner])
+  // useAsync(async () => {
+  //   console.log('Owner.subscribe', new Date(), owner)
+  //   return await owner.subscribe(
+  //     "messages",
+  //     {
+  //       src: { eq: medium.address }, dst: { eq: owner.address },
+  //       OR: {
+  //         src: { eq: owner.address }, dst: { eq: medium.address }
+  //       }
+  //     },
+  //     "id,boc,src,dst",
+  //     async msg => {
+  //       console.log('Owner.onMessage', new Date())
+  //       let m = await ((msg.dst == medium.address) ? medium : owner).decodeMessage(msg.boc)
+  //       console.log((msg.dst == medium.address) ? 'medium' : 'owner', '->', msg.dst.slice(0, 5), m.name, m.value)
+  //       proposal.retry()
+  //     })
+  // }, [owner])
 
   const [lastSeen, setLastSeen] = useState(null)
   const [resolution, setResolution] = useState(null)
@@ -77,7 +69,7 @@ function Vote({ owner, proposal }) {
   return (
     <div className={s.message}>
       <span>
-        <b>{authorAlias.value}</b> proposed to <b>{eventTypesDisplay[proposal.type]}</b>
+        <b>{authorAlias}</b> proposed to <b>{eventTypesDisplay[proposal.type]}</b>
         <span className="i-uax">{proposal.value}</span>
       </span>
 
