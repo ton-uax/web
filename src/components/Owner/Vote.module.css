@@ -1,15 +1,16 @@
 .message {
   position: absolute;
+  display: flex;
+  justify-content: center;
   background-color: var(--message-bg-color);
   top: 0;
   left: 0;
   width: 100%;
-  text-align: center;
   font-size: 0.7em;
   padding: 5px;
   color: var(--message-text-color);
 }
-.message *:before {
+.message > *:before {
   position: relative;
   font-size: 0.9em;
   top: 1px;
@@ -20,7 +21,8 @@
   letter-spacing: -0.02em;
 }
 .button {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   min-width: 44px;
   margin-left: 2em;
   background-color: transparent;
@@ -47,23 +49,21 @@
   font-size: 0.7em;
   font-weight: bold;
   letter-spacing: -0.03em;
-  padding: 1px 3.5px 1px 4px;
+  padding:  2px 4px 1px 8px;
   position: relative;
   cursor: default;
+  pointer-events: none;
 }
 
 .buttonvoted {
   display: inline-block;
   min-width: 44px;
   margin-left: 2em;
-  background-color: transparent;
   border-radius: 3.5px;
-  border: 1px solid var(--message-text-color);
-  color: var(--message-text-color);
   font-size: 0.7em;
   font-weight: bold;
   letter-spacing: -0.03em;
-  padding: 1px 3.5px 1px 4px;
+  padding: 2px 4px 1px 8px;
   position: relative;
   border: 1px solid #000;
   background-color: #000;

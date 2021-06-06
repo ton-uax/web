@@ -21,7 +21,7 @@ function useX(contract, proposal, medium, updateProposal) {
           src: { eq: contract.address }, dst: { eq: medium.address }
         }
       },
-      "id,boc,src,dst", async msg => {
+      "id,created_at,boc,src,dst", async msg => {
         console.log('Owner.onMessage', (new Date()).toLocaleString())
         let m = await ((msg.dst == medium.address) ? medium : contract).decodeMessage(msg.boc)
         console.log((msg.dst == medium.address) ? 'medium' : 'owner', '->', msg.dst.slice(0, 5), m.name, m.value)
@@ -46,6 +46,8 @@ function Demo1({ idx }) {
 
   const updateProposal = useCallback(proposal.retry, [proposal])
   // useInterval(useCallback(() => updateProposal, [proposal]), 1000)
+
+  useX(contract, proposal, medium, updateProposal)
 
   return <>
     {

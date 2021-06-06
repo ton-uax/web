@@ -41,8 +41,8 @@ function Vote({ owner, proposal, refresh, ownerAlreadyVoted }) {
   async function resolve(positive) {
     setDisableVoting(true)
     let res = positive ? "approve" : "reject"
-    let result = await owner.run(res, { id: proposal.id })
     setResolution(res)
+    await owner.run(res, { id: proposal.id })
   }
 
   return (
@@ -57,10 +57,10 @@ function Vote({ owner, proposal, refresh, ownerAlreadyVoted }) {
 
       <div
         className={`${btnApproveClassName} ${disableVoting ? s.buttondisabled : ""}`}
-        onClick={async () => await resolve(true)}>{resolution === "approve" ? <Loader width={10} color={'#000000'} /> : 'APPROVE'}</div>
+        onClick={() => resolve(true)}>{resolution === "approve" ? <Loader width={10} /> : 'APPROVE'}</div>
       <div
         className={`${btnRejectClassName} ${disableVoting ? s.buttondisabled : ""}`}
-        onClick={async () => await resolve(false)}>REJECT</div>
+        onClick={() => resolve(false)}>{resolution === "reject" ? <Loader width={10} /> : 'REJECT'}</div>
     </div>)
 }
 
