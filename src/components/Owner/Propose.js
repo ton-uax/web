@@ -61,7 +61,7 @@ function Propose({ owner, wallet }) {
     },
     lock: {
       account: wallet,
-      method: "donateExt",
+      method: "donate",
       argName: "val",
 
       inputHint: "Lock to Reserve",

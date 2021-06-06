@@ -8,6 +8,12 @@ export function useTON() {
   return ton
 }
 
+export function useUAXSystemMap() {
+  const { UAXSystemMap } = useContext(TONUAXContext)
+  return UAXSystemMap
+}
+
+
 export function useUAXSystem() {
   const { UAXSystem } = useContext(TONUAXContext)
   return UAXSystem
@@ -16,7 +22,6 @@ export function useUAXSystem() {
 export function useOwner({ idx, twAddr }) {
   const { UAXOwner } = useContext(TONUAXContext)
   const owner = UAXOwner({ idx, twAddr })
-  // console.log('###', owner, idx, twAddr)
   useEffect(() => {
     return () => {
       if (owner) {

@@ -2,34 +2,23 @@ import { createContext } from 'react';
 import { TonClient as ton_ } from '@tonclient/core';
 import { libWeb, libWebSetup } from '@tonclient/lib-web';
 
-import o1 from './ton-keys/o1.keys.json'
-import o2 from './ton-keys/o2.keys.json'
-import o3 from './ton-keys/o3.keys.json'
-import u1 from './ton-keys/u1.keys.json'
-import u2 from './ton-keys/u2.keys.json'
-import RepoABI from './ton-abi/Repo.abi.json'
-import ConsoleABI from './ton-abi/Console.abi.json'
-import EventLogABI from './ton-abi/EventLog.abi.json'
 import RootABI from './ton-abi/Root.abi.json'
 import MediumABI from './ton-abi/Medium.abi.json'
 import TokenWalletABI from './ton-abi/TokenWallet.abi.json'
 import OwnerWalletABI from './ton-abi/OwnerWallet.abi.json'
-import { readPublic, wrapContract } from '.';
+import ENV from './Env.json'
+
+import { wrapContract } from '.';
 import { useAsync } from 'react-use';
 
 
-const U1 = "0:bf64ae636b3812c43610b19c41d12769167eb60c2af809655df6b385ef991780"
-const U2 = "0:678d101d27680ad065892a7e2198bcd58dbafcadb534a1bf534c13576cebda2e"
+const U1 = ENV.users[0].addr
+const U2 = ENV.users[1].addr
 
-const REPO = "0:6819b3c7bb378e466425a96fbcff9edddb6e4dd97ac936ac5319f5c7a7128af8"
-const CONSOLE = "0:633b1caabb44409329ae0f75df5b4985d34e68503f9f1c3263151bab48392fb3"
-const EVENTLOG = "0:78c2387f3c0175496d8712c76a8a66f05b0a4e418741fc9584e612a00979d703"
-const ROOT = "0:2769a6f4092a0813fb41e793b1e10a8f585ab6291d32db86eef166c54dea0ede"
-const MEDIUM = "0:c6b8a5b5dc01450f74149d627e41e97eae77fad76030db6f4bb62ec8894d22c8"
+const ROOT = ENV.contracts.Root
+const MEDIUM = ENV.contracts.Medium
+
 const UAXABI = {
-  Repo: RepoABI,
-  Console: ConsoleABI,
-  EventLog: EventLogABI,
   Root: RootABI,
   Medium: MediumABI,
   TokenWallet: TokenWalletABI,
@@ -46,29 +35,27 @@ export const TONUAXContext = createContext();
 export const TONUAXContextProvider = props => {
   const ton = new ton_({
     network: {
-      server_address: 'net.ton.dev'
+      server_address: ENV.network
     }
   })
   const UAXSystem = {
-    Repo: wrapContract(ton, REPO, UAXABI.Repo),
-    Console: wrapContract(ton, CONSOLE, UAXABI.Console),
-    EventLog: wrapContract(ton, EVENTLOG, UAXABI.EventLog),
     Root: wrapContract(ton, ROOT, UAXABI.Root),
     Medium: wrapContract(ton, MEDIUM, UAXABI.Medium)
   }
 
   const UAXOwners = useAsync(async () => {
-    let owKeys = { 1: o1, 2: o2, 3: o3 }
-    let ownersInfo = await readPublic(UAXSystem.Root, "_owners")
+    let owKeys = {
+      1: ENV.owners[0].keys,
+      2: ENV.owners[1].keys,
+      3: ENV.owners[2].keys,
+    }
     let owners = {}
 
-    for (let ownerInfo of Object.values(ownersInfo)) {
-      let idx = ownerInfo.clientId
-      let ownerAddr = ownerInfo.addr
-      let ownerTWAddr = ownerInfo.tokenWalletAddr
-      let ownerKeys = owKeys[idx]
-      let contract = wrapContract(ton, ownerAddr, UAXABI.OwnerWallet, ownerKeys)
-      let wallet = wrapContract(ton, ownerTWAddr, UAXABI.TokenWallet, ownerKeys)
+    for (let [idx, keypair] of Object.entries(owKeys)) {
+      let ownerAddr = ENV.owners[idx - 1].addr
+      let ownerTWAddr = ENV.owners[idx - 1].wallet
+      let contract = wrapContract(ton, ownerAddr, UAXABI.OwnerWallet, keypair)
+      let wallet = wrapContract(ton, ownerTWAddr, UAXABI.TokenWallet, keypair)
       owners[idx] = { contract, wallet }
     }
     return owners
@@ -78,16 +65,18 @@ export const TONUAXContextProvider = props => {
     let addr, ukeys;
     if (idx == 1) {
       addr = U1
-      ukeys = u1
+      ukeys = ENV.users[0].keys
     }
     else if (idx == 2) {
       addr = U2
-      ukeys = u2
+      ukeys = ENV.users[0].keys
     }
     return wrapContract(ton, addr, UAXABI.TokenWallet, ukeys)
   }
+
   function UAXOwner({ idx, twAddr }) {
     let owners = UAXOwners.value
+
     if (UAXOwners.loading)
       return
     if (idx !== undefined)
@@ -98,8 +87,15 @@ export const TONUAXContextProvider = props => {
           return owner
       }
   }
+
+  const UAXSystemMap = {
+    ...Object.fromEntries(Object.entries(ENV.contracts).map(([name, addr]) => [addr, name])),
+    ...Object.fromEntries(ENV.owners.map((o, i) => [o.addr, `o${i + 1}`])),
+    ...Object.fromEntries(ENV.owners.map((o, i) => [o.wallet, `o${i + 1}w`]))
+  }
+
   return (
-    <TONUAXContext.Provider value={{ ton, UAXSystem, UAXOwners, UAXOwner, UAXUser }}>
+    <TONUAXContext.Provider value={{ ton, UAXSystem, UAXOwners, UAXSystemMap, UAXOwner, UAXUser }}>
       {props.children}
     </TONUAXContext.Provider>
   );

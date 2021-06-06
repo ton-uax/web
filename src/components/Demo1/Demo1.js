@@ -2,16 +2,17 @@ import Owner from '../Owner';
 import Wallet from '../Wallet';
 
 import { useOwner, useUAXSystem } from '../../uax/hooks';
-import { useAsync, useAsyncRetry } from 'react-use';
+import { useAsync, useAsyncFn, useAsyncRetry, useInterval } from 'react-use';
 
 import { lastProposalOnApproval } from '../../uax/proposal';
-import { readGetter } from '../../uax';
-import { useEffect } from 'react';
+import { useCallback } from 'react';
 
-function useX(contract, proposal, medium) {
+function useX(contract, proposal, medium, updateProposal) {
 
   useAsync(async () => {
-    console.log('Owner.subscribe', new Date(), contract)
+    console.log('Owner.subscribe', (new Date()).toLocaleString(), contract.address)
+    if (!proposal.value)
+      updateProposal()
     return await contract.subscribe(
       "messages",
       {
@@ -21,32 +22,35 @@ function useX(contract, proposal, medium) {
         }
       },
       "id,boc,src,dst", async msg => {
-        console.log('Owner.onMessage', new Date())
+        console.log('Owner.onMessage', (new Date()).toLocaleString())
         let m = await ((msg.dst == medium.address) ? medium : contract).decodeMessage(msg.boc)
         console.log((msg.dst == medium.address) ? 'medium' : 'owner', '->', msg.dst.slice(0, 5), m.name, m.value)
-        proposal.retry()
+        if (m.name == 'updateEventState')
+          updateProposal()
       })
-  }, [proposal.value, contract, medium])
+  }, [proposal.value?.id, proposal.value?.hasSigs, contract, medium])
 
 }
 
 function Demo1({ idx }) {
   const [contract, wallet] = useOwner({ idx })
-  const walletEnv = useAsync(async () => wallet && readGetter(wallet, 'getEnv'), [wallet])
   const UAXSystem = useUAXSystem()
-  const proposal = useAsyncRetry(async () => await lastProposalOnApproval(UAXSystem.Medium), [])
   let medium = UAXSystem.Medium
 
+  const proposal = useAsyncRetry(async () => await lastProposalOnApproval(medium), [])
+
   console.log(`render demo for o${idx}. contract: ${contract?.address} tw: ${wallet?.address}`)
-  const isMyProposal = proposal.value?.author === walletEnv.value?.id
+  const isMyProposal = proposal.value?.author === idx
+  const alreadyVoted = proposal.value?.ownersVoted.includes(idx)
   const showProposalPopup = !proposal.loading && proposal.value && !isMyProposal && proposal.value.expire > new Date()
 
-  useX(contract, proposal, medium)
+  const updateProposal = useCallback(proposal.retry, [proposal])
+  // useInterval(useCallback(() => updateProposal, [proposal]), 1000)
 
   return <>
     {
       showProposalPopup &&
-      <Owner.Vote owner={contract} proposal={proposal.value} refresh={proposal.retry} />
+      <Owner.Vote owner={contract} proposal={proposal.value} refresh={updateProposal} ownerAlreadyVoted={alreadyVoted} />
     }
     {
       contract && wallet &&

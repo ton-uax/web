@@ -11,29 +11,38 @@ const eventTypes = {
 
 
 export async function lastProposalOnApproval(medium) {
-  // console.log('update last proposal')
+  console.log('---')
   medium.refresh()
   const current = await readPublic(medium, "_currentEvent")
-  console.log(current)
   if (current.state != pendingStateID)
     return
 
   const proposals = await readPublic(medium, "_proposals")
-  // let authorInfo = await readGetter(authorContract, "getInfo")
-  // const authorAlias = `Owner ${authorInfo.id}`
+
   const proposal = proposals[current.id]
-  console.log(proposal)
+  console.log('raw proposal', proposal)
+  let owners = [0, 1, 2]
+  let ownersVoted = []
+  for (let idx of owners) {
+    let mask = 1 << idx
+    let voted = proposal.signsMask & mask
+    if (voted)
+      ownersVoted.push(idx + 1)
+  }
   const parsedProposal = {
     id: Number(proposal.id),
     type: eventTypes[proposal.eType],
     value: Number(proposal.value),
 
     created: new Date(proposal.createdAt * 1000),
-    expire: new Date(proposal.validUntil * 1000),
+    expire: new Date(proposal.expireAt * 1000),
 
-    author: proposal.actor,
+    author: proposal.actor - 10000 + 1,
+
+    ownersVoted: ownersVoted,
     hasSigs: Number(proposal.signsAt),
     reqSigs: Number(proposal.signsReq)
   }
+  console.log('parsed proposal', parsedProposal)
   return parsedProposal
 }

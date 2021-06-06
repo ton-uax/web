@@ -4,7 +4,7 @@ import Loader from '../Loader'
 import { useState } from 'react';
 import { useInterval } from 'react-use';
 
-function getTimeLeftString(t, refresh) {
+function getTimeLeftString(t) {
   if (!t)
     return ""
   const now = new Date()
@@ -13,13 +13,12 @@ function getTimeLeftString(t, refresh) {
   let hours = Math.floor((d % (60 * 60 * 24)) / (60 * 60)).toString().padStart(2, "0")
   let minutes = Math.floor((d % (60 * 60)) / (60)).toString().padStart(2, "0")
   let seconds = Math.floor((d % (60))).toString().padStart(2, "0")
-  if (seconds < 0) 
-    refresh()
+
   return `${days} days ${hours}:${minutes}:${seconds}`
 }
 
 
-function Vote({ owner, proposal, refresh }) {
+function Vote({ owner, proposal, refresh, ownerAlreadyVoted }) {
   const eventTypesDisplay = {
     "mint": "mint",
     "burn": "burn",
@@ -28,33 +27,13 @@ function Vote({ owner, proposal, refresh }) {
     "claimfee": "withdraw fee"
   }
 
-  const authorAlias = `Owner ${proposal.author - 10000 + 1}`
+  const authorAlias = `Owner ${proposal.author}`
 
-  const [expireIn, setExpireIn] = useState(getTimeLeftString(proposal.expire))
-  useInterval(() => setExpireIn(getTimeLeftString(proposal.expire, refresh)), 1000)
+  const expireIn = getTimeLeftString(proposal.expire)
+  useInterval(() => refresh, 1000)
 
-  // useAsync(async () => {
-  //   console.log('Owner.subscribe', new Date(), owner)
-  //   return await owner.subscribe(
-  //     "messages",
-  //     {
-  //       src: { eq: medium.address }, dst: { eq: owner.address },
-  //       OR: {
-  //         src: { eq: owner.address }, dst: { eq: medium.address }
-  //       }
-  //     },
-  //     "id,boc,src,dst",
-  //     async msg => {
-  //       console.log('Owner.onMessage', new Date())
-  //       let m = await ((msg.dst == medium.address) ? medium : owner).decodeMessage(msg.boc)
-  //       console.log((msg.dst == medium.address) ? 'medium' : 'owner', '->', msg.dst.slice(0, 5), m.name, m.value)
-  //       proposal.retry()
-  //     })
-  // }, [owner])
-
-  const [lastSeen, setLastSeen] = useState(null)
   const [resolution, setResolution] = useState(null)
-  const [disableVoting, setDisableVoting] = useState(false)
+  const [disableVoting, setDisableVoting] = useState(ownerAlreadyVoted)
 
   const btnApproveClassName = (resolution === "approve") ? s.buttonvoted : s.button
   const btnRejectClassName = (resolution === "reject") ? s.buttonvoted : s.button

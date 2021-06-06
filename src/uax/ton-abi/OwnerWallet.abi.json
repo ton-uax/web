@@ -1,21 +1,14 @@
 {
 	"ABI version": 2,
-	"header": ["time"],
+	"header": ["pubkey", "time", "expire"],
 	"functions": [
 		{
 			"name": "constructor",
 			"inputs": [
 				{"name":"id","type":"uint16"},
-				{"name":"key","type":"uint256"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "adopt",
-			"inputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"key","type":"uint256"}
+				{"name":"medium","type":"address"},
+				{"name":"walletId","type":"uint16"},
+				{"name":"walletAddress","type":"address"}
 			],
 			"outputs": [
 			]
@@ -55,22 +48,12 @@
 			]
 		},
 		{
-			"name": "updateTokenWallet",
-			"inputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"addr","type":"address"}
-			],
-			"outputs": [
-			]
-		},
-		{
 			"name": "getInfo",
 			"inputs": [
 			],
 			"outputs": [
 				{"name":"id","type":"uint16"},
-				{"name":"key","type":"uint256"},
-				{"name":"tokenWalletId","type":"uint16"},
+				{"name":"pubkey","type":"uint256"},
 				{"name":"tokenWalletAddress","type":"address"}
 			]
 		},
@@ -78,41 +61,34 @@
 			"name": "initMember",
 			"inputs": [
 				{"name":"id","type":"uint16"},
-				{"name":"console","type":"address"},
-				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
-				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"},
-				{"name":"logLevel","type":"uint16"}
+				{"name":"medium","type":"address"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "updateEnv",
+			"name": "_id",
 			"inputs": [
-				{"name":"console","type":"address"},
-				{"name":"eventLog","type":"address"},
-				{"name":"root","type":"address"},
-				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"},
-				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
+				{"name":"_id","type":"uint16"}
 			]
 		},
 		{
-			"name": "getEnv",
+			"name": "_root",
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"console","type":"address"},
-				{"name":"eventLog","type":"address"},
-				{"name":"root","type":"address"},
-				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"},
-				{"name":"logLevel","type":"uint16"}
+				{"name":"_root","type":"address"}
+			]
+		},
+		{
+			"name": "_medium",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"_medium","type":"address"}
 			]
 		},
 		{

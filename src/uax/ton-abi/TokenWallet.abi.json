@@ -1,19 +1,12 @@
 {
 	"ABI version": 2,
-	"header": ["time"],
+	"header": ["pubkey", "time", "expire"],
 	"functions": [
 		{
 			"name": "constructor",
 			"inputs": [
-				{"name":"id","type":"uint16"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "adopt",
-			"inputs": [
-				{"name":"id","type":"uint16"}
+				{"name":"id","type":"uint16"},
+				{"name":"medium","type":"address"}
 			],
 			"outputs": [
 			]
@@ -75,16 +68,15 @@
 			]
 		},
 		{
-			"name": "transferTokens",
+			"name": "donate",
 			"inputs": [
-				{"name":"to","type":"address"},
 				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "transferTokensExt",
+			"name": "transferTokens",
 			"inputs": [
 				{"name":"to","type":"address"},
 				{"name":"val","type":"uint32"}
@@ -96,31 +88,6 @@
 			"name": "instantTransfer",
 			"inputs": [
 				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "instantTransferExt",
-			"inputs": [
-				{"name":"to","type":"address"},
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "donate",
-			"inputs": [
-				{"name":"val","type":"uint32"}
-			],
-			"outputs": [
-			]
-		},
-		{
-			"name": "donateExt",
-			"inputs": [
 				{"name":"val","type":"uint32"}
 			],
 			"outputs": [
@@ -142,41 +109,34 @@
 			"name": "initMember",
 			"inputs": [
 				{"name":"id","type":"uint16"},
-				{"name":"console","type":"address"},
-				{"name":"eventLog","type":"address"},
 				{"name":"root","type":"address"},
-				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"},
-				{"name":"logLevel","type":"uint16"}
+				{"name":"medium","type":"address"}
 			],
 			"outputs": [
 			]
 		},
 		{
-			"name": "updateEnv",
+			"name": "_id",
 			"inputs": [
-				{"name":"console","type":"address"},
-				{"name":"eventLog","type":"address"},
-				{"name":"root","type":"address"},
-				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"},
-				{"name":"logLevel","type":"uint16"}
 			],
 			"outputs": [
+				{"name":"_id","type":"uint16"}
 			]
 		},
 		{
-			"name": "getEnv",
+			"name": "_root",
 			"inputs": [
 			],
 			"outputs": [
-				{"name":"id","type":"uint16"},
-				{"name":"console","type":"address"},
-				{"name":"eventLog","type":"address"},
-				{"name":"root","type":"address"},
-				{"name":"medium","type":"address"},
-				{"name":"dashboard","type":"address"},
-				{"name":"logLevel","type":"uint16"}
+				{"name":"_root","type":"address"}
+			]
+		},
+		{
+			"name": "_medium",
+			"inputs": [
+			],
+			"outputs": [
+				{"name":"_medium","type":"address"}
 			]
 		},
 		{

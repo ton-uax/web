@@ -22,12 +22,11 @@ function Wallet({ label, account }) {
 
 
   useAsync(async () => {
-    // console.log('Wallet.subscribe', Date.now())
     uax.getUAXBalance(account).then(setUAXBalance);
     uax.getTONBalance(account).then(setTONBalance);
     return await account.subscribeMessages("id,boc", msg => {
       account.refresh()
-      console.log('Wallet.onMessage', Date.now(), address, msg)
+      console.log('Wallet.onMessage', Date.now().toLocaleString())
       uax.getUAXBalance(account).then(setUAXBalance);
       uax.getTONBalance(account).then(setTONBalance);
     })
@@ -43,7 +42,7 @@ function Wallet({ label, account }) {
       if (!to.match(/^0:[a-fA-F0-9]{64}$/) || !Number.isInteger(val) || !(val > 0))
         return
 
-      let tx = await account.run('transferTokensExt', { to: to, val: val })
+      let tx = await account.run('transferTokens', { to: to, val: val })
 
       console.log(`Transaction Sent (${account.address}) to=${to} val=${val}`, tx)
       toInput.current.value = ''

@@ -2,7 +2,7 @@ import s from './App.module.css';
 import { Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header';
-
+import Dev from './components/Dev';
 import Demo from './components/Demo';
 import Demo1 from './components/Demo1';
 import Aside from './components/Aside';
@@ -34,7 +34,7 @@ function App() {
                 <Demo1 idx={3} />
               </Route>
               <Route exact path="/dev">
-                
+                <Dev />
               </Route>
             </Switch>
           </div>

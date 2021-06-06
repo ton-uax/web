@@ -39,12 +39,12 @@ export async function getStats(root, medium) {
   }
 }
 
-const getUAXBalance = async contract => {
+export const getUAXBalance = async contract => {
   const balance = await readGetter(contract, 'getFinances')
   return balance.balance
 }
 
-const getTONBalance = async contract => {
+export const getTONBalance = async contract => {
   const hexBalance = (await contract.getBalance());
   return +(parseInt(hexBalance, 16) / 10 ** 9).toFixed(2);
 }
