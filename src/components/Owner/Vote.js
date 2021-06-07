@@ -1,14 +1,14 @@
+import { useEffect, useState } from 'react';
+
 import s from './Vote.module.css';
 import Loader from '../Loader'
-
-import { useState } from 'react';
-import { useInterval } from 'react-use';
 
 function getTimeLeftString(t) {
   if (!t)
     return ""
   const now = new Date()
   const d = (t - now) / 1000;
+  if (d < 0) return ''
   let days = Math.floor(d / (60 * 60 * 24));
   let hours = Math.floor((d % (60 * 60 * 24)) / (60 * 60)).toString().padStart(2, "0")
   let minutes = Math.floor((d % (60 * 60)) / (60)).toString().padStart(2, "0")
@@ -19,6 +19,11 @@ function getTimeLeftString(t) {
 
 
 function Vote({ owner, proposal, refresh, ownerAlreadyVoted }) {
+  const [timeLeft, setTimeLeft] = useState(proposal.expire)
+  const [time, setTime] = useState(getTimeLeftString(timeLeft))
+  const [resolution, setResolution] = useState(null)
+  const [disableVoting, setDisableVoting] = useState(ownerAlreadyVoted)
+
   const eventTypesDisplay = {
     "mint": "mint",
     "burn": "burn",
@@ -27,13 +32,20 @@ function Vote({ owner, proposal, refresh, ownerAlreadyVoted }) {
     "claimfee": "withdraw fee"
   }
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(getTimeLeftString(timeLeft))
+      setTimeLeft(timeLeft - 1000)
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
+  if (!time) return null
+
   const authorAlias = `Owner ${proposal.author}`
 
-  const expireIn = getTimeLeftString(proposal.expire)
-  useInterval(() => refresh, 1000)
-
-  const [resolution, setResolution] = useState(null)
-  const [disableVoting, setDisableVoting] = useState(ownerAlreadyVoted)
+  // const expireIn = getTimeLeftString(proposal.expire)
+  // useInterval(() => refresh, 1000)
 
   const btnApproveClassName = (resolution === "approve") ? s.buttonvoted : s.button
   const btnRejectClassName = (resolution === "reject") ? s.buttonvoted : s.button
@@ -52,7 +64,7 @@ function Vote({ owner, proposal, refresh, ownerAlreadyVoted }) {
         <span className="i-uax">{proposal.value}</span>
       </span>
 
-      <span className="i-cycle i-rotate">Expire in {expireIn}</span>
+      <span className="i-cycle i-rotate">Expire in {time}</span>
       <span className="i-eye">Signed: {proposal.hasSigs}/{proposal.reqSigs}</span>
 
       <div

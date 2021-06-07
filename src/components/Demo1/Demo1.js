@@ -11,8 +11,8 @@ function useX(contract, proposal, medium, updateProposal) {
 
   useAsync(async () => {
     console.log('Owner.subscribe', (new Date()).toLocaleString(), contract.address)
-    if (!proposal.value)
-      updateProposal()
+    // if (!proposal.value)
+    //   updateProposal()
     return await contract.subscribe(
       "messages",
       {
@@ -35,7 +35,7 @@ function useX(contract, proposal, medium, updateProposal) {
 function Demo1({ idx }) {
   const [contract, wallet] = useOwner({ idx })
   const UAXSystem = useUAXSystem()
-  let medium = UAXSystem.Medium
+  const medium = UAXSystem.Medium
 
   const proposal = useAsyncRetry(async () => await lastProposalOnApproval(medium), [])
 
