@@ -30,12 +30,17 @@ libWebSetup({
 })
 ton_.useBinaryLibrary(libWeb);
 
+const NETWORKS = {
+  'main': 'https://main.ton.dev',
+  'dev': 'https://net.ton.dev',
+  'se': 'http://localhost'
+}
 
 export const TONUAXContext = createContext();
 export const TONUAXContextProvider = props => {
   const ton = new ton_({
     network: {
-      server_address: ENV.network
+      server_address: NETWORKS[ENV.network]
     }
   })
   const UAXSystem = {

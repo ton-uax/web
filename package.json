@@ -8,8 +8,8 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.1",
     "@tonclient/appkit": "^0.2.0",
-    "@tonclient/core": "^1.12.0",
-    "@tonclient/lib-web": "^1.12.0",
+    "@tonclient/core": "^1.16.0",
+    "@tonclient/lib-web": "^1.16.0",
     "gh-pages": "^3.1.0",
     "modern-normalize": "^1.0.0",
     "node-sass": "^5.0.0",
@@ -21,13 +21,10 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
+    "wasm": "cp ./node_modules/@tonclient/lib-web/tonclient.wasm public",
     "start": "react-scripts start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "wasm": "cp ./node_modules/@tonclient/lib-web/tonclient.wasm public"
+    "deploy": "gh-pages -d build -a",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
