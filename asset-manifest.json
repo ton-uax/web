@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.707824de.chunk.css",
-    "main.js": "/static/js/main.4f18ed6a.chunk.js",
-    "main.js.map": "/static/js/main.4f18ed6a.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.40d67daa.js",
-    "runtime-main.js.map": "/static/js/runtime-main.40d67daa.js.map",
-    "static/css/2.bc922b9c.chunk.css": "/static/css/2.bc922b9c.chunk.css",
-    "static/js/2.1c7725de.chunk.js": "/static/js/2.1c7725de.chunk.js",
-    "static/js/2.1c7725de.chunk.js.map": "/static/js/2.1c7725de.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.bc922b9c.chunk.css.map": "/static/css/2.bc922b9c.chunk.css.map",
-    "static/css/main.707824de.chunk.css.map": "/static/css/main.707824de.chunk.css.map",
-    "static/js/2.1c7725de.chunk.js.LICENSE.txt": "/static/js/2.1c7725de.chunk.js.LICENSE.txt",
-    "static/media/App.module.css": "/static/media/circle.ee3701f0.png",
-    "static/media/logo.240b99fe.svg": "/static/media/logo.240b99fe.svg",
-    "static/media/icons.css": "/static/media/uax.cbff5e64.svg",
-    "static/media/Wallet.module.css": "/static/media/wallet-b.afdb2776.png"
+    "main.css": "/web/static/css/main.27f5eea1.chunk.css",
+    "main.js": "/web/static/js/main.64a92c7f.chunk.js",
+    "main.js.map": "/web/static/js/main.64a92c7f.chunk.js.map",
+    "runtime-main.js": "/web/static/js/runtime-main.1cd12c6c.js",
+    "runtime-main.js.map": "/web/static/js/runtime-main.1cd12c6c.js.map",
+    "static/css/2.c79dbdbc.chunk.css": "/web/static/css/2.c79dbdbc.chunk.css",
+    "static/js/2.c401bf34.chunk.js": "/web/static/js/2.c401bf34.chunk.js",
+    "static/js/2.c401bf34.chunk.js.map": "/web/static/js/2.c401bf34.chunk.js.map",
+    "index.html": "/web/index.html",
+    "static/css/2.c79dbdbc.chunk.css.map": "/web/static/css/2.c79dbdbc.chunk.css.map",
+    "static/css/main.27f5eea1.chunk.css.map": "/web/static/css/main.27f5eea1.chunk.css.map",
+    "static/js/2.c401bf34.chunk.js.LICENSE.txt": "/web/static/js/2.c401bf34.chunk.js.LICENSE.txt",
+    "static/media/App.module.css": "/web/static/media/circle.ee3701f0.png",
+    "static/media/logo.240b99fe.svg": "/web/static/media/logo.240b99fe.svg",
+    "static/media/icons.css": "/web/static/media/uax.cbff5e64.svg",
+    "static/media/Wallet.module.css": "/web/static/media/wallet-b.afdb2776.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.40d67daa.js",
-    "static/css/2.bc922b9c.chunk.css",
-    "static/js/2.1c7725de.chunk.js",
-    "static/css/main.707824de.chunk.css",
-    "static/js/main.4f18ed6a.chunk.js"
+    "static/js/runtime-main.1cd12c6c.js",
+    "static/css/2.c79dbdbc.chunk.css",
+    "static/js/2.c401bf34.chunk.js",
+    "static/css/main.27f5eea1.chunk.css",
+    "static/js/main.64a92c7f.chunk.js"
   ]
 }
